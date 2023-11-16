@@ -125,20 +125,24 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
+import store from "@/store";
+import router from "@/router";
 
 export default {
   name: "SignUp",
   methods: {
     googleSignIn: function () {
       let provider = new firebase.auth.GoogleAuthProvider();
-      const store = useStore();
+
       // const router = useRouter();
       firebase
         .auth()
         .signInWithPopup(provider)
         .then((result) => {
           let token = result.credential.accessToken;
-          this.$store.dispatch("logIn", result);
+          store.dispatch("logIn", result);
+          console.log(store.state.user.loggedIn)
+          router.push("/");
         })
         .catch((err) => {
           console.log(err); // This will give you all the information needed to further debug any errors
