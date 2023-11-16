@@ -4,5 +4,5 @@
   </div>
 </template>
 <script>
-import firebase from "./firebaseInit";
+import firebase from "@/firebase";
 </script>

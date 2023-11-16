@@ -4,9 +4,10 @@ import {
   createWebHistory,
 } from "vue-router";
 import HomeView from "@/views/landingpage/HomeView.vue";
-import ProfileView from "@/views/landingpage/ProfileView.vue";
+import ProfileView from "@/views/app/ProfileView.vue";
 import SignIn from "@/views/auth/sign-in.vue";
 import NotFoundView from "@/views/utils/NotFoundView.vue";
+import ActivatePolarView from "@/views/app/ActivatePolarView.vue";
 
 const routes = [
   { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFoundView },
@@ -25,6 +26,11 @@ const routes = [
     path: "/auth/login",
     name: "Login",
     component: SignIn,
+  },
+  {
+    path: "/activate-polar",
+    name: "PolarConnect",
+    component: ActivatePolarView,
   },
   {
     path: "/about",

@@ -123,8 +123,7 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import { useStore } from "vuex";
-import { useRouter } from "vue-router";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import store from "@/store";
 import router from "@/router";
 
@@ -141,7 +140,7 @@ export default {
         .then((result) => {
           let token = result.credential.accessToken;
           store.dispatch("logIn", result);
-          console.log(store.state.user.loggedIn)
+          console.log(store.state.user.loggedIn);
           router.push("/");
         })
         .catch((err) => {
