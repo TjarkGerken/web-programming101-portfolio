@@ -118,35 +118,6 @@
     </div>
   </div>
 </template>
-<script>
-// Import the functions you need from the SDKs you need
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-import "firebase/compat/firestore";
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import store from "@/store";
-import router from "@/router";
-
-export default {
-  name: "SignUp",
-  methods: {
-    googleSignIn: function () {
-      let provider = new firebase.auth.GoogleAuthProvider();
-
-      // const router = useRouter();
-      firebase
-        .auth()
-        .signInWithPopup(provider)
-        .then((result) => {
-          let token = result.credential.accessToken;
-          store.dispatch("logIn", result);
-          console.log(store.state.user.loggedIn);
-          router.push("/");
-        })
-        .catch((err) => {
-          console.log(err); // This will give you all the information needed to further debug any errors
-        });
-    },
-  },
-};
+<script setup>
+import { googleSignIn } from "@/api/auth";
 </script>

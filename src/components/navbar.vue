@@ -50,6 +50,17 @@
         class="hidden lg:flex lg:flex-1 lg:justify-end"
         v-if="isAuthenticated"
       >
+        <button
+          @click="logout"
+          class="text-sm font-semibold leading-6 text-gray-900"
+        >
+          Logout
+        </button>
+      </div>
+      <div
+        class="hidden lg:flex lg:flex-1 lg:justify-end"
+        v-if="isAuthenticated"
+      >
         <router-link
           to="/"
           class="text-sm font-semibold leading-6 text-gray-900"
@@ -132,7 +143,7 @@
             </div>
             <div class="py-6" v-if="isAuthenticated">
               <button
-                @click="logOut"
+                @click="logout"
                 class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
               >
                 Logout
@@ -167,20 +178,9 @@ import {
   SquaresPlusIcon,
   XMarkIcon,
 } from "@heroicons/vue/24/outline";
-import {
-  ChevronDownIcon,
-  PhoneIcon,
-  PlayCircleIcon,
-} from "@heroicons/vue/20/solid";
-import { useStore } from "vuex";
 import store from "@/store";
+import { logout } from "@/api/auth";
 
 const mobileMenuOpen = ref(false);
 const isAuthenticated = store.state.user.loggedIn;
-
-function logOut() {
-  console.log("logout");
-  store.dispatch("logOut");
-  window.location.reload();
-}
 </script>
