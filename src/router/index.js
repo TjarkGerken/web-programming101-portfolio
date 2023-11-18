@@ -1,13 +1,11 @@
-import {
-  createRouter,
-  createWebHashHistory,
-  createWebHistory,
-} from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/landingpage/HomeView.vue";
 import ProfileView from "@/views/app/ProfileView.vue";
 import SignIn from "@/views/auth/sign-in.vue";
 import NotFoundView from "@/views/utils/NotFoundView.vue";
 import ActivatePolarView from "@/views/app/ActivatePolarView.vue";
+import DashboardView from "@/views/app/DashboardView.vue";
+import AboutView from "@/views/landingpage/AboutView.vue";
 
 const routes = [
   { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFoundView },
@@ -28,6 +26,11 @@ const routes = [
     component: SignIn,
   },
   {
+    path: "/dashboard",
+    name: "Dashboard",
+    component: DashboardView,
+  },
+  {
     path: "/activate-polar",
     name: "PolarConnect",
     component: ActivatePolarView,
@@ -35,14 +38,7 @@ const routes = [
   {
     path: "/about",
     name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: function () {
-      return import(
-        /* webpackChunkName: "about" */ "../views/landingpage/AboutView.vue"
-      );
-    },
+    component: AboutView,
   },
 ];
 

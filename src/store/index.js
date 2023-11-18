@@ -12,6 +12,7 @@ const store = createStore({
       loggedIn: false,
       token: null,
       data: null,
+      polar_user: null,
     },
   },
   getters: {
@@ -29,6 +30,9 @@ const store = createStore({
     SET_USER(state, data) {
       state.user.data = data;
     },
+    SET_POLAR_USER(state, data) {
+      state.user.polar_user = data;
+    },
   },
   actions: {
     logIn(context, response) {
@@ -37,10 +41,14 @@ const store = createStore({
       context.commit("SET_USER", response.user);
     },
 
-    async logOut(context) {
+    logOut(context) {
       context.commit("SET_LOGGED_IN", false);
       context.commit("SET_TOKEN", null);
       context.commit("SET_USER", null);
+      context.commit("SET_POLAR_USER_ID", null);
+    },
+    setPolarUser(context, polar_user) {
+      context.commit("SET_POLAR_USER", polar_user);
     },
   },
   plugins: [vuexLocalStorage.plugin],

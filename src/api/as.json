@@ -1,0 +1,15 @@
+{
+  "upload-time": "2023-11-18T21:48:17.000Z",
+  "id": 327709367,
+  "polar-user": "https://www.polaraccesslink.com/v3/users/58947354",
+  "transaction-id": 282001165,
+  "device": "Polar Flow app",
+  "start-time": "2023-11-18T22:48:02",
+  "start-time-utc-offset": 60,
+  "duration": "PT8.656S",
+  "distance": 0,
+  "heart-rate": {},
+  "sport": "RUNNING",
+  "has-route": true,
+  "detailed-sport-info": "RUNNING"
+}

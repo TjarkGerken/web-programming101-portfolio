@@ -13,14 +13,7 @@
   ```
 -->
 <template>
-  <!--
-    This example requires updating your template:
-
-    ```
-    <html class="h-full bg-white">
-    <body class="h-full">
-    ```
-  -->
+  <!-- TODO: if user is logged in, redirect to dashboard -->
   <div class="flex flex-col h-full md:flex-row w-full">
     <div
       class="flex md:min-h-full w-full md:w-1/3 flex-1 flex-col justify-center px-6 py-12 lg:px-8"

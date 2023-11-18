@@ -9,9 +9,10 @@ import {
 import { useStore } from "vuex";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
+import { getUser } from "@/api/user";
+import store from "@/store";
 
 const toast = useToast();
-const store = useStore();
 
 async function storeUserData(polar_member_id) {
   let user_data = await getUserData(polar_member_id);
@@ -70,6 +71,10 @@ export async function getPolarAuthToken(code) {
   } catch (error) {
     toast.error("Something we wrong. Please try again.");
     console.error(error);
+  }
+  const polar_user = await getUser();
+  if (polar_user) {
+    await store.dispatch("setPolarUser", polar_user);
   }
   await router.push("/profile");
 }
