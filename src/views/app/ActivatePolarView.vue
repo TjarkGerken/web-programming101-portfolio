@@ -33,7 +33,7 @@ export default {
             "<register><member-id>" +
             response.data.x_user_id +
             "</member-id></register>";
-          const register_url = BASE_URL_CORS_PROXY + "/v3/users";
+          const register_url = BASE_URL_CORS_PROXY + "v3/users";
           const register_headers = {
             "Content-Type": "application/xml",
             Authorization: "Bearer " + response.data.access_token,
@@ -45,13 +45,15 @@ export default {
               headers: register_headers,
             },
           );
-          console.log(register_response);
           await router.push("/profile");
+          console.log(register_response);
           toast.success("You're account was successfully connected.");
         } catch (error) {
           if (error.response.status === 409) {
+            await router.push("/profile");
             toast.success("You're account was successfully connected.");
           } else {
+            await router.push("/profile");
             toast.error("Something we wrong. Please try again.");
             console.error(error);
           }
