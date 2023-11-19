@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@garmin-fit/sdk": "^21.115.0",
     "@heroicons/vue": "^2.0.18",
     "@tailwindcss/forms": "^0.5.7",
     "axios": "^1.6.2",

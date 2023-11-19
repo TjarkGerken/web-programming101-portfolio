@@ -52,6 +52,7 @@ async function registerUser(user_id, access_token) {
     }
   }
 }
+
 export async function getPolarAuthToken(code) {
   const headers = {
     Accept: "application/json;charset=UTF-8",

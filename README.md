@@ -1,16 +1,17 @@
-# uniproject-vue
+# DHBW Mannheim - Web Programming
 
-This template should help get you started developing with Vue 3 in Vite.
+This repository contains the code for the project of the course Web Programming at the DHBW Mannheim. The aim was to 
+build an interactive Webapp in Vue.js and use Firebase as a BaaS Provider. 
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Project Description
+<!-- TODO:  Update at the end -->
+The App 
+allows a simple view on activities frlso see the details of an activity _**??and see the route on a map??**_. The user
+can also see his profile information.om the Polar Flow API. The user can login with his Polar Account and  then see 
+all his new activities. The user can a
 
 ## Project Setup
+
 
 ```sh
 npm install

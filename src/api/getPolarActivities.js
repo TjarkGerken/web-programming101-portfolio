@@ -45,12 +45,13 @@ export async function getPolarActivities() {
       if (exercise_list) {
         for (const exercise_url of exercise_list.exercises) {
           // You can access each exercise item here
-          await storeExerciseData(exercise_url);
           console.log(exercise_url);
+          await storeExerciseData(exercise_url);
         }
       }
     },
-  ); //
+  );
+  await commitTransaction(transaction["resource-uri"]);
   console.log(exercise_list);
 }
 
@@ -77,4 +78,21 @@ async function storeExerciseData(exercise_url) {
     .set(exercise_data);
 
   console.log(exercise_data);
+}
+async function commitTransaction(transaction_url) {
+  try {
+    return await axios.put(removeBaseUrl(transaction_url), {}, { headers });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// TODO: GET Exercises from Firestore
+export async function getExercises() {
+  const userDocRef = firebase
+    .firestore()
+    .collection("user")
+    .doc(store.state.user.data.uid);
+  const snapshot = await userDocRef.collection("exercises").get();
+  return snapshot.docs.map((doc) => doc.data());
 }
