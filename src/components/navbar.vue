@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-white border-gray-50 border-2">
+  <header class="border-2 border-gray-50 bg-white">
     <nav
       class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
       aria-label="Global"
@@ -157,27 +157,16 @@
 </template>
 
 <script setup>
-import { computed, reactive, ref } from "vue";
+import { ref } from "vue";
 import {
   Dialog,
   DialogPanel,
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
-  Popover,
-  PopoverButton,
   PopoverGroup,
-  PopoverPanel,
 } from "@headlessui/vue";
-import {
-  ArrowPathIcon,
-  Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
-  XMarkIcon,
-} from "@heroicons/vue/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/outline";
 import store from "@/store";
 import { logout } from "@/api/auth";
 

@@ -13,7 +13,7 @@ import Navbar from "@/components/navbar.vue";
     ```
   -->
   <main
-    class="flex justify-center h-full items-center place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8"
+    class="flex h-full place-items-center items-center justify-center bg-white px-6 py-24 sm:py-32 lg:px-8"
   >
     <div class="text-center">
       <p class="text-2xl font-semibold text-indigo-600">404</p>

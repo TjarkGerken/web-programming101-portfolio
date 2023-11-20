@@ -14,9 +14,9 @@
 -->
 <template>
   <!-- TODO: if user is logged in, redirect to dashboard -->
-  <div class="flex flex-col h-full md:flex-row w-full">
+  <div class="flex h-full w-full flex-col md:flex-row">
     <div
-      class="flex md:min-h-full w-full md:w-1/3 flex-1 flex-col justify-center px-6 py-12 lg:px-8"
+      class="flex w-full flex-1 flex-col justify-center px-6 py-12 md:min-h-full md:w-1/3 lg:px-8"
     >
       <div class="sm:mx-auto sm:w-full sm:max-w-sm">
         <img
@@ -101,10 +101,10 @@
       </div>
     </div>
     <div
-      class="bg-black w-full hidden md:block md:w-2/3 h-full md:min-h-screen"
+      class="hidden h-full w-full bg-black md:block md:min-h-screen md:w-2/3"
     >
       <img
-        class="w-full h-full object-cover bg-blend-darken"
+        class="h-full w-full object-cover bg-blend-darken"
         src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         alt="Gym pic"
       />

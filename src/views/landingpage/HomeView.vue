@@ -1,6 +1,6 @@
 <template>
   <Navbar></Navbar>
-  <div class="flex justify-center h-full w-full">
+  <div class="flex h-full w-full justify-center">
     <img alt="Vue logo" class="w-12" src="@/assets/logo.svg" />
   </div>
 </template>
