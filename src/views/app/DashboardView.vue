@@ -1,7 +1,7 @@
 <script setup>
-import Navbar from "@/components/navbar.vue";
 import { onMounted, ref } from "vue";
 import { getExercises, getPolarActivities } from "@/api/getPolarActivities";
+import ApplicationNavbar from "@/components/ApplicationNavbar.vue";
 
 const exercises = ref([]);
 
@@ -15,9 +15,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <Navbar></Navbar>
-  <p>This is the dashboard</p>
-  {{ exercises }}
+  <ApplicationNavbar></ApplicationNavbar>
+  <div class="lg:ml-28">
+    <p>This is the dashboard</p>
+    {{ exercises }}
+  </div>
 </template>
 
 <style scoped></style>

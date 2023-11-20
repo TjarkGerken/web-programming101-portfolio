@@ -1,15 +1,20 @@
 {
-  "upload-time": "2023-11-18T21:48:17.000Z",
-  "id": 327709367,
-  "polar-user": "https://www.polaraccesslink.com/v3/users/58947354",
-  "transaction-id": 282001165,
-  "device": "Polar Flow app",
-  "start-time": "2023-11-18T22:48:02",
-  "start-time-utc-offset": 60,
-  "duration": "PT8.656S",
-  "distance": 0,
-  "heart-rate": {},
-  "sport": "RUNNING",
-  "has-route": true,
-  "detailed-sport-info": "RUNNING"
+  "user": {
+    "loggedIn": false,
+    "token": null,
+    "data": null,
+    "polar_user": {
+      "weight": 71.1,
+      "polar-user-id": 58947354,
+      "registration-date": "2023-11-20T20:41:05.000Z",
+      "birthdate": "2002-01-28",
+      "member-id": "58947354",
+      "polar_access_token": "3a27b568d77b1accf861374395789e6a",
+      "extra-info": [],
+      "last-name": "Gerken",
+      "gender": "MALE",
+      "height": 186,
+      "first-name": "Tjark"
+    }
+  }
 }

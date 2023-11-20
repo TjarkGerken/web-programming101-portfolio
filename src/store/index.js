@@ -46,6 +46,7 @@ const store = createStore({
       context.commit("SET_TOKEN", null);
       context.commit("SET_USER", null);
       context.commit("SET_POLAR_USER_ID", null);
+      context.commit("SET_POLAR_USER", null);
     },
     setPolarUser(context, polar_user) {
       context.commit("SET_POLAR_USER", polar_user);

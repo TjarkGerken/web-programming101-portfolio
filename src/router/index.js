@@ -1,10 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/landingpage/HomeView.vue";
-import ProfileView from "@/views/app/ProfileView.vue";
 import SignIn from "@/views/auth/sign-in.vue";
 import NotFoundView from "@/views/utils/NotFoundView.vue";
-import ActivatePolarView from "@/views/app/ActivatePolarView.vue";
-import DashboardView from "@/views/app/DashboardView.vue";
 import AboutView from "@/views/landingpage/AboutView.vue";
 
 const routes = [
@@ -18,7 +15,7 @@ const routes = [
   {
     path: "/profile",
     name: "profile",
-    component: ProfileView,
+    component: () => import("@/views/app/ProfileView.vue"),
   },
   {
     path: "/auth/login",
@@ -28,12 +25,17 @@ const routes = [
   {
     path: "/dashboard",
     name: "Dashboard",
-    component: DashboardView,
+    component: () => import("@/views/app/DashboardView.vue"),
   },
   {
     path: "/activate-polar",
     name: "PolarConnect",
-    component: ActivatePolarView,
+    component: () => import("@/views/app/ActivatePolarView.vue"),
+  },
+  {
+    path: "/activities",
+    name: "Activities",
+    component: () => import("@/views/app/ActivitiesView.vue"),
   },
   {
     path: "/about",

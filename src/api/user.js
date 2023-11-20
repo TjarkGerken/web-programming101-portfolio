@@ -3,7 +3,6 @@ import "firebase/compat/firestore";
 import store from "@/store";
 
 export async function getUser() {
-  console.log(store.state.user.data.uid);
   const doc = await firebase
     .firestore()
     .collection("user")

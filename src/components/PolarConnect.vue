@@ -1,6 +1,5 @@
 <script setup>
 const props = defineProps(["polar_status"]);
-console.log(props.polar_status);
 
 // TODO: Add a function to unlink the Polar account
 </script>

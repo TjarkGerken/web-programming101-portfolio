@@ -6,7 +6,6 @@ import {
   POLAR_BASIC_AUTH_CLIENT_ID_SECRET,
   BASE_URL_POLAR_TOKEN,
 } from "@/api/api-config";
-import { useStore } from "vuex";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import { getUser } from "@/api/user";
@@ -14,20 +13,19 @@ import store from "@/store";
 
 const toast = useToast();
 
-async function storeUserData(polar_member_id) {
-  let user_data = await getUserData(polar_member_id);
+async function storeUserData(polar_member_id, polar_access_token) {
+  let user_data = await getUserData(polar_member_id, polar_access_token);
+  user_data.data["polar_access_token"] = polar_access_token;
   await firebase
     .firestore()
     .collection("user")
     .doc(store.state.user.data.uid)
-    .set(user_data.data);
-
-  console.log(user_data.data);
+    .set(user_data.data, { merge: true });
 }
-async function getUserData(polar_member_id) {
+async function getUserData(polar_member_id, polar_access_token) {
   const url = BASE_URL_CORS_PROXY + "v3/users/" + polar_member_id;
   const headers = {
-    Authorization: "Bearer " + localStorage.getItem("polar_access_token"),
+    Authorization: "Bearer " + polar_access_token,
   };
   return axios.get(url, { headers });
 }
@@ -41,7 +39,7 @@ async function registerUser(user_id, access_token) {
     Authorization: "Bearer " + access_token,
   };
   try {
-    const register_response = await axios.post(register_url, register_data, {
+    await axios.post(register_url, register_data, {
       headers: register_headers,
     });
   } catch (error) {
@@ -64,10 +62,9 @@ export async function getPolarAuthToken(code) {
     const response = await axios.post(BASE_URL_POLAR_TOKEN, data, {
       headers,
     });
-    localStorage.setItem("polar_access_token", response.data.access_token);
     const user_id = response.data["x_user_id"];
     await registerUser(user_id, response.data.access_token);
-    await storeUserData(user_id);
+    await storeUserData(user_id, response.data.access_token);
     toast.success("You're account was successfully connected.");
   } catch (error) {
     toast.error("Something we wrong. Please try again.");
