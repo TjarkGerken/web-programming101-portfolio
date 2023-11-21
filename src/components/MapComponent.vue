@@ -23,7 +23,6 @@ function updateMap() {
 }
 
 onMounted(() => {
-  console.log("mounted");
   nextTick(() => {
     updateMap();
   });
@@ -36,7 +35,13 @@ onMounted(() => {
     :loadTilesWhileInteracting="true"
     :controls="[]"
     :interactions="[]"
-    style="height: 100%; width: 100%"
+    class="rounded-t-2xl"
+    style="
+      height: 100%;
+      width: 100%;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    "
   >
     <ol-view
       ref="viewRef"

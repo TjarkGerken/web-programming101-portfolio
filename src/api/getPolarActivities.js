@@ -5,7 +5,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import { getFitData } from "@/api/fitConversion";
 import { getGPXDataToJSON } from "@/api/gpxConversion";
-import { removeBaseUrl } from "@/api/utils";
+import { getCityFromCoordinates, removeBaseUrl } from "@/api/utils";
 
 async function postExerciseTransactions() {
   const headers = {
@@ -67,6 +67,10 @@ async function getExerciseData(exercise_url) {
       .then(async (res) => {
         res.data["fit"] = await getFitData(exercise_url);
         res.data["gpx"] = await getGPXDataToJSON(exercise_url);
+        res.data["location"] = await getCityFromCoordinates(
+          res.data["gpx"][0]["lat"],
+          res.data["gpx"][0]["lon"],
+        );
         return res;
       });
     return response.data;

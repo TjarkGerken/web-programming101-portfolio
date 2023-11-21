@@ -1,12 +1,11 @@
 <script setup>
 import {
   activityEndTime,
-  formatDate,
+  determineName,
   formatDuration,
   formatTime,
 } from "@/api/utils";
 import MapComponent from "@/components/MapComponent.vue";
-
 const props = defineProps({
   activity: Object,
 });
@@ -26,15 +25,48 @@ const props = defineProps({
       />
     </div>
     <div class="my-4 mt-0 h-fit w-full rounded-b-2xl bg-white px-4 py-2">
-      {{ props.activity["detailed-sport-info"] }} -
-      {{ formatDate(props.activity["start-time"]) }} <br />
-      {{ formatTime(props.activity["start-time"]) }} -
-      {{
-        activityEndTime(props.activity.duration, props.activity["start-time"])
-      }}
-      <br />
-      {{ props.activity.distance / 1000 }} km <br />
-      {{ formatDuration(props.activity.duration) }}
+      <div class="flex space-x-4">
+        <div class="flex w-1/3 flex-col">
+          {{
+            determineName(
+              props.activity["start-time"],
+              props.activity.sport,
+              props.activity["detailed-sport-info"],
+            )
+          }}
+          <br />
+
+          {{ formatTime(props.activity["start-time"]) }} -
+          {{
+            activityEndTime(
+              props.activity.duration,
+              props.activity["start-time"],
+            )
+          }}
+          <br />
+          <span v-if="props.activity.location">{{
+            props.activity.location
+          }}</span>
+        </div>
+        <div class="flex w-full justify-around">
+          <span v-if="props.activity.distance"
+            >{{ props.activity.distance / 1000 }} km
+          </span>
+          <span v-if="props.activity.duration">{{
+            formatDuration(props.activity.duration)
+          }}</span>
+          <span v-if="props.activity['heart-rate'].average"
+            >{{ props.activity["heart-rate"].average }} bpm</span
+          ><span v-if="props.activity.calories"
+            >{{ props.activity.calories }} kcal</span
+          >
+          <span v-if="props.activity.fit">
+            <span v-if="props.activity.fit.sessionMesgs[0].avgSpeed"
+              >{{ props.activity.fit.sessionMesgs[0].avgSpeed }} km/h</span
+            >
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
