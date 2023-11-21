@@ -3,6 +3,7 @@ import { BASE_URL_CORS_PROXY, removeBaseUrl } from "@/api/api-config";
 import store from "@/store";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
+import { getFitData } from "@/api/fitConversion";
 
 async function postExerciseTransactions() {
   const headers = {
@@ -40,14 +41,10 @@ export async function getPolarActivities() {
     console.log("No transaction");
     return;
   }
-  console.log(transaction["resource-uri"]);
-
-  // transaction["resource-uri"]
-  const exercise_list = await getExerciseList(transaction["resource-uri"]).then(
+  await getExerciseList(transaction["resource-uri"]).then(
     async (exercise_list) => {
       if (exercise_list) {
         for (const exercise_url of exercise_list.exercises) {
-          // You can access each exercise item here
           console.log(exercise_url);
           await storeExerciseData(exercise_url);
         }
@@ -55,7 +52,6 @@ export async function getPolarActivities() {
     },
   );
   await commitTransaction(transaction["resource-uri"]);
-  console.log(exercise_list);
 }
 
 async function getExerciseData(exercise_url) {
@@ -64,7 +60,12 @@ async function getExerciseData(exercise_url) {
   };
   exercise_url = removeBaseUrl(exercise_url);
   try {
-    const response = await axios.get(exercise_url, { headers });
+    const response = await axios
+      .get(exercise_url, { headers })
+      .then(async (res) => {
+        res.data["fit"] = await getFitData(exercise_url);
+        return res;
+      });
     return response.data;
   } catch (error) {
     console.error(error);

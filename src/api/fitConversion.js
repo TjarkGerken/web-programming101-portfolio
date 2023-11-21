@@ -1,22 +1,30 @@
 // TODO: https://developer.garmin.com/fit/example-projects/javascript/
-import { Decoder, Stream, Profile, Utils } from "@garmin-fit/sdk";
-const fs = require("fs");
+import { Decoder, Stream } from "@garmin-fit/sdk";
+import store from "@/store";
+import axios from "axios";
 
-const bytes = [
-  0x0e, 0x10, 0xd9, 0x07, 0x00, 0x00, 0x00, 0x00, 0x2e, 0x46, 0x49, 0x54, 0x91,
-  0x33, 0x00, 0x00,
-];
+export async function getFitData(exercise_url) {
+  const headers = {
+    Authorization: "Bearer " + store.state.user.polar_user.polar_access_token,
+  };
+  const response = await axios.get(exercise_url + "/fit", {
+    headers,
+    responseType: "arraybuffer",
+  });
+  const arrayBuffer = await response.data;
+  const uint8Array = new Uint8Array(arrayBuffer);
 
-const buf = fs.readFileSync("@/assets/12793438381_ACTIVITY.fit");
+  const streamfromFileSync = Stream.fromBuffer(uint8Array);
+  console.log("isFIT (static method): " + Decoder.isFIT(streamfromFileSync));
 
-const streamfromFileSync = Stream.fromBuffer(buf);
-console.log("isFIT (static method): " + Decoder.isFIT(streamfromFileSync));
+  const decoder = new Decoder(streamfromFileSync);
+  console.log("isFIT (instance method): " + decoder.isFIT());
+  console.log("checkIntegrity: " + decoder.checkIntegrity());
 
-const decoder = new Decoder(streamfromFileSync);
-console.log("isFIT (instance method): " + decoder.isFIT());
-console.log("checkIntegrity: " + decoder.checkIntegrity());
+  const { messages, errors } = decoder.read();
 
-const { messages, errors } = decoder.read();
-
-console.log(errors);
-console.log(messages);
+  if (errors.length > 0) {
+    console.error("errors: " + errors);
+  }
+  return messages;
+}

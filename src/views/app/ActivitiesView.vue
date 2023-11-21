@@ -1,11 +1,40 @@
 <script setup>
 import ApplicationNavbar from "@/components/ApplicationNavbar.vue";
+import ActivitiesCard from "@/components/ActivitiesCard.vue";
+import { onMounted, ref } from "vue";
+import { getExercises, getPolarActivities } from "@/api/getPolarActivities";
+import Spinner from "@/components/Spinner.vue";
+
+const exercises = ref([]);
+const isLoading = ref(true);
+
+onMounted(() => {
+  getPolarActivities().then(() => {
+    getExercises().then((res) => {
+      exercises.value = res;
+      isLoading.value = false;
+    });
+  });
+});
 </script>
 
 <template>
   <ApplicationNavbar></ApplicationNavbar>
-  <div class="lg:ml-28">
+  <div class="bg-amber-200 lg:ml-28">
     <p>This is the activities page</p>
+    <ActivitiesCard
+      v-if="exercises.length > 0"
+      v-for="(exercise, index) in exercises"
+      :key="index"
+      :activity="exercise"
+    />
+    <div v-if="!(exercises.length > 0) & !isLoading">No activities</div>
+    <div
+      v-if="isLoading"
+      class="flex h-screen w-screen items-center justify-center"
+    >
+      <Spinner />
+    </div>
   </div>
 </template>
 
