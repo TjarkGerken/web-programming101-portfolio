@@ -1,9 +1,11 @@
 import axios from "axios";
-import { BASE_URL_CORS_PROXY, removeBaseUrl } from "@/api/api-config";
+import { BASE_URL_CORS_PROXY } from "@/api/api-config";
 import store from "@/store";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import { getFitData } from "@/api/fitConversion";
+import { getGPXDataToJSON } from "@/api/gpxConversion";
+import { removeBaseUrl } from "@/api/utils";
 
 async function postExerciseTransactions() {
   const headers = {
@@ -64,6 +66,7 @@ async function getExerciseData(exercise_url) {
       .get(exercise_url, { headers })
       .then(async (res) => {
         res.data["fit"] = await getFitData(exercise_url);
+        res.data["gpx"] = await getGPXDataToJSON(exercise_url);
         return res;
       });
     return response.data;

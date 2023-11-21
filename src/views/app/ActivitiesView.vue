@@ -9,11 +9,13 @@ const exercises = ref([]);
 const isLoading = ref(true);
 
 onMounted(() => {
-  getPolarActivities().then(() => {
-    getExercises().then((res) => {
-      exercises.value = res;
-      isLoading.value = false;
-    });
+  getPolarActivities().then(async () => {
+    getExercises()
+      .then((res) => {
+        exercises.value = res;
+        isLoading.value = false;
+      })
+      .then(() => (exercises.value = [...exercises.value].reverse()));
   });
 });
 </script>
