@@ -28,12 +28,12 @@
         <router-link
           to="/"
           class="text-sm font-semibold leading-6 text-gray-900"
-          >Home</router-link
+        >Home</router-link
         >
         <router-link
           to="/about"
           class="text-sm font-semibold leading-6 text-gray-900"
-          >About</router-link
+        >About</router-link
         >
       </PopoverGroup>
       <div
@@ -43,7 +43,7 @@
         <router-link
           to="/auth/login"
           class="text-sm font-semibold leading-6 text-gray-900"
-          >Log in <span aria-hidden="true">&rarr;</span></router-link
+        >Log in <span aria-hidden="true">&rarr;</span></router-link
         >
       </div>
       <div
@@ -64,7 +64,7 @@
         <router-link
           to="/dashboard"
           class="text-sm font-semibold leading-6 text-gray-900"
-          >Dashboard <span aria-hidden="true">&rarr;</span></router-link
+        >Dashboard <span aria-hidden="true">&rarr;</span></router-link
         >
       </div>
     </nav>
@@ -107,38 +107,38 @@
                     as="a"
                     :href="item.href"
                     class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                    >{{ item.name }}</DisclosureButton
+                  >{{ item.name }}</DisclosureButton
                   >
                 </DisclosurePanel>
               </Disclosure>
               <router-link
                 to="#"
                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >Features</router-link
+              >Features</router-link
               >
               <router-link
                 to="#"
                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >Marketplace</router-link
+              >Marketplace</router-link
               >
               <router-link
                 to="#"
                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >Company</router-link
+              >Company</router-link
               >
             </div>
             <div class="py-6" v-if="!isAuthenticated">
               <router-link
                 to="/auth/login"
                 class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >Log in</router-link
+              >Log in</router-link
               >
             </div>
             <div class="py-6" v-if="isAuthenticated">
               <router-link
                 to="/dashboard"
                 class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >Dashboard</router-link
+              >Dashboard</router-link
               >
             </div>
             <div class="py-6" v-if="isAuthenticated">
