@@ -13,6 +13,8 @@
     "@garmin-fit/sdk": "^21.115.0",
     "@heroicons/vue": "^2.0.18",
     "@tailwindcss/forms": "^0.5.7",
+    "@vuelidate/core": "^2.0.3",
+    "@vuelidate/validators": "^2.0.4",
     "axios": "^1.6.2",
     "dotenv": "^16.3.1",
     "firebase": "^10.6.0",

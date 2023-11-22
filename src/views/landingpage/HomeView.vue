@@ -1,9 +1,8 @@
 <template>
-  <Navbar></Navbar>
-  <div class="flex h-full w-full justify-center">
-    <img alt="Vue logo" class="w-12" src="@/assets/logo.svg" />
-  </div>
+  <Hero class="z-10"></Hero>
+  <CTA></CTA>
 </template>
 <script setup>
-import Navbar from "@/components/navbar.vue";
+import Hero from "@/components/Hero.vue";
+import CTA from "@/components/CTA.vue";
 </script>
