@@ -4,6 +4,7 @@ import SignIn from "@/views/auth/sign-in.vue";
 import NotFoundView from "@/views/utils/NotFoundView.vue";
 import AboutView from "@/views/landingpage/AboutView.vue";
 import store from "@/store";
+import RegisterView from "@/views/auth/RegisterView.vue";
 
 const routes = [
   {
@@ -29,6 +30,12 @@ const routes = [
     path: "/auth/login",
     name: "Login",
     component: SignIn,
+    meta: { requiresAuth: false },
+  },
+  {
+    path: "/auth/register",
+    name: "Register",
+    component: RegisterView,
     meta: { requiresAuth: false },
   },
   {

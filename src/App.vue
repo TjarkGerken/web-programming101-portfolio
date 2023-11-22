@@ -1,5 +1,5 @@
 <template>
-  <div class="flex h-screen w-screen flex-col bg-amber-50">
+  <div class="flex h-screen w-screen flex-col">
     <router-view />
   </div>
 </template>

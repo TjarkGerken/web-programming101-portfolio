@@ -37,7 +37,6 @@ const store = createStore({
   actions: {
     logIn(context, response) {
       context.commit("SET_LOGGED_IN", true);
-      context.commit("SET_TOKEN", response.credential.accessToken);
       context.commit("SET_USER", response.user);
     },
 
