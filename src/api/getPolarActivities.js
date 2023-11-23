@@ -120,6 +120,22 @@ export async function getExercises() {
   return snapshot.docs.map((doc) => doc.data());
 }
 
+export async function getLatestExercise() {
+  const userDocRef = firebase
+    .firestore()
+    .collection("user")
+    .doc(store.state.user.data.uid);
+  const exerciseDocRef = userDocRef.collection("exercises");
+  return await exerciseDocRef
+    .orderBy("start-time-sorting", "desc")
+    .limit(1)
+    .get()
+    .then((res) => {
+      console.log(res.docs[0].data());
+      return res.docs[0].data();
+    });
+}
+
 export async function getLastWeekExercises() {
   const lastWeekExercises = [];
   const userDocRef = firebase
@@ -144,7 +160,6 @@ export async function getLastWeekExercises() {
 
 export async function aggregateLastWeekStats() {
   const lastWeekExercises = await getLastWeekExercises();
-  console.log(lastWeekExercises);
   const lastWeekStats = {
     total_distance: 0,
     total_duration: Duration.fromObject({
@@ -162,23 +177,26 @@ export async function aggregateLastWeekStats() {
     total_exercises: lastWeekExercises.length,
     avg_hf: 0,
   };
+  let amount_hf = 0;
+
   lastWeekExercises.forEach((exercise) => {
     lastWeekStats.total_duration = lastWeekStats.total_duration.plus(
       Duration.fromISO(exercise.duration),
     );
-
     if (exercise.calories) {
       lastWeekStats.total_calories += exercise.calories;
     }
     if (exercise.distance) {
       lastWeekStats.total_distance += exercise.distance;
     }
-    if (exercise.heartRate) {
-      lastWeekStats.avg_hf += exercise.heartRate.average;
+
+    if (typeof exercise["heart-rate"].average === "number") {
+      lastWeekStats.avg_hf += exercise["heart-rate"].average;
+      amount_hf += 1;
     }
   });
-  if (lastWeekStats.avg_hf !== 0) {
-    lastWeekStats.avg_hf = lastWeekStats.avg_hf / lastWeekExercises.length;
+  if (lastWeekExercises.avg_hf !== 0) {
+    lastWeekStats.avg_hf = round(lastWeekStats.avg_hf / amount_hf, 2);
   }
   lastWeekStats.total_distance = round(lastWeekStats.total_distance / 1000, 2);
   lastWeekStats.total_duration =
