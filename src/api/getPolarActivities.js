@@ -6,6 +6,8 @@ import "firebase/compat/firestore";
 import { getFitData } from "@/api/fitConversion";
 import { getGPXDataToJSON } from "@/api/gpxConversion";
 import { getCityFromCoordinates, removeBaseUrl } from "@/api/utils";
+import { round } from "ol/math";
+import { Duration } from "luxon";
 
 async function postExerciseTransactions() {
   const headers = {
@@ -39,6 +41,7 @@ async function getExerciseList(url) {
 
 export async function getPolarActivities() {
   const transaction = await postExerciseTransactions();
+
   if (!transaction) {
     console.log("No transaction");
     return;
@@ -81,6 +84,12 @@ async function getExerciseData(exercise_url) {
 
 async function storeExerciseData(exercise_url) {
   const exercise_data = await getExerciseData(exercise_url);
+  if (exercise_data["start-time"]) {
+    exercise_data["start-time-sorting"] = firebase.firestore.Timestamp.fromDate(
+      new Date(exercise_data["start-time"]),
+    );
+  }
+
   const userDocRef = firebase
     .firestore()
     .collection("user")
@@ -109,4 +118,70 @@ export async function getExercises() {
     .doc(store.state.user.data.uid);
   const snapshot = await userDocRef.collection("exercises").get();
   return snapshot.docs.map((doc) => doc.data());
+}
+
+export async function getLastWeekExercises() {
+  const lastWeekExercises = [];
+  const userDocRef = firebase
+    .firestore()
+    .collection("user")
+    .doc(store.state.user.data.uid);
+  const exerciseDocRef = userDocRef.collection("exercises");
+  await exerciseDocRef
+    .where(
+      "start-time-sorting",
+      ">=",
+      firebase.firestore.Timestamp.fromDate(
+        new Date(new Date().setDate(new Date().getDate() - 7)),
+      ),
+    )
+    .get()
+    .then((res) => {
+      res.forEach((doc) => lastWeekExercises.push(doc.data()));
+    });
+  return lastWeekExercises;
+}
+
+export async function aggregateLastWeekStats() {
+  const lastWeekExercises = await getLastWeekExercises();
+  console.log(lastWeekExercises);
+  const lastWeekStats = {
+    total_distance: 0,
+    total_duration: Duration.fromObject({
+      years: 0,
+      quarters: 0,
+      months: 0,
+      weeks: 0,
+      days: 0,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+      milliseconds: 0,
+    }),
+    total_calories: 0,
+    total_exercises: lastWeekExercises.length,
+    avg_hf: 0,
+  };
+  lastWeekExercises.forEach((exercise) => {
+    lastWeekStats.total_duration = lastWeekStats.total_duration.plus(
+      Duration.fromISO(exercise.duration),
+    );
+
+    if (exercise.calories) {
+      lastWeekStats.total_calories += exercise.calories;
+    }
+    if (exercise.distance) {
+      lastWeekStats.total_distance += exercise.distance;
+    }
+    if (exercise.heartRate) {
+      lastWeekStats.avg_hf += exercise.heartRate.average;
+    }
+  });
+  if (lastWeekStats.avg_hf !== 0) {
+    lastWeekStats.avg_hf = lastWeekStats.avg_hf / lastWeekExercises.length;
+  }
+  lastWeekStats.total_distance = round(lastWeekStats.total_distance / 1000, 2);
+  lastWeekStats.total_duration =
+    lastWeekStats.total_duration.toFormat("hh:mm:ss");
+  return lastWeekStats;
 }

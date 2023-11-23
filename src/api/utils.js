@@ -13,7 +13,7 @@ export function formatDuration(isoDuration) {
 }
 
 export function formatDate(isoDate) {
-  const date = DateTime.fromISO(isoDate);
+  const date = DateTime.fromDate(isoDate);
   return date.toFormat("dd.MM.yyyy");
 }
 
