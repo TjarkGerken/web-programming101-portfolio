@@ -12,8 +12,8 @@ export function formatDuration(isoDuration) {
   return duration.toFormat("hh:mm:ss");
 }
 
-export function formatDate(isoDate) {
-  const date = DateTime.fromDate(isoDate);
+export function formatDate(Date) {
+  const date = DateTime.fromJSDate(Date);
   return date.toFormat("dd.MM.yyyy");
 }
 

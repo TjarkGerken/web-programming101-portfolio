@@ -159,8 +159,11 @@ export async function getLastWeekExercises() {
 }
 
 export async function aggregateLastWeekStats() {
-  const lastWeekExercises = await getLastWeekExercises();
-  const lastWeekStats = {
+  return aggregateStats(await getLastWeekExercises());
+}
+
+export function aggregateStats(exerciseList) {
+  const stats = {
     total_distance: 0,
     total_duration: Duration.fromObject({
       years: 0,
@@ -174,32 +177,31 @@ export async function aggregateLastWeekStats() {
       milliseconds: 0,
     }),
     total_calories: 0,
-    total_exercises: lastWeekExercises.length,
+    total_exercises: exerciseList.length,
     avg_hf: 0,
   };
   let amount_hf = 0;
 
-  lastWeekExercises.forEach((exercise) => {
-    lastWeekStats.total_duration = lastWeekStats.total_duration.plus(
+  exerciseList.forEach((exercise) => {
+    stats.total_duration = stats.total_duration.plus(
       Duration.fromISO(exercise.duration),
     );
     if (exercise.calories) {
-      lastWeekStats.total_calories += exercise.calories;
+      stats.total_calories += exercise.calories;
     }
     if (exercise.distance) {
-      lastWeekStats.total_distance += exercise.distance;
+      stats.total_distance += exercise.distance;
     }
 
     if (typeof exercise["heart-rate"].average === "number") {
-      lastWeekStats.avg_hf += exercise["heart-rate"].average;
+      stats.avg_hf += exercise["heart-rate"].average;
       amount_hf += 1;
     }
   });
-  if (lastWeekExercises.avg_hf !== 0) {
-    lastWeekStats.avg_hf = round(lastWeekStats.avg_hf / amount_hf, 2);
+  if (exerciseList.avg_hf !== 0) {
+    stats.avg_hf = round(stats.avg_hf / amount_hf, 2);
   }
-  lastWeekStats.total_distance = round(lastWeekStats.total_distance / 1000, 2);
-  lastWeekStats.total_duration =
-    lastWeekStats.total_duration.toFormat("hh:mm:ss");
-  return lastWeekStats;
+  stats.total_distance = round(stats.total_distance / 1000, 2);
+  stats.total_duration = stats.total_duration.toFormat("hh:mm:ss");
+  return stats;
 }
