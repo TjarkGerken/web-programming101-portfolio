@@ -51,18 +51,19 @@ let filteredGoal = computed(() =>
 );
 function submitGoal() {
   createGoal({
-    start_date: dateValue.value[0],
-    end_date: dateValue.value[1],
+    start_date: dateValue.value[0].trim(),
+    end_date: dateValue.value[1].trim(),
     goal_type: selected_goal.value.name,
     goal_value: value.value,
-  }).then(() => closeModal());
+  }).then(() => {
+    closeModal();
+  });
   console.log("submited");
 }
 </script>
 
 <template>
   <button type="button" @click="openModal">Create new Goal</button>
-
   <TransitionRoot appear :show="isOpen" as="template">
     <Dialog as="div" @close="closeModal" class="relative z-20">
       <TransitionChild

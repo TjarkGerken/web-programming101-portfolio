@@ -3,13 +3,14 @@ import { ref } from "vue";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import { formatDate } from "@/api/utils";
+import { Duration } from "luxon";
 
 const props = defineProps({
   goal: Object,
 });
 
 const goal = props.goal;
-const achievedValue = ref(0);
+const achievedValue = ref();
 const unit = ref("");
 const plannedValue = ref(goal.goal_value);
 
@@ -17,7 +18,10 @@ if (goal.goal_type === "Distance") {
   achievedValue.value = goal.total_distance;
   unit.value = "Kilometers";
 } else if (goal.goal_type === "Time") {
-  achievedValue.value = goal.total_duration;
+  achievedValue.value = Duration.fromISOTime(goal.total_duration).toFormat("m");
+  plannedValue.value = Duration.fromObject({
+    minutes: goal.goal_value,
+  }).toFormat("m");
   unit.value = "Minutes";
 } else if (goal.goal_type === "Calories") {
   achievedValue.value = goal.total_calories;

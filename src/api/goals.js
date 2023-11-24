@@ -13,12 +13,24 @@ const example_goal = {
 */
 
 export function createGoal(goal) {
+  console.log(goal["start_date"]);
+  console.log(goal["end_date"]);
+  const [day, month, year] = goal["start_date"].split(".");
+  const formattedStartDate = `${year}-${month}-${day}`;
+
   goal["start_date"] = firebase.firestore.Timestamp.fromDate(
-    new Date(goal.start_date),
+    new Date(formattedStartDate),
   );
+
+  // Do the same for end_date
+  const [endDay, endMonth, endYear] = goal["end_date"].split(".");
+  const formattedEndDate = `${endYear}-${endMonth}-${endDay}`;
+
   goal["end_date"] = firebase.firestore.Timestamp.fromDate(
-    new Date(goal.end_date),
+    new Date(formattedEndDate),
   );
+  console.log(goal["start_date"]);
+  console.log(goal["end_date"]);
   return firebase
     .firestore()
     .collection("user")
