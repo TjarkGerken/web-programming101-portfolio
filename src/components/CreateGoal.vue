@@ -20,6 +20,8 @@ const formater = ref({
   date: "DD.MM.YYYY ",
   month: "MMM",
 });
+const emit = defineEmits(["goal-created"]);
+
 import VueTailwindDatepicker from "vue-tailwind-datepicker";
 import { createGoal } from "@/api/goals";
 
@@ -57,8 +59,9 @@ function submitGoal() {
     goal_value: value.value,
   }).then(() => {
     closeModal();
+    emit("goal-created");
+    console.log("submited");
   });
-  console.log("submited");
 }
 </script>
 
