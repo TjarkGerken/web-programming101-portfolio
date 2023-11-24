@@ -7,6 +7,7 @@ import {
 } from "@/api/getPolarActivities";
 import ApplicationNavbar from "@/components/ApplicationNavbar.vue";
 import ActivitiesCard from "@/components/ActivitiesCard.vue";
+import Goals from "@/components/Goals.vue";
 
 const exercises = ref({});
 const lastWeekStats = ref({});
@@ -30,12 +31,19 @@ onMounted(() => {
 <template>
   <ApplicationNavbar></ApplicationNavbar>
   <div class="lg:ml-28">
-    <p>This is the dashboard</p>
-    <ActivitiesCard
-      v-if="Object.keys(exercises).length > 0"
-      :activity="exercises"
-    />
-    {{ lastWeekStats }}
+    <div class="flex">
+      <div class="w-2/3">
+        <p>This is the dashboard</p>
+        <ActivitiesCard
+          v-if="Object.keys(exercises).length > 0"
+          :activity="exercises"
+        />
+        {{ lastWeekStats }}
+      </div>
+      <div class="w-1/3">
+        <Goals />
+      </div>
+    </div>
   </div>
 </template>
 
