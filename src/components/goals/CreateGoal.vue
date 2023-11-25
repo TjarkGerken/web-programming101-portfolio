@@ -60,7 +60,6 @@ function submitGoal() {
   }).then(() => {
     closeModal();
     emit("goal-created");
-    console.log("submited");
   });
 }
 </script>

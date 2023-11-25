@@ -5,9 +5,9 @@ import {
   getLatestExercise,
   getPolarActivities,
 } from "@/api/getPolarActivities";
-import ApplicationNavbar from "@/components/ApplicationNavbar.vue";
-import ActivitiesCard from "@/components/ActivitiesCard.vue";
-import Goals from "@/components/Goals.vue";
+import ApplicationNavbar from "@/components/utils/ApplicationNavbar.vue";
+import ActivitiesCard from "@/components/application/ActivitiesCard.vue";
+import Goals from "@/components/goals/Goals.vue";
 
 const exercises = ref({});
 const lastWeekStats = ref({});

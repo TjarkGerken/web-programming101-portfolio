@@ -5,7 +5,7 @@ import {
   formatDuration,
   formatTime,
 } from "@/api/utils";
-import MapComponent from "@/components/MapComponent.vue";
+import MapComponent from "@/components/application/MapComponent.vue";
 const props = defineProps({
   activity: Object,
 });

@@ -1,8 +1,8 @@
 <script setup>
 import { onMounted, ref } from "vue";
 import { evaluateGoals } from "@/api/goals";
-import CreateGoal from "@/components/CreateGoal.vue";
-import DisplayGoal from "@/components/DisplayGoal.vue";
+import CreateGoal from "@/components/goals/CreateGoal.vue";
+import DisplayGoal from "@/components/goals/DisplayGoal.vue";
 const goals = ref([]);
 
 function getGoals() {
