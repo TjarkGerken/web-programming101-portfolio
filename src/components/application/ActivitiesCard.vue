@@ -12,7 +12,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="mx-auto h-fit bg-white p-4 shadow">
+  <div class="h-fit bg-white p-4 shadow">
     <div class="h-48 w-full rounded-t-2xl">
       <div class="h-full w-full" v-if="props.activity.gpx">
         <MapComponent :activity="props.activity" />

@@ -31,8 +31,8 @@ onMounted(() => {
 <template>
   <ApplicationNavbar></ApplicationNavbar>
   <div class="h-screen lg:ml-28">
-    <div class="space-around flex h-screen flex-col lg:flex-row">
-      <div class="mx-8 w-2/3">
+    <div class="flex h-screen flex-col lg:flex-row">
+      <div class="mx-8 my-10 flex w-2/3 flex-col justify-between">
         <p class="font-maven text-2xl font-semibold">
           Welcome back, {{ store.state.user.data.displayName }}!
         </p>
