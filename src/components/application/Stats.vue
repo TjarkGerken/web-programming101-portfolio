@@ -6,7 +6,6 @@ const stats = props.stats;
 </script>
 
 <template>
-  <h1 class="font-maven text-3xl font-semibold">Weekly Stats</h1>
   <div class="flex w-full flex-col py-4">
     <div class="flex w-full justify-between py-2">
       <div
