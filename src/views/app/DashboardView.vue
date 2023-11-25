@@ -8,6 +8,7 @@ import {
 import ApplicationNavbar from "@/components/utils/ApplicationNavbar.vue";
 import ActivitiesCard from "@/components/application/ActivitiesCard.vue";
 import Goals from "@/components/goals/Goals.vue";
+import Stats from "@/components/application/Stats.vue";
 
 const exercises = ref({});
 const lastWeekStats = ref({});
@@ -31,17 +32,20 @@ onMounted(() => {
 <template>
   <ApplicationNavbar></ApplicationNavbar>
   <div class="lg:ml-28">
-    <div class="flex">
-      <div class="w-2/3">
+    <div class="flex flex-col items-center lg:flex-row">
+      <div class="mx-8 w-2/3">
         <p>This is the dashboard</p>
         <ActivitiesCard
           v-if="Object.keys(exercises).length > 0"
           :activity="exercises"
         />
-        {{ lastWeekStats }}
-      </div>
-      <div class="w-1/3">
-        <Goals />
+        <Stats
+          v-if="Object.keys(lastWeekStats).length > 0"
+          :stats="lastWeekStats"
+        />
+        <div class="w-full bg-emerald-200 lg:w-2/3">
+          <Goals />
+        </div>
       </div>
     </div>
   </div>

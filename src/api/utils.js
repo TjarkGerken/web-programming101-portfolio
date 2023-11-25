@@ -11,6 +11,10 @@ export function formatDuration(isoDuration) {
   const duration = Duration.fromISO(isoDuration);
   return duration.toFormat("hh:mm:ss");
 }
+export function formatDurationMinutes(isoDuration) {
+  const duration = Duration.fromISO(isoDuration);
+  return duration.toFormat("mm");
+}
 
 export function formatDate(Date) {
   const date = DateTime.fromJSDate(Date);
