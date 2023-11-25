@@ -89,7 +89,7 @@ const props = defineProps({
             v-if="props.activity.calories"
           >
             <span class="">Calories</span>
-            <span class="text-2xl"> {{ props.activity.calories }} bpm </span>
+            <span class="text-2xl"> {{ props.activity.calories }} kcal </span>
           </div>
           <div
             class="flex flex-col items-center justify-center"
