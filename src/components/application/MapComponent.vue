@@ -1,6 +1,6 @@
 <script setup>
 import { nextTick, onMounted, ref } from "vue";
-import { LongLatListforMapUsage } from "@/api/gpxConversion";
+import { LongLatListForMapUsage } from "@/api/gpxConversion";
 import { LineString } from "ol/geom";
 
 const props = defineProps({
@@ -15,7 +15,7 @@ const center = ref([8.5344, 49.4738]);
 const viewRef = ref(null);
 function updateMap() {
   if (props.activity.gpx) {
-    const coordinates = LongLatListforMapUsage(props.activity.gpx);
+    const coordinates = LongLatListForMapUsage(props.activity.gpx);
     const lineString = new LineString(coordinates);
     const extent = lineString.getExtent();
     viewRef.value.fit(extent);
@@ -59,7 +59,7 @@ onMounted(() => {
       <ol-source-vector>
         <ol-feature>
           <ol-geom-line-string
-            :coordinates="LongLatListforMapUsage(props.activity.gpx)"
+            :coordinates="LongLatListForMapUsage(props.activity.gpx)"
           ></ol-geom-line-string>
           <ol-style>
             <ol-style-stroke

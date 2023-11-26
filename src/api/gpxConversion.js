@@ -33,7 +33,7 @@ export async function getGPXDataToJSON(exercise_url) {
   return getLatLongListFromGpx(gpx);
 }
 
-export function LongLatListforMapUsage(JSON_Object) {
+export function LongLatListForMapUsage(JSON_Object) {
   return JSON_Object.map((item) => {
     return [item.lon, item.lat];
   });
