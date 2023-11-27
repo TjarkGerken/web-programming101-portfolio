@@ -11,9 +11,13 @@ export function formatDuration(isoDuration) {
   const duration = Duration.fromISO(isoDuration);
   return duration.toFormat("hh:mm:ss");
 }
+export function formatDurationMinutes(isoDuration) {
+  const duration = Duration.fromISO(isoDuration);
+  return duration.toFormat("mm");
+}
 
-export function formatDate(isoDate) {
-  const date = DateTime.fromISO(isoDate);
+export function formatDate(Date) {
+  const date = DateTime.fromJSDate(Date);
   return date.toFormat("dd.MM.yyyy");
 }
 

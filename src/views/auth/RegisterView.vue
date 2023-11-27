@@ -62,7 +62,7 @@
 
         <div class="mt-2">
           <label
-            for="password"
+            for="confirm-password"
             class="block text-sm font-medium leading-6 text-gray-900"
             >Confirm Password</label
           >
@@ -109,7 +109,7 @@ import GoogleSignInButton from "@/components/buttons/GoogleSignInButton.vue";
 let email = ref("");
 let password = ref("");
 let formErrors = ref({}); // Add this line
-let confirmPassword = ref({}); // Add this line
+let confirmPassword = ref(); // Add this line
 
 const validateForm = () => {
   let errors = {};

@@ -7,11 +7,11 @@
   </div>
 </template>
 <script setup>
-import PolarConnect from "@/components/PolarConnect.vue";
+import PolarConnect from "@/components/application/PolarConnect.vue";
 import { onMounted, ref } from "vue";
 import { getUser } from "@/api/user";
-import ApplicationNavbar from "@/components/ApplicationNavbar.vue";
-import ProfileList from "@/components/ProfileList.vue";
+import ApplicationNavbar from "@/components/utils/ApplicationNavbar.vue";
+import ProfileList from "@/components/application/ProfileList.vue";
 
 const user = ref({});
 const polar_status = ref(false);

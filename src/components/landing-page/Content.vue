@@ -9,7 +9,7 @@
         <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
           How the App works
         </h2>
-        <img src="@/assets/Graph.png" alt="" class="justify-self-center" />
+        <img src="../../assets/Graph.png" alt="" class="justify-self-center" />
       </div>
     </div>
   </div>

@@ -2,10 +2,8 @@ import store from "@/store";
 import GPX from "gpx-parser-builder";
 import axios from "axios";
 function getLatLongListFromGpx(gpxXml) {
-  console.log(gpxXml);
   const gpx = GPX.parse(gpxXml);
   const json_gpx = [];
-  console.log(gpx);
 
   for (let i = 0; i < gpx.trk[0].trkseg[0].trkpt.length; i++) {
     json_gpx.push([
@@ -13,15 +11,12 @@ function getLatLongListFromGpx(gpxXml) {
       gpx.trk[0].trkseg[0].trkpt[i].$.lon,
     ]);
   }
-  const storableJSONfromGPX = json_gpx.map((item) => {
+  return json_gpx.map((item) => {
     return {
       lat: item[0],
       lon: item[1],
     };
   });
-  console.log(storableJSONfromGPX);
-
-  return storableJSONfromGPX;
 }
 
 export async function getGPXDataToJSON(exercise_url) {
@@ -38,7 +33,7 @@ export async function getGPXDataToJSON(exercise_url) {
   return getLatLongListFromGpx(gpx);
 }
 
-export function LongLatListforMapUsage(JSON_Object) {
+export function LongLatListForMapUsage(JSON_Object) {
   return JSON_Object.map((item) => {
     return [item.lon, item.lat];
   });

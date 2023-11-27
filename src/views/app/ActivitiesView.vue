@@ -1,9 +1,9 @@
 <script setup>
-import ApplicationNavbar from "@/components/ApplicationNavbar.vue";
-import ActivitiesCard from "@/components/ActivitiesCard.vue";
+import ApplicationNavbar from "@/components/utils/ApplicationNavbar.vue";
+import ActivitiesCard from "@/components/application/ActivitiesCard.vue";
 import { onMounted, ref } from "vue";
 import { getExercises, getPolarActivities } from "@/api/getPolarActivities";
-import Spinner from "@/components/Spinner.vue";
+import Spinner from "@/components/utils/Spinner.vue";
 
 const exercises = ref([]);
 const isLoading = ref(true);
@@ -39,5 +39,3 @@ onMounted(() => {
     </div>
   </div>
 </template>
-
-<style scoped></style>

@@ -106,7 +106,7 @@ const isAuthenticated = store.state.user.loggedIn;
   </header>
   <aside
     id="default-sidebar"
-    class="fixed left-0 top-0 z-40 hidden h-screen w-24 -translate-x-full transition-transform sm:translate-x-0 lg:block"
+    class="fixed left-0 top-0 z-40 hidden h-screen w-fit -translate-x-full shadow transition-transform sm:translate-x-0 lg:block"
     aria-label="Sidebar"
   >
     <div
