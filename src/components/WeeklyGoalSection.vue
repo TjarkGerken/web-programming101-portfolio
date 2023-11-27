@@ -1,8 +1,9 @@
 <script setup>
 import { getUser } from "@/api/user";
 import { forEach } from "ol/geom/flat/segments";
+import CreateGoal from "@/components/goals/CreateGoal.vue";
 
-//TODO: Add User Goals Document to Firestore
+//TODO: Get User Goals and Format
 let userGoals = [
   {
     name: "Run 5km",
@@ -90,7 +91,7 @@ let userGoals = [
             stroke-linejoin="round"
           />
         </svg>
-        Add a Goal
+        <CreateGoal />
       </button>
     </div>
     <div
