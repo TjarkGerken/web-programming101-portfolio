@@ -45,6 +45,7 @@ export function getGoals() {
     .collection("user")
     .doc(store.state.user.data.uid)
     .collection("goals")
+    .where("end_date", "<=", firebase.firestore.Timestamp.fromDate(new Date()))
     .get()
     .then((res) => {
       return res.docs.map((doc) => doc.data());
@@ -70,9 +71,19 @@ export async function evaluateGoals() {
   return await Promise.all(
     goals.map(async (goal) => {
       const goalData = await getGoalData(goal);
+      const aggregatedStats = aggregateStats(goalData);
+      let completed = false;
+      if (goal.goal_type === "Distance") {
+        completed = goal.goal_value <= aggregatedStats.total_distance;
+      } else if (goal.goal_type === "Time") {
+        completed = goal.goal_value <= aggregatedStats.total_duration;
+      } else if (goal.goal_type === "Calories") {
+        completed = goal.goal_value <= aggregatedStats.total_calories;
+      }
       return {
         ...goal,
-        ...aggregateStats(goalData),
+        ...aggregatedStats,
+        completed,
       };
     }),
   );
