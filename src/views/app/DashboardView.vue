@@ -30,9 +30,9 @@ onMounted(() => {
 
 <template>
   <ApplicationNavbar></ApplicationNavbar>
-  <div class="h-screen lg:ml-28">
-    <div class="flex h-screen flex-col lg:flex-row">
-      <div class="mx-auto my-10 flex flex-col justify-between lg:mx-8 lg:w-2/3">
+  <div class="h-fit w-screen lg:ml-32 lg:h-screen lg:w-[calc(100%-128px)]">
+    <div class="flex h-full w-full flex-col lg:flex-row">
+      <div class="my-10 flex w-full flex-col justify-between lg:w-2/3">
         <p class="font-maven text-2xl font-semibold">
           Welcome back, {{ store.state.user.data.displayName }}!
         </p>
@@ -43,14 +43,13 @@ onMounted(() => {
         <h1 class="mt-8 font-maven text-3xl font-semibold">Weekly Stats</h1>
         <div class="flex flex-col lg:flex-row">
           <Stats
-            class="w-2/4 pr-8"
             v-if="Object.keys(lastWeekStats).length > 0"
             :stats="lastWeekStats"
           />
           <div class="w-2/4 bg-green-950">Chart</div>
         </div>
       </div>
-      <div class="mx-auto w-full bg-emerald-200 lg:w-1/3">
+      <div class="w-full lg:w-1/3">
         <Goals />
       </div>
     </div>

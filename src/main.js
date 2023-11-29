@@ -9,14 +9,14 @@ import store from "@/store";
 import VueTailwindDatepicker from "vue-tailwind-datepicker";
 import "vue-toast-notification/dist/theme-default.css";
 import OpenLayersMap from "vue3-openlayers";
-import "vue3-openlayers/styles.css"; // vue3-openlayers version < 1.0.0-*
+import "vue3-openlayers/styles.css";
 
 const app = createApp({
   render: () => h(App),
 }).use(router);
 app.use(store);
 app.use(VueTailwindDatepicker);
-app.use(OpenLayersMap /* options */);
+app.use(OpenLayersMap);
 
 app.use(ToastPlugin);
 app.mount("#app");

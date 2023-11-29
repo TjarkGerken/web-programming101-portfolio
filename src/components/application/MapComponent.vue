@@ -18,7 +18,7 @@ function updateMap() {
     const coordinates = LongLatListForMapUsage(props.activity.gpx);
     const lineString = new LineString(coordinates);
     const extent = lineString.getExtent();
-    viewRef.value.fit(extent);
+    viewRef.value.fit(extent, { minResolution: 0.0001 });
   }
 }
 
@@ -33,18 +33,12 @@ onMounted(() => {
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
-    :controls="[]"
-    :interactions="[]"
-    class="rounded-t-2xl"
-    style="
-      height: 100%;
-      width: 100%;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-    "
+    style="height: 100%; width: 100%"
   >
     <ol-view
       ref="viewRef"
+      minResolution="0.00001"
+      :constrainResolution="true"
       :center="center"
       :rotation="rotation"
       :zoom="zoom"
