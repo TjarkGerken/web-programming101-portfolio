@@ -26,7 +26,7 @@ const props = defineProps({
     </div>
     <div class="h-fit w-full rounded-b-2xl bg-white px-2 pt-3">
       <div class="flex flex-col space-x-4 lg:flex-row">
-        <div class="font-maven flex flex-col lg:w-1/4">
+        <div class="flex flex-col font-maven lg:w-1/4">
           <div class="text-xl font-semibold leading-none lg:w-1/2">
             {{
               determineName(
@@ -53,7 +53,7 @@ const props = defineProps({
         </div>
         <hr class="my-1 lg:hidden" />
         <div
-          class="font-maven grid w-full grid-cols-2 justify-around font-semibold lg:flex lg:flex-row"
+          class="grid w-full grid-cols-2 justify-around font-maven font-semibold lg:flex lg:flex-row"
         >
           <div
             class="flex flex-col items-center justify-center"
