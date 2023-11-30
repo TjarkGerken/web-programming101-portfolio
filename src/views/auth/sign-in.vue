@@ -97,7 +97,7 @@
         </div>
       </form>
       <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <GoogleSignInButton text="Login with Google" />
+        <GoogleSignInButton text="Sign in with Google" />
       </div>
     </div>
     <div
@@ -118,7 +118,7 @@ import GoogleSignInButton from "@/components/buttons/GoogleSignInButton.vue";
 
 let email = ref("");
 let password = ref("");
-let formErrors = ref({}); // Add this line
+let formErrors = ref({});
 
 const validateForm = () => {
   let errors = {};
