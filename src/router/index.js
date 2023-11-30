@@ -30,13 +30,13 @@ const routes = [
     path: "/auth/login",
     name: "Login",
     component: SignIn,
-    meta: { requiresAuth: false },
+    meta: { requiresAuth: false, isAuth: true },
   },
   {
     path: "/auth/register",
     name: "Register",
     component: RegisterView,
-    meta: { requiresAuth: false },
+    meta: { requiresAuth: false, isAuth: true },
   },
   {
     path: "/dashboard",
@@ -73,6 +73,12 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (!store.state.user.loggedIn) {
       next({ name: "Login" });
+    } else {
+      next();
+    }
+  } else if (to.matched.some((record) => record.meta.isAuth)) {
+    if (store.state.user.loggedIn) {
+      next({ name: "Dashboard" });
     } else {
       next();
     }

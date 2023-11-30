@@ -1,14 +1,3 @@
-<template>
-  <ApplicationNavbar></ApplicationNavbar>
-  <div class="lg:ml-28">
-    <div class="mx-5 mt-5">
-      <ProfileList class="shadow-lg shadow-neutral-700" :user="user" />
-      <div class="flex w-full justify-center lg:justify-start">
-        <PolarConnect class="m-5 p-5" :polar_status="polar_status" />
-      </div>
-    </div>
-  </div>
-</template>
 <script setup>
 import PolarConnect from "@/components/application/PolarConnect.vue";
 import { onMounted, ref } from "vue";
@@ -26,3 +15,15 @@ onMounted(async () => {
   });
 });
 </script>
+
+<template>
+  <ApplicationNavbar></ApplicationNavbar>
+  <div class="lg:ml-28">
+    <div class="mx-5 mt-5">
+      <ProfileList :user="user" />
+      <div class="flex w-full justify-center lg:justify-start">
+        <PolarConnect class="mt-5 p-5" :polar_status="polar_status" />
+      </div>
+    </div>
+  </div>
+</template>

@@ -21,15 +21,15 @@
             dashboard. Elevate your performance effortlessly!
           </p>
           <div class="mt-10 flex flex-row justify-center gap-x-6">
-            <a
-              href="#"
-              class="rounded-md bg-[#FFC100] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors duration-300 ease-in-out hover:bg-[#FFE080]"
-              >Get started</a
+            <router-link
+              to="/auth/register"
+              class="rounded-md bg-accent-yellow px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors duration-300 ease-in-out hover:bg-accent-yellow-light"
+              >Get started</router-link
             >
-            <a
-              href="#"
+            <router-link
+              to="/about"
               class="rounded-md border border-gray-300 border-opacity-10 px-3.5 py-2.5 text-sm font-semibold shadow-[0_8px_30px_rgb(0,0,0,0.05)] transition-shadow duration-300 ease-in-out hover:shadow-[0_8px_30px_rgb(0,0,0,0.1)]"
-              >Learn more <span aria-hidden="true">→</span></a
+              >Learn more <span aria-hidden="true">→</span></router-link
             >
           </div>
         </div>
@@ -52,13 +52,13 @@
         <div
           class="mx-3 py-3 lg:flex lg:flex-1 lg:flex-col lg:items-center lg:rounded-xl lg:border-2 lg:border-gray-300 lg:border-opacity-30 lg:shadow-[0_8px_30px_rgb(0,0,0,0.05)]"
         >
-          <div class="flex items-center lg:pt-4">
+          <div class="flex items-center text-accent-yellow lg:pt-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
-              stroke="#FFC100"
+              stroke="currentColor"
               class="h-10 w-10 lg:h-12 lg:w-12"
             >
               <path
@@ -89,13 +89,15 @@
         <div
           class="mx-3 py-3 lg:flex lg:flex-1 lg:flex-col lg:items-center lg:rounded-xl lg:border-2 lg:border-gray-300 lg:border-opacity-30 lg:shadow-[0_8px_30px_rgb(0,0,0,0.05)]"
         >
-          <div class="flex flex-row-reverse items-center lg:flex-row lg:pt-4">
+          <div
+            class="flex flex-row-reverse items-center text-accent-yellow lg:flex-row lg:pt-4"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
-              stroke="#FFC100"
+              stroke="currentColor"
               class="h-10 w-10 lg:h-12 lg:w-12"
             >
               <path
@@ -125,13 +127,13 @@
         <div
           class="mx-3 py-3 lg:flex lg:flex-1 lg:flex-col lg:items-center lg:rounded-xl lg:border-2 lg:border-gray-300 lg:border-opacity-30 lg:shadow-[0_8px_30px_rgb(0,0,0,0.05)]"
         >
-          <div class="flex items-center lg:pt-4">
+          <div class="flex items-center text-accent-yellow lg:pt-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
-              stroke="#FFC100"
+              stroke="currentColor"
               class="h-10 w-9 lg:h-12 lg:w-11"
             >
               <path

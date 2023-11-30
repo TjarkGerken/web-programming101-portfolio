@@ -17,12 +17,7 @@ const isAuthenticated = store.state.user.loggedIn;
     >
       <div class="flex lg:flex-1">
         <router-link to="/" class="-m-1.5 p-1.5">
-          <span class="sr-only">Your Company</span>
-          <img
-            class="h-8 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt=""
-          />
+          <img class="h-8 w-auto" src="@/assets/logo.png" alt="" />
         </router-link>
       </div>
       <div class="flex lg:hidden">
@@ -49,12 +44,7 @@ const isAuthenticated = store.state.user.loggedIn;
       >
         <div class="flex items-center justify-between">
           <router-link to="/" class="-m-1.5 p-1.5">
-            <span class="sr-only">Your Company</span>
-            <img
-              class="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt=""
-            />
+            <img class="h-8 w-auto" src="@/assets/logo.png" alt="" />
           </router-link>
           <button
             type="button"
@@ -114,11 +104,7 @@ const isAuthenticated = store.state.user.loggedIn;
     >
       <div class="flex flex-col items-center space-y-5 px-2 py-2">
         <router-link to="/" class="">
-          <img
-            class="h-10 w-10"
-            src="https://tailwindui.com/img/logos/mark.svg?color=emerald&shade=600"
-            alt=""
-          />
+          <img class="h-10 w-10" src="@/assets/logo.png" alt="" />
         </router-link>
         <router-link
           class="flex flex-col items-center space-y-1"
