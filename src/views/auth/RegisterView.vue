@@ -3,12 +3,34 @@
     <div
       class="flex w-full flex-1 flex-col justify-center px-6 py-12 md:min-h-full md:w-1/3 lg:px-8"
     >
-      <div class="flex flex-col sm:mx-auto sm:w-full sm:max-w-sm">
-        <img
-          class="mx-auto h-20 w-auto"
-          src="@/assets/logo.png"
-          alt="Your Company"
-        />
+      <button
+        class="flex items-center justify-center gap-2 place-self-start self-start rounded-2xl bg-accent-yellow px-4 py-2 text-sm font-semibold text-white hover:bg-accent-yellow-light"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="h-6 w-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+          />
+        </svg>
+        <router-link to="/">Back</router-link>
+      </button>
+
+      <div class="flex w-full flex-col sm:mx-auto sm:w-full sm:max-w-sm">
+        <router-link to="/">
+          <img
+            class="mx-auto h-20 w-auto"
+            src="@/assets/logo.png"
+            alt="Your Company"
+          />
+        </router-link>
         <h2
           class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900"
         >
