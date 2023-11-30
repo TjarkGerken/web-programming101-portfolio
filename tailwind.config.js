@@ -20,6 +20,7 @@ module.exports = {
       colors: {
         "vtd-primary": colors.sky, // Light mode Datepicker color
         "vtd-secondary": colors.sky, // Dark mode Datepicker color
+        "accent-yellow": "#FFC100", // Accent color
       },
     },
   },
