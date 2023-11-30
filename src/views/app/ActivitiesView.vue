@@ -21,9 +21,9 @@ onMounted(() => {
 
 <template>
   <ApplicationNavbar></ApplicationNavbar>
-  <div class="w-screen lg:ml-28 lg:w-[calc(100%-140px)]">
-    <h1 class="pl-12 text-left text-3xl">Your Activities</h1>
-    <div class="flex w-full flex-col items-center gap-4 bg-amber-50">
+  <div class="h-fit w-screen px-8 lg:ml-32 lg:h-screen lg:w-[calc(100%-128px)]">
+    <h1 class="w-fit pl-12 pt-12 text-left text-3xl">Your Activities</h1>
+    <div class="flex h-fit w-full flex-col items-center gap-4">
       <ActivitiesCard
         class="w-11/12 lg:w-8/12"
         v-if="exercises.length > 0"

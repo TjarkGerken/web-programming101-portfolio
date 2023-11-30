@@ -48,5 +48,5 @@
 <script setup>
 import store from "../../store";
 
-const props = defineProps({ user: Object });
+let props = defineProps({ user: Object });
 </script>

@@ -8,8 +8,8 @@ const goals = ref([]);
 function getGoals() {
   evaluateGoals().then((res) => {
     goals.value = res;
-    if (goals.value.length > 9) {
-      goals.value = goals.value.slice(0, 9);
+    if (goals.value.length > 7) {
+      goals.value = goals.value.slice(0, 7);
     }
   });
 }

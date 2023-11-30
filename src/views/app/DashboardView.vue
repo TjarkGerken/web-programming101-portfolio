@@ -30,36 +30,32 @@ onMounted(() => {
 
 <template>
   <ApplicationNavbar></ApplicationNavbar>
-  <div
-    class="h-[500vh] w-screen p-8 lg:ml-32 lg:h-screen lg:w-[calc(100%-128px)]"
-  >
+  <div class="h-fit w-screen px-8 lg:ml-32 lg:h-screen lg:w-[calc(100%-128px)]">
     <p
-      class="my-12 mb-20 w-full font-maven text-2xl font-semibold"
+      class="my-3 w-full font-maven text-2xl font-semibold"
       v-if="store.state.user.data.displayName"
     >
       Welcome back, {{ store.state.user.data.displayName }}!
     </p>
-    <p class="my-12 mb-20 w-full font-maven text-2xl font-semibold" v-else>
-      Welcome back!
-    </p>
-    <div class="flex h-full w-full flex-col justify-between gap-10 lg:flex-row">
+    <p class="my-3 w-full text-2xl font-semibold" v-else>Welcome back!</p>
+    <div class="flex h-fit w-full flex-col justify-between gap-5 lg:flex-row">
       <div
-        class="flex w-full flex-col justify-between gap-6 self-start lg:w-2/3"
+        class="flex w-full flex-col justify-between gap-4 self-start lg:w-2/3"
       >
         <ActivitiesCard
           v-if="Object.keys(exercises).length > 0"
           :activity="exercises"
         />
-        <h1 class="mt-8 font-maven text-3xl font-semibold">Weekly Stats</h1>
+        <h1 class="text-3xl font-semibold">Weekly Stats</h1>
         <div class="flex flex-col lg:flex-row">
           <Stats
             v-if="Object.keys(lastWeekStats).length > 0"
             :stats="lastWeekStats"
           />
-          <div class="w-2/4 bg-green-950">Chart</div>
+          <div class="bg-green-950 lg:w-2/4">Chart</div>
         </div>
       </div>
-      <div class="my-8 w-full justify-start self-start lg:my-0 lg:w-1/3">
+      <div class="my-4 w-full justify-start self-start lg:my-0 lg:w-1/3">
         <Goals />
       </div>
     </div>

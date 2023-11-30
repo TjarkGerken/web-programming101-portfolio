@@ -60,7 +60,7 @@ const props = defineProps({
           class="grid w-full grid-cols-2 justify-around font-maven font-semibold lg:flex lg:flex-row"
         >
           <div
-            class="flex flex-col items-center justify-center"
+            class="flex flex-col items-center justify-center text-center"
             v-if="props.activity.distance"
           >
             <span class="">Distance</span>
@@ -69,7 +69,7 @@ const props = defineProps({
             </span>
           </div>
           <div
-            class="flex flex-col items-center justify-center"
+            class="flex flex-col items-center justify-center text-center"
             v-if="props.activity.duration"
           >
             <span class="">Duration</span>
@@ -78,7 +78,7 @@ const props = defineProps({
             </span>
           </div>
           <div
-            class="flex flex-col items-center justify-center"
+            class="flex flex-col items-center justify-center text-center"
             v-if="props.activity['heart-rate'].average && !props.activity.fit"
           >
             <div v-if="!props.activity.sessionMesgs[0].avgSpeed">
@@ -89,18 +89,18 @@ const props = defineProps({
             </div>
           </div>
           <div
-            class="flex flex-col items-center justify-center"
+            class="flex flex-col items-center justify-center text-center"
             v-if="props.activity.calories"
           >
             <span class="">Calories</span>
             <span class="text-2xl"> {{ props.activity.calories }} kcal </span>
           </div>
           <div
-            class="flex flex-col items-center justify-center"
+            class="flex flex-col items-center justify-center text-center"
             v-if="props.activity.fit"
           >
             <div
-              class="flex flex-col items-center justify-center"
+              class="flex flex-col items-center justify-center text-center"
               v-if="props.activity.fit.sessionMesgs[0].avgSpeed"
             >
               <span class="">Speed</span>
