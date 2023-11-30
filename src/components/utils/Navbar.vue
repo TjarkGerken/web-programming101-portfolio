@@ -44,7 +44,7 @@
         </button>
       </div>
 
-      <PopoverGroup class="hidden lg:flex lg:gap-x-12 2xl:mr-44">
+      <PopoverGroup class="hidden lg:flex lg:flex-1 lg:justify-center lg:gap-x-12">
         <router-link
           to="/"
           class="text-xl font-semibold leading-6 text-gray-900"
@@ -58,37 +58,31 @@
       </PopoverGroup>
 
       <div
-        class="hidden lg:flex lg:flex-1 lg:justify-end"
+        class="hidden lg:flex lg:flex-1 lg:justify-end 2xl:mr-48"
         v-if="!isAuthenticated"
       >
         <router-link
           to="/auth/login"
-          class="text-xl font-semibold leading-6 text-gray-900 2xl:mr-48"
+          class="text-xl font-semibold leading-6 text-gray-900"
           >Log in <span aria-hidden="true">&rarr;</span></router-link
         >
       </div>
 
       <div
-        class="hidden lg:flex lg:flex-1 lg:justify-end"
-        v-if="isAuthenticated"
-      >
-        <button
-          @click="logout"
-          class="text-sm font-semibold leading-6 text-gray-900"
-        >
-          Logout
-        </button>
-      </div>
-
-      <div
-        class="hidden lg:flex lg:flex-1 lg:justify-end"
+        class="hidden lg:flex lg:flex-1 lg:justify-end 2xl:mr-48"
         v-if="isAuthenticated"
       >
         <router-link
           to="/dashboard"
-          class="text-sm font-semibold leading-6 text-gray-900"
-          >Dashboard <span aria-hidden="true">&rarr;</span></router-link
+          class="text-xl font-semibold leading-6 text-gray-900"
+          >Dashboard </router-link
         >
+        <button
+            @click="logout"
+            class="text-xl font-semibold leading-6 text-gray-900 ml-12"
+        >
+          Logout <span aria-hidden="true">&larr;</span>
+        </button>
       </div>
     </nav>
     <Dialog
