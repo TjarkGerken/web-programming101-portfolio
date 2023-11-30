@@ -33,6 +33,8 @@ onMounted(() => {
   <ol-map
     :loadTilesWhileAnimating="true"
     :loadTilesWhileInteracting="true"
+    :controls="[]"
+    :interactions="[]"
     style="height: 100%; width: 100%"
   >
     <ol-view
