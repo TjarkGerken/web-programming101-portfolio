@@ -71,7 +71,6 @@ export function logout() {
     .auth()
     .signOut()
     .then(async () => {
-      // Sign-out successful.
       await store.dispatch("logOut");
       await router.push("/");
       window.location.reload();
