@@ -33,8 +33,14 @@ onMounted(() => {
   <div
     class="h-[500vh] w-screen p-8 lg:ml-32 lg:h-screen lg:w-[calc(100%-128px)]"
   >
-    <p class="my-12 mb-20 w-full font-maven text-2xl font-semibold">
+    <p
+      class="my-12 mb-20 w-full font-maven text-2xl font-semibold"
+      v-if="store.state.user.data.displayName"
+    >
       Welcome back, {{ store.state.user.data.displayName }}!
+    </p>
+    <p class="my-12 mb-20 w-full font-maven text-2xl font-semibold" v-else>
+      Welcome back!
     </p>
     <div class="flex h-full w-full flex-col justify-between gap-10 lg:flex-row">
       <div

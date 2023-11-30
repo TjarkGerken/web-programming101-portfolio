@@ -4,7 +4,7 @@
     <div class="mx-5 mt-5">
       <ProfileList class="shadow-lg shadow-neutral-700" :user="user" />
       <div class="flex w-full justify-center lg:justify-start">
-        <PolarConnect class="m-5 p-5" :polar_status="polar_status" />
+        <PolarConnect class="mt-5 p-5" :polar_status="polar_status" />
       </div>
     </div>
   </div>
