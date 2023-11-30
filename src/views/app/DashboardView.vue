@@ -30,27 +30,30 @@ onMounted(() => {
 
 <template>
   <ApplicationNavbar></ApplicationNavbar>
-  <div class="h-screen lg:ml-28">
-    <div class="flex h-screen flex-col lg:flex-row">
-      <div class="mx-8 my-10 flex w-2/3 flex-col justify-between">
-        <p class="font-maven text-2xl font-semibold">
-          Welcome back, {{ store.state.user.data.displayName }}!
-        </p>
+  <div
+    class="h-[500vh] w-screen p-8 lg:ml-32 lg:h-screen lg:w-[calc(100%-128px)]"
+  >
+    <p class="my-12 mb-20 w-full font-maven text-2xl font-semibold">
+      Welcome back, {{ store.state.user.data.displayName }}!
+    </p>
+    <div class="flex h-full w-full flex-col justify-between gap-10 lg:flex-row">
+      <div
+        class="flex w-full flex-col justify-between gap-6 self-start lg:w-2/3"
+      >
         <ActivitiesCard
           v-if="Object.keys(exercises).length > 0"
           :activity="exercises"
         />
-        <h1 class="font-maven mt-8 text-3xl font-semibold">Weekly Stats</h1>
+        <h1 class="mt-8 font-maven text-3xl font-semibold">Weekly Stats</h1>
         <div class="flex flex-col lg:flex-row">
           <Stats
-            class="w-2/4 pr-8"
             v-if="Object.keys(lastWeekStats).length > 0"
             :stats="lastWeekStats"
           />
           <div class="w-2/4 bg-green-950">Chart</div>
         </div>
       </div>
-      <div class="w-full bg-emerald-200 lg:w-1/3">
+      <div class="my-8 w-full justify-start self-start lg:my-0 lg:w-1/3">
         <Goals />
       </div>
     </div>

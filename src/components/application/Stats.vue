@@ -6,10 +6,10 @@ const stats = props.stats;
 </script>
 
 <template>
-  <div class="flex w-full flex-col py-4">
-    <div class="flex w-full justify-between py-2">
+  <div class="flex w-full flex-col items-center py-4">
+    <div class="flex w-full justify-around py-2">
       <div
-        class="flex h-fit w-48 items-center justify-around rounded-2xl p-4 shadow"
+        class="flex h-fit w-48 items-center justify-around rounded-2xl p-4 shadow-lg shadow-neutral-400 lg:w-5/12"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -17,7 +17,7 @@ const stats = props.stats;
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="mr-3 h-8 w-8"
+          class="mr-3 h-8 w-8 lg:h-10 lg:w-10"
         >
           <path
             stroke-linecap="round"
@@ -25,15 +25,15 @@ const stats = props.stats;
             d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-        <div class="font-maven flex flex-col font-semibold">
+        <div class="flex flex-col font-maven font-semibold lg:text-xl">
           <span>Time</span>
-          <span class="text-xl">{{
-            stats.total_duration.replace("00:", "")
-          }}</span>
+          <span class="text-xl lg:text-2xl">
+            {{ stats.total_duration.replace("00:", "") }}
+          </span>
         </div>
       </div>
       <div
-        class="flex h-fit w-48 items-center justify-around rounded-2xl p-4 shadow"
+        class="flex h-fit w-48 items-center justify-around rounded-2xl p-4 shadow-lg shadow-neutral-400 lg:w-5/12"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@ const stats = props.stats;
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="mr-3 h-8 w-8"
+          class="mr-3 h-8 w-8 lg:h-10 lg:w-10"
         >
           <path
             stroke-linecap="round"
@@ -50,15 +50,17 @@ const stats = props.stats;
           />
         </svg>
 
-        <div class="font-maven flex flex-col font-semibold">
+        <div class="flex flex-col font-maven font-semibold lg:text-xl">
           <span>Distance</span>
-          <span class="text-xl">{{ stats.total_distance }} km </span>
+          <span class="text-xl lg:text-2xl">
+            {{ stats.total_distance }} km
+          </span>
         </div>
       </div>
     </div>
-    <div class="flex w-full justify-between py-2">
+    <div class="flex w-full justify-around py-2">
       <div
-        class="flex h-fit w-48 items-center justify-around rounded-2xl p-4 shadow"
+        class="flex h-fit w-48 items-center justify-around rounded-2xl p-4 shadow-lg shadow-neutral-400 lg:w-5/12"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +68,7 @@ const stats = props.stats;
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="mr-3 h-8 w-8"
+          class="mr-3 h-8 w-8 lg:h-10 lg:w-10"
         >
           <path
             stroke-linecap="round"
@@ -80,13 +82,13 @@ const stats = props.stats;
           />
         </svg>
 
-        <div class="font-maven flex flex-col font-semibold">
+        <div class="flex flex-col font-maven font-semibold lg:text-xl">
           <span>Calories</span>
-          <span class="text-xl">{{ stats.total_calories }}</span>
+          <span class="text-xl lg:text-2xl"> {{ stats.total_calories }} </span>
         </div>
       </div>
       <div
-        class="flex h-fit w-48 items-center justify-around rounded-2xl p-4 shadow"
+        class="flex h-fit w-48 items-center justify-around rounded-2xl p-4 shadow-lg shadow-neutral-400 lg:w-5/12"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +96,7 @@ const stats = props.stats;
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="mr-3 h-8 w-8"
+          class="mr-3 h-8 w-8 lg:h-10 lg:w-10"
         >
           <path
             stroke-linecap="round"
@@ -103,9 +105,12 @@ const stats = props.stats;
           />
         </svg>
 
-        <div class="font-maven flex flex-col font-semibold">
+        <div class="flex flex-col font-maven font-semibold lg:text-xl">
           <span>Avg. HF</span>
-          <span class="text-xl">{{ stats.avg_hf }}</span>
+          <span class="text-xl lg:text-2xl" v-if="stats.avg_hf">
+            {{ stats.avg_hf }}</span
+          >
+          <span class="text-xl lg:text-2xl" v-if="!stats.avg_hf"> / </span>
         </div>
       </div>
     </div>

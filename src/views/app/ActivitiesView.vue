@@ -22,15 +22,19 @@ onMounted(() => {
 
 <template>
   <ApplicationNavbar></ApplicationNavbar>
-  <div class="bg-amber-200 lg:ml-28">
-    <p>This is the activities page</p>
-    <ActivitiesCard
-      v-if="exercises.length > 0"
-      v-for="(exercise, index) in exercises"
-      :key="index"
-      :activity="exercise"
-    />
-    <div v-if="!(exercises.length > 0) & !isLoading">No activities</div>
+  <div class="lg:ml-28">
+    <div class="flex flex-col items-center gap-4">
+      <h1 class="self-start pr-4 text-left text-3xl">Your Activities</h1>
+
+      <ActivitiesCard
+        class="w-11/12 lg:w-8/12"
+        v-if="exercises.length > 0"
+        v-for="(exercise, index) in exercises"
+        :key="index"
+        :activity="exercise"
+      />
+    </div>
+    <div v-if="!(exercises.length > 0) & !isLoading">You got no Activities</div>
     <div
       v-if="isLoading"
       class="flex h-screen w-screen items-center justify-center"

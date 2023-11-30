@@ -12,21 +12,25 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="h-fit bg-white p-4 shadow">
-    <div class="h-48 w-full rounded-t-2xl">
+  <div
+    class="h-fit w-full rounded-3xl bg-white p-4 shadow-lg shadow-neutral-400"
+  >
+    <div class="h-80 w-full rounded-t-2xl">
       <div class="h-full w-full" v-if="props.activity.gpx">
         <MapComponent :activity="props.activity" />
       </div>
-      <img
-        src="https://images.unsplash.com/photo-1571008887538-b36bb32f4571?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        alt=""
-        class="object-cover"
-        v-if="!props.activity.gpx"
-      />
+      <div class="relative h-full">
+        <img
+          src="https://images.unsplash.com/photo-1571008887538-b36bb32f4571?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt=""
+          class="absolute left-0 top-0 h-full w-full rounded-t-2xl object-cover"
+          v-if="!props.activity.gpx"
+        />
+      </div>
     </div>
     <div class="h-fit w-full rounded-b-2xl bg-white px-2 pt-3">
       <div class="flex flex-col space-x-4 lg:flex-row">
-        <div class="font-maven flex flex-col lg:w-1/4">
+        <div class="flex flex-col font-maven lg:w-1/4">
           <div class="text-xl font-semibold leading-none lg:w-1/2">
             {{
               determineName(
@@ -53,7 +57,7 @@ const props = defineProps({
         </div>
         <hr class="my-1 lg:hidden" />
         <div
-          class="font-maven grid w-full grid-cols-2 justify-around font-semibold lg:flex lg:flex-row"
+          class="grid w-full grid-cols-2 justify-around font-maven font-semibold lg:flex lg:flex-row"
         >
           <div
             class="flex flex-col items-center justify-center"
