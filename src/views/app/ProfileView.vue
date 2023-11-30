@@ -1,9 +1,12 @@
 <template>
   <ApplicationNavbar></ApplicationNavbar>
   <div class="lg:ml-28">
-    <ProfileList :user="user" />
-    <p>{{ user }}</p>
-    <PolarConnect :polar_status="polar_status" />
+    <div class="mx-5 mt-5">
+      <ProfileList class="shadow-lg shadow-neutral-700" :user="user" />
+      <div class="flex w-full justify-center lg:justify-start">
+        <PolarConnect class="m-5 p-5" :polar_status="polar_status" />
+      </div>
+    </div>
   </div>
 </template>
 <script setup>
@@ -19,7 +22,7 @@ const polar_status = ref(false);
 onMounted(async () => {
   await getUser().then((res) => {
     user.value = res;
-    polar_status.value = true;
+    polar_status.value = !!user.value;
   });
 });
 </script>
