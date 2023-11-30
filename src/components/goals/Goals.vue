@@ -20,7 +20,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex h-full w-full items-center px-2 py-5">
+  <div class="flex h-full w-full items-center px-2">
     <div
       class="mx-auto flex h-fit w-full flex-col justify-evenly gap-2 rounded-3xl p-8 py-4 shadow-lg shadow-neutral-400"
     >
