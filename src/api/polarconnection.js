@@ -76,3 +76,21 @@ export async function getPolarAuthToken(code) {
   }
   await router.push("/profile");
 }
+
+export async function deleteUser(user_id) {
+  const headers = {
+    Accept: "application/json;charset=UTF-8",
+    "Content-Type": "application/x-www-form-urlencoded",
+    Authorization: POLAR_BASIC_AUTH_CLIENT_ID_SECRET,
+  };
+
+  try {
+    await axios
+      .delete(BASE_URL_CORS_PROXY + "v3/users/" + user_id, { headers })
+      .then(() => {
+        toast.success("You're account was successfully disconnected.");
+      });
+  } catch (error) {
+    toast.error("Something we wrong. Please try again.");
+  }
+}
