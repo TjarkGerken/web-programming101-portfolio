@@ -107,7 +107,10 @@ const stats = props.stats;
 
         <div class="flex flex-col font-maven font-semibold lg:text-xl">
           <span>Avg. HF</span>
-          <span class="text-xl lg:text-2xl"> {{ stats.avg_hf }}</span>
+          <span class="text-xl lg:text-2xl" v-if="stats.avg_hf">
+            {{ stats.avg_hf }}</span
+          >
+          <span class="text-xl lg:text-2xl" v-if="!stats.avg_hf"> / </span>
         </div>
       </div>
     </div>
