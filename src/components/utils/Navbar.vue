@@ -6,30 +6,13 @@
     >
       <div class="flex lg:flex-1 2xl:ml-48">
         <router-link to="" class="-m-1.5 flex items-center p-1.5">
-          <span class="sr-only">Your Company</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 378 375"
-            fill="none"
+          <img
+            src="@/assets/logo.png"
             class="h-[25px] w-[25px] 2xl:h-[35px] 2xl:w-[35px]"
-          >
-            <path d="M132 0L181 28V352.5L132 325.5V0Z" fill="black" />
-            <path
-              d="M197.5 121.5L246.5 149V344L197.5 316.5V121.5Z"
-              fill="black"
-            />
-            <path d="M263 51.5L312 78.5V331.5L263 304.5V51.5Z" fill="black" />
-            <path
-              d="M329 144.5L377.5 172.5V322.5L329 295.5V144.5Z"
-              fill="black"
-            />
-            <path d="M0.5 210.5L49.5 238.5V375L0.5 348V210.5Z" fill="black" />
-            <path
-              d="M66.5 103.5L115.5 130V365L66.5 337.5V103.5Z"
-              fill="black"
-            />
-          </svg>
-          <div class="text-md ml-2 font-bold 2xl:text-xl">Polar Peak</div>
+            alt="Company Logo"
+          />
+
+          <div class="text-md ml-2 font-bold 2xl:text-xl">Peak Pulse</div>
         </router-link>
       </div>
 
