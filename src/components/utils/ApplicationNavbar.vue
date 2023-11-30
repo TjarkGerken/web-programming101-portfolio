@@ -17,7 +17,6 @@ const isAuthenticated = store.state.user.loggedIn;
     >
       <div class="flex lg:flex-1">
         <router-link to="/" class="-m-1.5 p-1.5">
-          <span class="sr-only">Your Company</span>
           <img class="h-8 w-auto" src="@/assets/logo.png" alt="" />
         </router-link>
       </div>
@@ -45,7 +44,6 @@ const isAuthenticated = store.state.user.loggedIn;
       >
         <div class="flex items-center justify-between">
           <router-link to="/" class="-m-1.5 p-1.5">
-            <span class="sr-only">Your Company</span>
             <img class="h-8 w-auto" src="@/assets/logo.png" alt="" />
           </router-link>
           <button
