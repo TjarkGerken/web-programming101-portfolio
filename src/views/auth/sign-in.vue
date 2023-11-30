@@ -95,10 +95,10 @@
             Sign in
           </button>
         </div>
+        <div class="mt-10 w-full sm:mx-auto sm:max-w-sm">
+          <GoogleSignInButton text="Sign in with Google" />
+        </div>
       </form>
-      <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <GoogleSignInButton text="Sign in with Google" />
-      </div>
     </div>
     <div
       class="hidden h-full w-full bg-black md:block md:min-h-screen md:w-2/3"

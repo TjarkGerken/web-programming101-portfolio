@@ -20,9 +20,9 @@ module.exports = {
       colors: {
         "vtd-primary": colors.gray, // Light mode Datepicker color
         "vtd-secondary": colors.gray, // Dark mode Datepicker color
-        "accent-yellow": "#FFC100", // Accent color
-        "accent-yellow-light": "#FFCC33", // Accent color
-        "bg-fill": "#FFF9E5", // Background color
+        "accent-yellow": "#6F42C1", // Accent color
+        "accent-yellow-light": "#7E56C8", // Accent color light
+        "bg-fill": "#8965CD", // Background color
       },
     },
   },
