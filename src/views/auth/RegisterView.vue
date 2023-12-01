@@ -130,8 +130,8 @@ import GoogleSignInButton from "@/components/buttons/GoogleSignInButton.vue";
 
 let email = ref("");
 let password = ref("");
-let formErrors = ref({}); // Add this line
-let confirmPassword = ref(); // Add this line
+let formErrors = ref({});
+let confirmPassword = ref();
 
 const validateForm = () => {
   let errors = {};
