@@ -8,6 +8,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+        VITE_FIREBASE_APIKEY: ${{ secrets.VITE_FIREBASE_APIKEY }}
+        VITE_FIREBASE_AUTHDOMAIN: ${{ secrets.VITE_FIREBASE_AUTHDOMAIN }}
+        VITE_FIREBASE_PROJECTID: ${{ secrets.VITE_FIREBASE_PROJECTID }}
+        VITE_FIREBASE_STORAGEBUCKET: ${{ secrets.VITE_FIREBASE_STORAGEBUCKET }}
+        VITE_FIREBASE_MESSAGINGSENDERID: ${{ secrets.VITE_FIREBASE_MESSAGINGSENDERID }}
+        VITE_FIREBASE_APPID: ${{ secrets.VITE_FIREBASE_APPID }}
+        VITE_FIREBASE_MEASUREMENTID: ${{ secrets.VITE_FIREBASE_MEASUREMENTID }}
+        VITE_POLAR_AUTHORIZATION: ${{ secrets.VITE_POLAR_AUTHORIZATION }}
+        VITE_ENVIRONMENT: ${{ secrets.VITE_ENVIRONMENT }}
+        VITE_PROXY_DEV_URL: ${{ secrets.VITE_PROXY_DEV_URL }}
+        VITE_PROXY_PROD_URL: ${{ secrets.VITE_PROXY_PROD_URL }}
+        VITE_AZURE_MAPS_KEY: ${{ secrets.VITE_AZURE_MAPS_KEY }}
 
     steps:
       - name: Checkout code
