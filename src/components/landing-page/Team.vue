@@ -1,60 +1,128 @@
-<script setup>
-const people = [
-  {
-    name: "Leslie Alexander",
-    role: "Co-Founder / CEO",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
-  {
-    name: "Michael Foster",
-    role: "Co-Founder / CTO",
-    imageUrl:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
-  {
-    name: "Dries Vincent",
-    role: "Manager, Business Relations",
-    imageUrl:
-      "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-  },
-];
-</script>
-
 <template>
-  <div class="bg-white py-24 sm:py-32">
-    <div
-      class="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3"
-    >
-      <div class="max-w-2xl">
-        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-          Meet our leadership
-        </h2>
-        <p class="mt-6 text-lg leading-8 text-gray-600">
-          Libero fames augue nisl porttitor nisi, quis. Id ac elit odio vitae
-          elementum enim vitae ullamcorper suspendisse.
+  <div class="bg-white py-16 px-8">
+    <div class="flex flex-col items-center text-center
+                xl:flex-row xl:justify-center">
+      <img
+          src="/src/assets/Team%20page-amico.png"
+          alt=""
+          class="h-[500] w-[500px]"
+      />
+      <div class="py-8 max-w-4xl xl:pl-16">
+        <h1 class="text-2xl font-bold drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)] xl:text-left xl:text-3xl">
+          Welcome to PeakPulse
+        </h1>
+        <p class="leading-8 text-justify pt-2 pb-8 drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)]">
+          At Peak Pulse we're passionate about transforming your fitness journey.
+          Our platform was born from a desire to revolutionize the way you interact
+          with your exercise data collected from Polar devices.
+        </p>
+
+        <hr class="mx-3 xl:hidden" />
+
+        <h1 class="text-2xl font-bold pt-8 drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)] xl:text-left xl:text-3xl">
+          Our Mission
+        </h1>
+        <p class="leading-8 text-justify pt-2 drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)]">
+          We believe in empowering fitness enthusiasts like you to achieve their goals
+          by providing a comprehensive and intuitive platform. We strive to offer an all-in-one solution for visualizing,
+          analyzing, and tracking your workout statistics. From distance and heart rate to speed and calories burned,
+          our goal is to make your fitness data easily accessible and actionable.
         </p>
       </div>
-      <ul
-        role="list"
-        class="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2"
+
+    </div>
+
+    <div class="flex flex-col items-center text-center
+                xl:flex-row-reverse xl:justify-center">
+      <img
+          src="/src/assets/Scrum%20board-amico.png"
+          alt=""
+          class="h-[500] w-[500px]"
+      />
+      <div class="py-8 max-w-4xl xl:pr-16">
+        <h1 class="text-2xl font-bold drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)] xl:text-left xl:text-3xl">
+          Why Choose Us?
+        </h1>
+        <p class="leading-8 text-justify pt-2 pb-8 drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)]">
+          With a team dedicated to innovation, we've crafted a user-friendly dashboard
+          that simplifies complex data into easily understandable insights.
+          Our commitment lies in offering you a seamless experience that motivates and drives you
+          towards your fitness aspirations.
+        </p>
+
+        <hr class="mx-3 xl:hidden" />
+
+        <h1 class="text-2xl font-bold pt-8 drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)] xl:text-left xl:text-3xl">
+          What Sets Us Apart
+        </h1>
+        <p class="leading-8 text-justify pt-2 drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)]">
+          Advanced Tracking: Gain insights into every aspect of your workout routine with detailed statistics.
+          Customizable Goals: Set and achieve weekly targets tailored to your fitness objectives.
+          Engaging Interface: Experience a visually appealing and intuitive dashboard for effortless navigation and tracking.
+          Motivation at Your Fingertips: Stay motivated with clear, concise, and personalized progress updates.
+        </p>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="flex flex-col items-center text-center
+                xl:flex-row xl:justify-center">
+      <img
+          src="/src/assets/Fitting%20piece-amico.png"
+          alt=""
+          class="h-[500] w-[500px] py-4 xl:h-[500px]"
+      />
+
+      <div class="xl:flex xl:flex-col xl:items-start">
+        <div class="py-8 max-w-4xl xl:pl-16 xl:pb-4">
+          <h1 class="text-2xl font-bold drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)] xl:text-left xl:text-3xl">
+            Join Us in Your Fitness Journey
+          </h1>
+          <p class="leading-8 text-justify pt-2 drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)]">
+            Whether you're a beginner or a seasoned athlete, Peak Pulse is your partner in achieving fitness milestones.
+            We invite you to explore our platform and embark on a transformative journey towards a healthier,
+            fitter you.
+          </p>
+        </div>
+
+        <router-link
+            to="/auth/register"
+            class="xl:ml-16 rounded-md bg-accent-yellow px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors duration-300 ease-in-out hover:bg-accent-yellow-light"
+        >Get started</router-link
+        >
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+  <div class="bg-[#263238]">
+    <div class="mx-auto max-w-2xl py-6 text-white">
+      <div class="text-center">
+        <h3 class="mb-3 text-2xl font-bold lg:pb-4 lg:pt-8 lg:text-3xl">
+          Stay fit. All day, every day.
+        </h3>
+      </div>
+      <div
+          class="lg:text-md mt-2 flex flex-col items-center text-sm text-gray-300 lg:pb-4"
       >
-        <li v-for="person in people" :key="person.name">
-          <div class="flex items-center gap-x-6">
-            <img class="h-16 w-16 rounded-full" :src="person.imageUrl" alt="" />
-            <div>
-              <h3
-                class="text-base font-semibold leading-7 tracking-tight text-gray-900"
-              >
-                {{ person.name }}
-              </h3>
-              <p class="text-sm font-semibold leading-6 text-indigo-600">
-                {{ person.role }}
-              </p>
-            </div>
-          </div>
-        </li>
-      </ul>
+        <p class="order-2 mt-4 md:order-1 md:mt-0">&copy; Polar Peak, 2023.</p>
+        <div class="order-1 md:order-2">
+          <span class="px-2">About us</span>
+          <span class="border-l px-2">Contact us</span>
+          <span class="border-l px-2">Privacy Policy</span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
+<script setup>
+</script>

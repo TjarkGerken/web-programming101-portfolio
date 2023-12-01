@@ -3,7 +3,7 @@
     <BgShape class="invisible absolute end-0 2xl:visible"></BgShape>
 
     <div
-      class="lg: relative z-20 flex flex-col-reverse items-center justify-center px-6 lg:flex-row lg:px-8"
+      class="lg: relative z-20 flex flex-col-reverse items-center justify-center px-8 lg:flex-row lg:px-8"
     >
       <div
         class="flex max-w-4xl flex-col py-16 text-center sm:py-48 lg:mr-10 lg:py-56 lg:text-left"
@@ -23,12 +23,12 @@
           <div class="mt-10 flex flex-row justify-center gap-x-6">
             <router-link
               to="/auth/register"
-              class="rounded-md bg-accent-yellow px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm transition-colors duration-300 ease-in-out hover:bg-accent-yellow-light"
+              class="rounded-md bg-accent-yellow px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-accent-yellow-light transition-colors duration-300 ease-in-out "
               >Get started</router-link
             >
             <router-link
               to="/about"
-              class="rounded-md border border-gray-300 border-opacity-10 px-3.5 py-2.5 text-sm font-semibold shadow-[0_8px_30px_rgb(0,0,0,0.05)] transition-shadow duration-300 ease-in-out hover:shadow-[0_8px_30px_rgb(0,0,0,0.1)]"
+              class="rounded-md border border-gray-300 border-opacity-30 px-3.5 py-2.5 text-sm font-semibold shadow-[0_8px_30px_rgb(0,0,0,0.1)] transition-shadow duration-300 ease-in-out hover:shadow-[0_8px_30px_rgb(0,0,0,0.15)]"
               >Learn more <span aria-hidden="true">→</span></router-link
             >
           </div>
