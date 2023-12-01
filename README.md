@@ -25,3 +25,18 @@ npm run dev
 ```sh
 npm run build
 ```
+# Docker
+### Build Docker Image:
+```sh
+ docker build . -t webprogramming
+```
+
+### Pull Docker Image:
+```sh
+docker pull tjarkger/web-programming101
+```
+
+### Run via Docker:
+```sh
+docker run -d -p 8080:80 tjarkger/web-programming101
+```
