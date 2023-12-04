@@ -4,6 +4,7 @@ import { onMounted, ref } from "vue";
 import { getUser } from "@/api/user";
 import ApplicationNavbar from "@/components/utils/ApplicationNavbar.vue";
 import ProfileList from "@/components/application/ProfileList.vue";
+import BgShape from "@/components/landing-page/BgShape.vue";
 
 const user = ref({});
 const polar_status = ref(false);
@@ -17,13 +18,10 @@ onMounted(async () => {
 </script>
 
 <template>
+  <BgShape class="invisible absolute end-0 xl:visible 2xl:w-5/12"></BgShape>
   <ApplicationNavbar></ApplicationNavbar>
-  <div class="lg:ml-28">
-    <div class="mx-5 mt-5">
-      <ProfileList :user="user" />
-      <div class="flex w-full justify-center lg:justify-start">
-        <PolarConnect class="mt-5 p-5" :polar_status="polar_status" />
-      </div>
-    </div>
+  <div class="px-8 pt-10 pb-6 xl:ml-36 xl:mt-10 xl:pt-0">
+    <ProfileList :user="user" />
   </div>
+  <PolarConnect class="px-6 pb-16 xl:ml-32 xl:px-8" :polar_status="polar_status" />
 </template>
