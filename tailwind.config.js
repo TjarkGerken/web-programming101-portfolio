@@ -18,8 +18,11 @@ module.exports = {
         maven: ['"Maven Pro"', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        "vtd-primary": colors.sky, // Light mode Datepicker color
-        "vtd-secondary": colors.sky, // Dark mode Datepicker color
+        "vtd-primary": colors.gray, // Light mode Datepicker color
+        "vtd-secondary": colors.gray, // Dark mode Datepicker color
+        "accent-yellow": "#6F42C1", // Accent color
+        "accent-yellow-light": "#7E56C8", // Accent color light
+        "bg-fill": "#8965CD", // Background color
       },
     },
   },

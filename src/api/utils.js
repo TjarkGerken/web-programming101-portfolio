@@ -6,11 +6,6 @@ export function removeBaseUrl(url) {
   const baseUrl = "https://www.polaraccesslink.com/";
   return url.replace(baseUrl, BASE_URL_CORS_PROXY);
 }
-
-export function formatDuration(isoDuration) {
-  const duration = Duration.fromISO(isoDuration);
-  return duration.toFormat("hh:mm:ss");
-}
 export function formatDurationMinutes(isoDuration) {
   const duration = Duration.fromISO(isoDuration);
   return duration.toFormat("mm");
