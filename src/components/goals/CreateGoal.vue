@@ -65,7 +65,7 @@ function submitGoal() {
 </script>
 
 <template>
-  <button type="button" @click="openModal">Create new Goal</button>
+  <button type="button" @click="openModal">Add Goal</button>
   <TransitionRoot appear :show="isOpen" as="template">
     <Dialog as="div" @close="closeModal" class="relative z-20">
       <TransitionChild

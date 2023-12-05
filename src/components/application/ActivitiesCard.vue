@@ -13,7 +13,7 @@ const props = defineProps({
 
 <template>
   <div
-    class="h-fit w-full rounded-3xl bg-white p-4 shadow-lg shadow-neutral-400"
+    class="h-fit w-full rounded-3xl bg-white p-4 shadow-sm shadow-neutral-400"
   >
     <div class="h-80 w-full rounded-t-2xl">
       <div class="h-full w-full" v-if="props.activity.gpx">
