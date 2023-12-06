@@ -97,12 +97,14 @@ export async function getPolarAuthToken(code) {
   await router.push("/profile");
 }
 
-export async function deleteUser(user_id) {
+export async function deleteUser() {
   // Define Authentication Header
   const headers = {
     Authorization: "Bearer " + store.state.user.polar_user.polar_access_token,
   };
 
+  console.log(store.state.user.polar_user);
+  let user_id = store.state.user.polar_user["member-id"];
   try {
     // Send DELETE request to Polar API
     await axios
@@ -110,6 +112,16 @@ export async function deleteUser(user_id) {
       .then(() => {
         // Inform User about the disconnect
         toast.success("You're account was successfully disconnected.");
+        // Delete User Data from Firebase
+        firebase
+          .firestore()
+          .collection("user")
+          .doc(store.state.user.data.uid)
+          .delete();
+        // Delete User date from Vuex
+        store.dispatch("setPolarUser", null);
+        // Redirect the User to the Profile Page
+        router.push("/profile");
       });
   } catch (error) {
     // Inform User about the error

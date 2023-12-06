@@ -5,14 +5,12 @@ const props = defineProps(["polar_status"]);
 </script>
 
 <template>
-  <div
-    class=""
-  >
+  <div class="">
     <div class="flex">
       <img
         src="@/assets/PolarLogo.png"
         alt=""
-        class="w-3/12 xl:w-[100px] xl:h-[100px]"
+        class="w-3/12 xl:h-[100px] xl:w-[100px]"
       />
       <div class="">
         <div class="flex h-full flex-col justify-center gap-2">
@@ -31,7 +29,7 @@ const props = defineProps(["polar_status"]);
           <div v-if="props.polar_status">
             <button
               class="rounded-md border border-gray-300 border-opacity-30 px-3.5 py-2.5 text-sm font-semibold shadow-[0_8px_30px_rgb(0,0,0,0.05)] transition-shadow duration-300 ease-in-out hover:shadow-[0_8px_30px_rgb(0,0,0,0.15)]"
-              @click="deleteUser"
+              @click="deleteUser()"
             >
               Unlink account
             </button>
