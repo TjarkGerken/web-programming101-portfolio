@@ -5,7 +5,14 @@ import { getUser } from "@/api/user";
 import ApplicationNavbar from "@/components/utils/ApplicationNavbar.vue";
 import ProfileList from "@/components/application/ProfileList.vue";
 
-const user = ref({ "first-name": "", "last-name": "", gender: "", weight: "" });
+const user = ref({
+  "first-name": "",
+  "last-name": "",
+  gender: "",
+  weight: "",
+  height: "",
+  birthdate: "",
+});
 const polar_status = ref(false);
 const is_editing = ref(false);
 

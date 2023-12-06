@@ -1,14 +1,89 @@
+<script setup>
+import store from "../../store";
+import { ref, watch } from "vue";
+import VueTailwindDatepicker from "vue-tailwind-datepicker";
+import { updateUser } from "@/api/user";
+
+let props = defineProps({ user: Object });
+const is_editing = ref(false);
+
+const first_name = ref("");
+const last_name = ref("");
+const gender = ref("");
+const birthdate = ref("");
+const weight = ref("");
+const height = ref("");
+
+const previous_values = {};
+const formater = ref({
+  date: "YYYY-MM-DD",
+  month: "MMM",
+});
+
+const toggleEdit = () => {
+  first_name.value = props.user["first-name"];
+  last_name.value = props.user["last-name"];
+  birthdate.value = props.user["birthdate"];
+  weight.value = props.user["weight"];
+  height.value = props.user["height"];
+
+  previous_values.value = {
+    "first-name": first_name.value,
+    "last-name": last_name.value,
+    birthdate: birthdate.value,
+    gender: gender.value,
+    weight: weight.value,
+    height: height.value,
+  };
+  is_editing.value = !is_editing.value;
+};
+// Expose the toggleEdit function to the template
+defineExpose({ toggleEdit });
+
+const formatGender = (x) => {
+  if (x) {
+    let y = x.toLowerCase();
+    y = y[0].toUpperCase() + y.slice(1);
+    return y;
+  }
+};
+
+async function updateProfile() {
+  const patchedData = {
+    "first-name": first_name.value,
+    "last-name": last_name.value,
+    birthdate: String(birthdate.value),
+    gender: gender.value,
+    weight: weight.value,
+    height: height.value,
+  };
+  if (JSON.stringify(previous_values.value) === JSON.stringify(patchedData)) {
+    toggleEdit();
+    return;
+  }
+
+  await updateUser(patchedData);
+  toggleEdit();
+  window.location.reload();
+}
+
+watch(
+  () => props.user,
+  (newValue) => {
+    if (newValue) {
+      gender.value = formatGender(newValue["gender"]);
+    }
+  },
+);
+</script>
+
 <template>
   <div class="">
     <div class="flex justify-between xl:items-end">
       <h3 class="mt-4 text-2xl font-bold text-gray-900 xl:mt-16 xl:text-3xl">
         Your Information
       </h3>
-      <button
-        @click="toggleEdit"
-        v-if="store.state.user.polar_user"
-        class="mt-4"
-      >
+      <button @click="toggleEdit()" v-if="!is_editing" class="mt-4">
         <svg
           v-if="!is_editing"
           xmlns="http://www.w3.org/2000/svg"
@@ -25,7 +100,8 @@
             d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
           />
         </svg>
-
+      </button>
+      <button @click="updateProfile()" v-if="is_editing" class="mt-4">
         <svg
           v-if="is_editing"
           xmlns="http://www.w3.org/2000/svg"
@@ -65,14 +141,14 @@
             <input
               type="text"
               v-if="is_editing"
-              :value="props.user['first-name']"
+              v-model="first_name"
               placeholder="First Name"
               class="mr-4 mt-1 w-1/2 flex-1 appearance-none rounded border-2 border-gray-200 bg-gray-200 px-4 py-2 text-sm leading-tight text-gray-900 focus:border-accent-yellow focus:bg-white focus:outline-none"
             />
             <input
               type="text"
               v-if="is_editing"
-              :value="props.user['last-name']"
+              v-model="last_name"
               placeholder="Last Name"
               class="mt-1 w-1/2 flex-1 appearance-none rounded border-2 border-gray-200 bg-gray-200 px-4 py-2 text-sm leading-tight text-gray-900 focus:border-accent-yellow focus:bg-white focus:outline-none"
             />
@@ -98,7 +174,7 @@
             <label for="value"></label>
             <vue-tailwind-datepicker
               id="MyInput"
-              v-model="dateValue"
+              v-model="birthdate"
               as-single
               :formatter="formater"
               :placeholder="props.user['birthdate']"
@@ -120,17 +196,9 @@
           </dt>
           <dd
             class="mt-1 flex items-center text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
-            v-if="!is_editing"
           >
             {{ store.state.user.data.email }}
           </dd>
-          <input
-            type="email"
-            v-if="is_editing"
-            :value="store.state.user.data.email"
-            placeholder="Email"
-            class="mr-4 mt-1 w-full appearance-none rounded border-2 border-gray-200 bg-gray-200 px-4 py-2 text-sm leading-tight text-gray-900 focus:border-accent-yellow focus:bg-white focus:outline-none"
-          />
         </div>
 
         <div
@@ -149,7 +217,7 @@
             {{ formatGender(props.user["gender"]) }}
           </dd>
           <select
-            v-model="selectedOption"
+            v-model="gender"
             v-if="is_editing"
             class="mr-4 mt-1 w-full appearance-none rounded border-2 border-gray-200 bg-gray-200 px-4 py-2 text-sm leading-tight text-gray-900 focus:border-accent-yellow focus:bg-white focus:outline-none"
           >
@@ -177,53 +245,35 @@
           <input
             type="number"
             v-if="is_editing"
-            :value="props.user['weight']"
+            v-model="weight"
             placeholder="Weight"
             class="mr-4 mt-1 w-full appearance-none rounded border-2 border-gray-200 bg-gray-200 px-4 py-2 text-sm leading-tight text-gray-900 focus:border-accent-yellow focus:bg-white focus:outline-none"
           />
         </div>
+        <div
+          class="px-2 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0"
+          :class="{ 'py-5': is_editing, 'py-6': !is_editing }"
+        >
+          <dt
+            class="text-md flex items-center font-semibold leading-6 text-gray-900"
+          >
+            Height
+          </dt>
+          <dd
+            class="mt-1 flex items-center text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
+            v-if="!is_editing"
+          >
+            {{ props.user["height"] }} cm
+          </dd>
+          <input
+            type="number"
+            v-if="is_editing"
+            v-model="height"
+            placeholder="Height"
+            class="mr-4 mt-1 w-full appearance-none rounded border-2 border-gray-200 bg-gray-200 px-4 py-2 text-sm leading-tight text-gray-900 focus:border-accent-yellow focus:bg-white focus:outline-none"
+          />
+        </div>
       </dl>
-      <!--    <img src="/src/assets/Account-amico.png" alt="" class="w-[500px]">-->
     </div>
   </div>
 </template>
-
-<script setup>
-import store from "../../store";
-import { ref, watch } from "vue";
-import VueTailwindDatepicker from "vue-tailwind-datepicker";
-
-let props = defineProps({ user: Object });
-const is_editing = ref(false);
-const dateValue = ref([]);
-
-const formater = ref({
-  date: "DD MMM YYYY",
-  month: "MMM",
-});
-
-const toggleEdit = () => {
-  is_editing.value = !is_editing.value;
-};
-// Expose the toggleEdit function to the template
-defineExpose({ toggleEdit });
-
-const formatGender = (x) => {
-  if (x) {
-    let y = x.toLowerCase();
-    y = y[0].toUpperCase() + y.slice(1);
-    return y;
-  }
-};
-
-const selectedOption = ref("");
-
-watch(
-  () => props.user,
-  (newValue) => {
-    if (newValue) {
-      selectedOption.value = formatGender(newValue["gender"]);
-    }
-  },
-);
-</script>

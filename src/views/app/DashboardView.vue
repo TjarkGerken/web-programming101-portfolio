@@ -18,7 +18,10 @@ const lastWeekStats = ref({});
 
 onMounted(() => {
   try {
-    if (store.state.user.polar_user) {
+    if (
+      store.state.user.polar_user &&
+      store.state.user.polar_user.polar_access_token
+    ) {
       getPolarActivities().then(async () => {
         getLatestExercise()
           .then((res) => {
@@ -131,5 +134,3 @@ onMounted(() => {
     </div>
   </div>
 </template>
-
-<style scoped></style>
