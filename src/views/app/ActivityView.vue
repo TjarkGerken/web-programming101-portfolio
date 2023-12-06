@@ -38,7 +38,6 @@ import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
 import ApplicationNavbar from "@/components/utils/ApplicationNavbar.vue";
 import { getExerciseByID } from "@/api/getPolarActivities";
-import MapComponent from "@/components/application/MapComponent.vue";
 import InteractiveMapComponent from "@/components/application/InteractiveMapComponent.vue";
 import { activityEndTime, determineName, formatTime } from "@/api/utils";
 
