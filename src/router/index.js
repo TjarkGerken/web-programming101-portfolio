@@ -57,6 +57,12 @@ const routes = [
     meta: { requiresAuth: true },
   },
   {
+    path: "/activity/:id",
+    name: "Activity",
+    component: () => import("@/views/app/ActivityView.vue"),
+    meta: { requiresAuth: true },
+  },
+  {
     path: "/about",
     name: "about",
     component: AboutView,

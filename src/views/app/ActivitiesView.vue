@@ -55,10 +55,10 @@ onMounted(() => {
     </div>
     <div class="flex h-fit w-full flex-col items-center gap-4">
       <ActivitiesCard
-        class="w-11/12 lg:w-8/12"
-        v-if="exercises.length > 0"
         v-for="(exercise, index) in exercises"
+        v-if="exercises.length > 0"
         :key="index"
+        class="w-11/12 lg:w-8/12"
         :activity="exercise"
       />
     </div>

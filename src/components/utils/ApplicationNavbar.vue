@@ -35,8 +35,8 @@ const isAuthenticated = store.state.user.loggedIn;
     <Dialog
       as="div"
       class="lg:hidden"
-      @close="mobileMenuOpen = false"
       :open="mobileMenuOpen"
+      @close="mobileMenuOpen = false"
     >
       <div class="fixed inset-0 z-10" />
       <DialogPanel
@@ -74,17 +74,17 @@ const isAuthenticated = store.state.user.loggedIn;
                 >Profile</router-link
               >
             </div>
-            <div class="py-6" v-if="!isAuthenticated">
+            <div v-if="!isAuthenticated" class="py-6">
               <router-link
                 to="/auth/login"
                 class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >Log in</router-link
               >
             </div>
-            <div class="py-6" v-if="isAuthenticated">
+            <div v-if="isAuthenticated" class="py-6">
               <button
-                @click="logout"
                 class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                @click="logout"
               >
                 Logout
               </button>

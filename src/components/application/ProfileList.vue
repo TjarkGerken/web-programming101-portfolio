@@ -83,7 +83,7 @@ watch(
       <h3 class="mt-4 text-2xl font-bold text-gray-900 xl:mt-16 xl:text-3xl">
         Your Information
       </h3>
-      <button @click="toggleEdit()" v-if="!is_editing" class="mt-4">
+      <button v-if="!is_editing" class="mt-4" @click="toggleEdit()">
         <svg
           v-if="!is_editing"
           xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +101,7 @@ watch(
           />
         </svg>
       </button>
-      <button @click="updateProfile()" v-if="is_editing" class="mt-4">
+      <button v-if="is_editing" class="mt-4" @click="updateProfile()">
         <svg
           v-if="is_editing"
           xmlns="http://www.w3.org/2000/svg"
@@ -131,24 +131,24 @@ watch(
             Full name
           </dt>
           <dd
-            class="mt-1 flex items-center text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
             v-if="!is_editing"
+            class="mt-1 flex items-center text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
           >
             {{ props.user["first-name"] }} {{ " " }}
             {{ props.user["last-name"] }}
           </dd>
           <div class="flex">
             <input
-              type="text"
               v-if="is_editing"
               v-model="first_name"
+              type="text"
               placeholder="First Name"
               class="mr-4 mt-1 w-1/2 flex-1 appearance-none rounded border-2 border-gray-200 bg-gray-200 px-4 py-2 text-sm leading-tight text-gray-900 focus:border-accent-yellow focus:bg-white focus:outline-none"
             />
             <input
-              type="text"
               v-if="is_editing"
               v-model="last_name"
+              type="text"
               placeholder="Last Name"
               class="mt-1 w-1/2 flex-1 appearance-none rounded border-2 border-gray-200 bg-gray-200 px-4 py-2 text-sm leading-tight text-gray-900 focus:border-accent-yellow focus:bg-white focus:outline-none"
             />
@@ -165,8 +165,8 @@ watch(
             Birthdate
           </dt>
           <dd
-            class="mt-1 flex items-center text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
             v-if="!is_editing"
+            class="mt-1 flex items-center text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
           >
             {{ props.user["birthdate"] }}
           </dd>
@@ -211,14 +211,14 @@ watch(
             Gender
           </dt>
           <dd
-            class="mt-1 flex items-center text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
             v-if="!is_editing"
+            class="mt-1 flex items-center text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
           >
             {{ formatGender(props.user["gender"]) }}
           </dd>
           <select
-            v-model="gender"
             v-if="is_editing"
+            v-model="gender"
             class="mr-4 mt-1 w-full appearance-none rounded border-2 border-gray-200 bg-gray-200 px-4 py-2 text-sm leading-tight text-gray-900 focus:border-accent-yellow focus:bg-white focus:outline-none"
           >
             <option value="Male">Male</option>
@@ -237,15 +237,15 @@ watch(
             Weight
           </dt>
           <dd
-            class="mt-1 flex items-center text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
             v-if="!is_editing"
+            class="mt-1 flex items-center text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
           >
             {{ props.user["weight"] }} kg
           </dd>
           <input
-            type="number"
             v-if="is_editing"
             v-model="weight"
+            type="number"
             placeholder="Weight"
             class="mr-4 mt-1 w-full appearance-none rounded border-2 border-gray-200 bg-gray-200 px-4 py-2 text-sm leading-tight text-gray-900 focus:border-accent-yellow focus:bg-white focus:outline-none"
           />
@@ -260,15 +260,15 @@ watch(
             Height
           </dt>
           <dd
-            class="mt-1 flex items-center text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
             v-if="!is_editing"
+            class="mt-1 flex items-center text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"
           >
             {{ props.user["height"] }} cm
           </dd>
           <input
-            type="number"
             v-if="is_editing"
             v-model="height"
+            type="number"
             placeholder="Height"
             class="mr-4 mt-1 w-full appearance-none rounded border-2 border-gray-200 bg-gray-200 px-4 py-2 text-sm leading-tight text-gray-900 focus:border-accent-yellow focus:bg-white focus:outline-none"
           />

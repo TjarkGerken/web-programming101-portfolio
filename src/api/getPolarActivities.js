@@ -23,7 +23,7 @@ async function postExerciseTransactions() {
     const response = await axios.post(url, {}, { headers });
     return response.data;
   } catch (error) {
-    console.error(error);
+    console.warn(error);
   }
 }
 async function getExerciseList(url) {
@@ -35,7 +35,7 @@ async function getExerciseList(url) {
     const response = await axios.get(url, { headers });
     return response.data;
   } catch (error) {
-    console.error(error);
+    console.warn(error);
   }
 }
 
@@ -50,7 +50,6 @@ export async function getPolarActivities() {
     async (exercise_list) => {
       if (exercise_list) {
         for (const exercise_url of exercise_list.exercises) {
-          console.log(exercise_url);
           await storeExerciseData(exercise_url);
         }
       }
@@ -78,7 +77,7 @@ async function getExerciseData(exercise_url) {
       });
     return response.data;
   } catch (error) {
-    console.error(error);
+    console.warn(error);
   }
 }
 
@@ -106,7 +105,7 @@ async function commitTransaction(transaction_url) {
   try {
     return await axios.put(removeBaseUrl(transaction_url), {}, { headers });
   } catch (error) {
-    console.error(error);
+    console.warn(error);
   }
 }
 
@@ -204,4 +203,18 @@ export function aggregateStats(exerciseList) {
   stats.total_distance = round(stats.total_distance / 1000, 2);
   stats.total_duration = stats.total_duration.toFormat("hh:mm:ss");
   return stats;
+}
+
+export function getExerciseByID(id) {
+  const userDocRef = firebase
+    .firestore()
+    .collection("user")
+    .doc(store.state.user.data.uid);
+  const exerciseDocRef = userDocRef.collection("exercises");
+  return exerciseDocRef
+    .doc("POLAR_" + id)
+    .get()
+    .then((res) => {
+      return res.data();
+    });
 }

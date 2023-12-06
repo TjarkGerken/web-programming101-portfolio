@@ -12,7 +12,6 @@ function getGoals() {
       goals.value = goals.value.slice(0, 7);
     }
   });
-  console.log("hi");
 }
 
 onMounted(() => {
@@ -28,7 +27,7 @@ onMounted(() => {
       <div class="flex items-center justify-between">
         <h2 class="text-lg font-bold lg:text-2xl">Goals</h2>
       </div>
-      <DisplayGoal v-for="goal in goals" :goal="goal" :key="goal.id" />
+      <DisplayGoal v-for="goal in goals" :key="goal.id" :goal="goal" />
       <button
         class="flex flex-row items-center justify-center gap-6 rounded-xl bg-[#6F42C1] p-2 font-bold text-white"
       >
