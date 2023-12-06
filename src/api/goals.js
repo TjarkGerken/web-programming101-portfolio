@@ -68,23 +68,40 @@ export function getGoalData(goal) {
 
 export async function evaluateGoals() {
   const goals = await getGoals();
+  console.log(goals);
   return await Promise.all(
     goals.map(async (goal) => {
       const goalData = await getGoalData(goal);
-      const aggregatedStats = aggregateStats(goalData);
-      let completed = false;
-      if (goal.goal_type === "Distance") {
-        completed = goal.goal_value <= aggregatedStats.total_distance;
-      } else if (goal.goal_type === "Time") {
-        completed = goal.goal_value <= aggregatedStats.total_duration;
-      } else if (goal.goal_type === "Calories") {
-        completed = goal.goal_value <= aggregatedStats.total_calories;
+      if (goalData) {
+        const aggregatedStats = aggregateStats(goalData);
+        let completed = false;
+        if (goal.goal_type === "Distance") {
+          completed = goal.goal_value <= aggregatedStats.total_distance;
+        } else if (goal.goal_type === "Time") {
+          completed = goal.goal_value <= aggregatedStats.total_duration;
+        } else if (goal.goal_type === "Calories") {
+          completed = goal.goal_value <= aggregatedStats.total_calories;
+        }
+        return {
+          ...goal,
+          ...aggregatedStats,
+          completed,
+        };
+      } else {
+        console.log("hi");
+        const aggregateStats = {
+          total_distance: 0,
+          total_duration: "00:00:00",
+          total_calories: 0,
+          total_exercises: 0,
+          avg_hf: 0,
+        };
+        return {
+          ...goal,
+          ...aggregateStats,
+          completed: false,
+        };
       }
-      return {
-        ...goal,
-        ...aggregatedStats,
-        completed,
-      };
     }),
   );
 }
