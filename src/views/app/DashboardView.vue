@@ -22,12 +22,22 @@ onMounted(() => {
         getLatestExercise()
           .then((res) => {
             exercises.value = res;
+            if (Object.keys(exercises.value).length === 0) {
+              noActivities.value = true;
+            } else {
+              isLoading.value = false;
+            }
           })
-          .then(
-            await aggregateLastWeekStats().then((res) => {
-              lastWeekStats.value = res;
-            }),
-          );
+          .then(async () => {
+            console.log(Object.keys(exercises.value).length);
+            if (Object.keys(exercises.value).length === 0) {
+              noActivities.value = true;
+            } else {
+              await aggregateLastWeekStats().then((res) => {
+                lastWeekStats.value = res;
+              });
+            }
+          });
       });
     } else {
       noActivities.value = true;

@@ -131,6 +131,7 @@ export async function getLatestExercise() {
     .limit(1)
     .get()
     .then((res) => {
+      if (res.docs.length === 0) return null;
       return res.docs[0].data();
     });
 }

@@ -17,7 +17,11 @@ onMounted(() => {
           .then((res) => {
             if (res) {
               exercises.value = res;
-              isLoading.value = false;
+              if (Object.keys(exercises.value).length === 0) {
+                noActivities.value = true;
+              } else {
+                isLoading.value = false;
+              }
             } else {
               noActivities.value = true;
               isLoading.value = false;
