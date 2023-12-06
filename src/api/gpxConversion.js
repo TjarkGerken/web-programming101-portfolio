@@ -35,6 +35,6 @@ export async function getGPXDataToJSON(exercise_url) {
 
 export function LongLatListForMapUsage(JSON_Object) {
   return JSON_Object.map((item) => {
-    return [item.lon, item.lat];
+    return [parseFloat(item.lon), parseFloat(item.lat)];
   });
 }

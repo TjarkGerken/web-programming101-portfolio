@@ -18,7 +18,7 @@ function updateMap() {
     const coordinates = LongLatListForMapUsage(props.activity.gpx);
     const lineString = new LineString(coordinates);
     const extent = lineString.getExtent();
-    viewRef.value.fit(extent, { minResolution: 0.0001 });
+    viewRef.value.fit(extent, { minResolution: 0.00007 });
   }
 }
 
@@ -39,8 +39,8 @@ onMounted(() => {
   >
     <ol-view
       ref="viewRef"
-      min-resolution="0.00001"
       :constrain-resolution="true"
+      min-resolution="0.00000000001"
       :center="center"
       :rotation="rotation"
       :zoom="zoom"
@@ -50,7 +50,6 @@ onMounted(() => {
     <ol-tile-layer>
       <ol-source-osm />
     </ol-tile-layer>
-
     <ol-vector-layer>
       <ol-source-vector>
         <ol-feature>

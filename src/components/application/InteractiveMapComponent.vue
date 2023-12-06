@@ -48,7 +48,6 @@ onMounted(() => {
     <ol-tile-layer>
       <ol-source-osm />
     </ol-tile-layer>
-
     <ol-vector-layer>
       <ol-source-vector>
         <ol-feature>
