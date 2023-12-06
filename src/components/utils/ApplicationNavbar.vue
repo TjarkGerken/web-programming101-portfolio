@@ -10,7 +10,7 @@ const isAuthenticated = store.state.user.loggedIn;
 </script>
 
 <template>
-  <header class="border-2 border-gray-50 bg-white lg:relative lg:hidden">
+  <header class="border-2 border-gray-50 bg-white lg:relative lg:hidden ">
     <nav
       class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:h-full lg:w-1/12 lg:px-8"
       aria-label="Global"
@@ -106,6 +106,9 @@ const isAuthenticated = store.state.user.loggedIn;
         <router-link to="/" class="">
           <img class="h-10 w-10" src="@/assets/logo.png" alt="" />
         </router-link>
+
+        <hr class="">
+
         <router-link
           class="flex flex-col items-center space-y-1"
           to="/dashboard"
@@ -115,7 +118,7 @@ const isAuthenticated = store.state.user.loggedIn;
             fill="none"
             viewBox="0 0 24 24"
             stroke-width="1.5"
-            stroke="currentColor"
+            stroke="#263238"
             class="h-8 w-8 text-black"
           >
             <path
@@ -126,6 +129,7 @@ const isAuthenticated = store.state.user.loggedIn;
           </svg>
           <p class="text-center text-sm text-black">Home</p>
         </router-link>
+
         <router-link
           class="flex flex-col items-center space-y-1"
           to="/activities"
@@ -135,7 +139,7 @@ const isAuthenticated = store.state.user.loggedIn;
             fill="none"
             viewBox="0 0 24 24"
             stroke-width="1.5"
-            stroke="currentColor"
+            stroke="#263238"
             class="h-8 w-8"
           >
             <path
@@ -152,7 +156,7 @@ const isAuthenticated = store.state.user.loggedIn;
             fill="none"
             viewBox="0 0 24 24"
             stroke-width="1.5"
-            stroke="currentColor"
+            stroke="#263238"
             class="h-8 w-8"
           >
             <path
@@ -173,7 +177,7 @@ const isAuthenticated = store.state.user.loggedIn;
           fill="none"
           viewBox="0 0 24 24"
           stroke-width="1.5"
-          stroke="currentColor"
+          stroke="#263238"
           class="h-8 w-8"
         >
           <path
