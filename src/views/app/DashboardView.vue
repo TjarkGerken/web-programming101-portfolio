@@ -4,6 +4,7 @@ import {
   aggregateLastWeekStats,
   getLatestExercise,
   getPolarActivities,
+  storeExerciseData,
 } from "@/api/getPolarActivities";
 import ApplicationNavbar from "@/components/utils/ApplicationNavbar.vue";
 import ActivitiesCard from "@/components/application/ActivitiesCard.vue";
@@ -16,6 +17,11 @@ const isLoading = ref(true);
 const noActivities = ref(false);
 const lastWeekStats = ref({});
 
+onMounted(async () => {
+  await storeExerciseData();
+});
+
+/*
 onMounted(() => {
   try {
     if (
@@ -59,7 +65,7 @@ onMounted(() => {
     isLoading.value = false;
     console.warn(e);
   }
-});
+});*/
 </script>
 
 <template>

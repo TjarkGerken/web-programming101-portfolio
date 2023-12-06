@@ -23,14 +23,16 @@ export async function getGPXDataToJSON(exercise_url) {
   const headers = {
     Authorization: "Bearer " + store.state.user.polar_user.polar_access_token,
   };
-  const gpx = await axios
-    .get(exercise_url + "/gpx", {
-      headers,
-    })
-    .then((res) => {
-      return res.data;
-    });
-  return getLatLongListFromGpx(gpx);
+
+  const response = await fetch(exercise_url);
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+
+  const gpxXml = await response.text();
+
+  return getLatLongListFromGpx(gpxXml);
 }
 
 export function LongLatListForMapUsage(JSON_Object) {

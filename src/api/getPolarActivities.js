@@ -58,31 +58,34 @@ export async function getPolarActivities() {
   await commitTransaction(transaction["resource-uri"]);
 }
 
-async function getExerciseData(exercise_url) {
+async function getExerciseData() {
   const headers = {
     Authorization: "Bearer " + store.state.user.polar_user.polar_access_token,
   };
-  exercise_url = removeBaseUrl(exercise_url);
-  try {
-    const response = await axios
-      .get(exercise_url, { headers })
-      .then(async (res) => {
-        res.data["fit"] = await getFitData(exercise_url);
-        res.data["gpx"] = await getGPXDataToJSON(exercise_url);
-        res.data["location"] = await getCityFromCoordinates(
-          res.data["gpx"][0]["lat"],
-          res.data["gpx"][0]["lon"],
-        );
-        return res;
-      });
-    return response.data;
-  } catch (error) {
-    console.warn(error);
-  }
+  // exercise_url = removeBaseUrl(exercise_url);
+
+  const res = {};
+  res["fit"] = await getFitData(
+    "src/assets/import-mock-data/12294319115_ACTIVITY.fit",
+  );
+  res["gpx"] = await getGPXDataToJSON(
+    "src/assets/import-mock-data/activity_12294319115.gpx",
+  );
+  res["start-time"] = "2023-12-05T05:18:00.000Z";
+  res["id"] = "12519045900";
+  res["calories"] = 456;
+  res["distance"] = 6780;
+  res["duration"] = "PT0H39M09S";
+  res["heart-rate"] = { average: 165, maximum: 178 };
+  res["location"] = "Bremen";
+  res["fit"].sessionMesgs[0].avgSpeed = 10.4;
+  res["sport"] = "RUNNING";
+
+  return res;
 }
 
-async function storeExerciseData(exercise_url) {
-  const exercise_data = await getExerciseData(exercise_url);
+export async function storeExerciseData() {
+  const exercise_data = await getExerciseData();
   if (exercise_data["start-time"]) {
     exercise_data["start-time-sorting"] = firebase.firestore.Timestamp.fromDate(
       new Date(exercise_data["start-time"]),

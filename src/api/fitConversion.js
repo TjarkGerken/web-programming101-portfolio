@@ -7,12 +7,16 @@ export async function getFitData(exercise_url) {
   const headers = {
     Authorization: "Bearer " + store.state.user.polar_user.polar_access_token,
   };
+  /*
   const response = await axios.get(exercise_url + "/fit", {
     headers,
     responseType: "arraybuffer",
-  });
-  const arrayBuffer = await response.data;
-  const uint8Array = new Uint8Array(arrayBuffer);
+  });*/
+
+  let response = await fetch(exercise_url);
+  let data = await response.arrayBuffer();
+
+  const uint8Array = new Uint8Array(data);
 
   const streamfromFileSync = Stream.fromBuffer(uint8Array);
   console.log("isFIT (static method): " + Decoder.isFIT(streamfromFileSync));
@@ -26,5 +30,6 @@ export async function getFitData(exercise_url) {
   if (errors.length > 0) {
     console.error("errors: " + errors);
   }
+  console.log(messages);
   return messages;
 }
