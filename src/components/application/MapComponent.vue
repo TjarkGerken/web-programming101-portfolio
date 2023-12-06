@@ -35,7 +35,7 @@ onMounted(() => {
     :loadTilesWhileInteracting="true"
     :controls="[]"
     :interactions="[]"
-    style="height: 100%; width: 100%"
+    style="height: 100%; width: 100%; border-radius: 4px; overflow: hidden;"
   >
     <ol-view
       ref="viewRef"
