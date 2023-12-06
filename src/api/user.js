@@ -10,3 +10,19 @@ export async function getUser() {
     .get();
   return doc.data();
 }
+
+export async function updateUser(user) {
+  await firebase
+    .firestore()
+    .collection("user")
+    .doc(store.state.user.data.uid)
+    .set(user, { merge: true });
+}
+
+export async function deleteFirebaseUser() {
+  await firebase
+    .firestore()
+    .collection("user")
+    .doc(store.state.user.data.uid)
+    .delete();
+}

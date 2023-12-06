@@ -11,7 +11,10 @@ const isLoading = ref(true);
 const noActivities = ref(false);
 onMounted(() => {
   try {
-    if (store.state.user.polar_user) {
+    if (
+      store.state.user.polar_user &&
+      store.state.user.polar_user.polar_access_token
+    ) {
       getPolarActivities().then(async () => {
         getExercises()
           .then((res) => {

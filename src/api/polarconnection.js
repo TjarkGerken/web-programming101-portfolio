@@ -8,7 +8,7 @@ import {
 } from "@/api/api-config";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
-import { getUser } from "@/api/user";
+import { deleteFirebaseUser, getUser } from "@/api/user";
 import store from "@/store";
 
 const toast = useToast();
@@ -111,11 +111,7 @@ export async function deleteUser() {
       .delete(BASE_URL_CORS_PROXY + "v3/users/" + user_id, { headers })
       .then(() => {
         // Delete User Data from Firebase
-        firebase
-          .firestore()
-          .collection("user")
-          .doc(store.state.user.data.uid)
-          .delete();
+        deleteFirebaseUser();
         // Delete User date from Vuex for consistency
         store.dispatch("setPolarUser", null);
         // Reload Page to reflect Changes
