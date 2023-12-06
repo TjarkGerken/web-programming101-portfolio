@@ -110,18 +110,18 @@ export async function deleteUser() {
     await axios
       .delete(BASE_URL_CORS_PROXY + "v3/users/" + user_id, { headers })
       .then(() => {
-        // Inform User about the disconnect
-        toast.success("You're account was successfully disconnected.");
         // Delete User Data from Firebase
         firebase
           .firestore()
           .collection("user")
           .doc(store.state.user.data.uid)
           .delete();
-        // Delete User date from Vuex
+        // Delete User date from Vuex for consistency
         store.dispatch("setPolarUser", null);
-        // Redirect the User to the Profile Page
-        router.push("/profile");
+        // Reload Page to reflect Changes
+        window.location.reload();
+        // Inform User about the successful disconnect
+        toast.success("You're account was successfully disconnected.");
       });
   } catch (error) {
     // Inform User about the error
