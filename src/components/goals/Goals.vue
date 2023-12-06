@@ -12,6 +12,7 @@ function getGoals() {
       goals.value = goals.value.slice(0, 7);
     }
   });
+  console.log("hi");
 }
 
 onMounted(() => {

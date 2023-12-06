@@ -4,7 +4,11 @@
       <h3 class="mt-4 text-2xl font-bold text-gray-900 xl:mt-16 xl:text-3xl">
         Your Information
       </h3>
-      <button @click="toggleEdit" class="mt-4">
+      <button
+        @click="toggleEdit"
+        v-if="store.state.user.polar_user"
+        class="mt-4"
+      >
         <svg
           v-if="!is_editing"
           xmlns="http://www.w3.org/2000/svg"
@@ -145,9 +149,9 @@
             {{ formatGender(props.user["gender"]) }}
           </dd>
           <select
-              v-model="selectedOption"
-              v-if="is_editing"
-              class="mr-4 mt-1 w-full appearance-none rounded border-2 border-gray-200 bg-gray-200 px-4 py-2 text-sm leading-tight text-gray-900 focus:border-accent-yellow focus:bg-white focus:outline-none"
+            v-model="selectedOption"
+            v-if="is_editing"
+            class="mr-4 mt-1 w-full appearance-none rounded border-2 border-gray-200 bg-gray-200 px-4 py-2 text-sm leading-tight text-gray-900 focus:border-accent-yellow focus:bg-white focus:outline-none"
           >
             <option value="Male">Male</option>
             <option value="Female">Female</option>
@@ -186,7 +190,7 @@
 
 <script setup>
 import store from "../../store";
-import {ref, watch} from "vue";
+import { ref, watch } from "vue";
 import VueTailwindDatepicker from "vue-tailwind-datepicker";
 
 let props = defineProps({ user: Object });
@@ -212,13 +216,14 @@ const formatGender = (x) => {
   }
 };
 
+const selectedOption = ref("");
 
-const selectedOption = ref("")
-
-watch(() => props.user, (newValue) => {
-  if (newValue) {
-    selectedOption.value = formatGender(newValue["gender"]);
-  }
-})
-
+watch(
+  () => props.user,
+  (newValue) => {
+    if (newValue) {
+      selectedOption.value = formatGender(newValue["gender"]);
+    }
+  },
+);
 </script>
