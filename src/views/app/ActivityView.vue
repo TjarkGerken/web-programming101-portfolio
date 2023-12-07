@@ -230,7 +230,6 @@
       </div>
     </div>
   </div>
-
   <div
     class="absolute left-0 top-0 z-50 flex h-screen w-screen items-center justify-center bg-black bg-opacity-50"
     v-if="deleteModalOpen"
@@ -280,13 +279,14 @@ const route = useRoute();
 const id = ref("");
 const activity = ref({});
 const isLoading = ref(true);
-const deleteModalOpen = ref(false);
+
 function secondsToMinutes(timerSeconds) {
   // function that transforms the seconds to a human-readable output with the luxon package
   const time = Duration.fromObject({ seconds: timerSeconds });
   return time.toFormat("mm:ss");
 }
 
+const deleteModalOpen = ref(false);
 function toggleDeleteModal() {
   // function that toggles the delete modal
   deleteModalOpen.value = !deleteModalOpen.value;
