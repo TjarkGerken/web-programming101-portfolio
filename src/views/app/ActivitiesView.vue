@@ -44,8 +44,8 @@ onMounted(() => {
 
 <template>
   <ApplicationNavbar></ApplicationNavbar>
-  <div class="h-fit w-screen px-8 lg:ml-32 lg:h-screen lg:w-[calc(100%-128px)]">
-    <h1 class="w-fit pl-12 pt-12 text-left text-3xl">Your Activities</h1>
+  <div class="h-fit w-screen px-8 lg:ml-32 lg:h-screen lg:w-[calc(100%-152px)]">
+    <h1 class="text-center w-full pt-16 pb-8 text-3xl font-bold xL:pb-16">Your Activities</h1>
     <div v-if="noActivities" class="w-fit pl-12 pt-12 text-left">
       You got no Activities.
       <router-link to="/profile" class="underline"
@@ -53,10 +53,8 @@ onMounted(() => {
       >
       to get started or upload a new Activity if you are already connected!
     </div>
-    <div class="flex h-fit w-full flex-col items-center gap-4">
+    <div v-if="!noActivities" class="flex flex-col items-center gap-4 xl:gap-6 pb-16">
       <ActivitiesCard
-        class="w-11/12 lg:w-8/12"
-        v-if="exercises.length > 0"
         v-for="(exercise, index) in exercises"
         :key="index"
         :activity="exercise"
