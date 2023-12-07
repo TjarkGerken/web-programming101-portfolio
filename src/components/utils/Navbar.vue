@@ -4,7 +4,7 @@
       class="flex items-center justify-between p-6 lg:px-8"
       aria-label="Global"
     >
-      <div class="flex lg:flex-1 2xl:ml-48">
+      <div class="flex lg:flex-1 2xl:ml-40">
         <router-link to="" class="-m-1.5 flex items-center p-1.5">
           <img
             src="@/assets/logo.png"
@@ -41,7 +41,7 @@
 
       <div
         v-if="!isAuthenticated"
-        class="hidden lg:flex lg:flex-1 lg:justify-end 2xl:mr-48"
+        class="hidden lg:flex lg:flex-1 lg:justify-end 2xl:mr-40"
       >
         <router-link
           to="/auth/login"
@@ -52,7 +52,7 @@
 
       <div
         v-if="isAuthenticated"
-        class="hidden lg:flex lg:flex-1 lg:justify-end 2xl:mr-48"
+        class="hidden lg:flex lg:flex-1 lg:justify-end 2xl:mr-40    "
       >
         <router-link
           to="/dashboard"

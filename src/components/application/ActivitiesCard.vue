@@ -12,11 +12,11 @@ const props = defineProps({
 </script>
 
 <template>
-  <router-link :to="'activity/' + String(props.activity.id)">
+  <router-link :to="'activity/' + String(props.activity.id)" class="xl:flex xl:justify-center">
 
   <div
     class="h-fit w-full rounded-lg bg-white p-4 border border-gray-300 border-opacity-30 shadow-[0_8px_30px_rgb(0,0,0,0.1)] transition-shadow duration-300 ease-in-out hover:shadow-[0_8px_30px_rgb(0,0,0,0.15)]
-            xl:w-2/3"
+            "
   >
       <div class="h-40 w-full" v-if="props.activity.gpx">
         <MapComponent :activity="props.activity" />
