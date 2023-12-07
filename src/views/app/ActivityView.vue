@@ -1,14 +1,17 @@
 <template>
   <ApplicationNavbar></ApplicationNavbar>
+  <div v-if="activity.gpx" class="h-96 w-full">
+    <InteractiveMapComponent :activity="activity" />
+  </div>
   <div
     class="h-full w-screen px-8 lg:ml-32 lg:h-screen lg:w-[calc(100%-128px)]"
   >
     <div v-if="activity !== {} && !isLoading">
-      <div v-if="activity.gpx" class="h-48 w-full">
+      <div v-if="activity.gpx" class="h-96 w-full">
         <InteractiveMapComponent :activity="activity" />
       </div>
-      <div class="flex flex-col font-maven lg:w-1/4">
-        <div class="flex gap-2 text-xl font-semibold leading-none">
+      <div class="mt-6 flex flex-col font-maven lg:w-1/4">
+        <div class="flex gap-2 text-3xl font-semibold leading-none">
           <span>
             {{
               determineName(
@@ -23,7 +26,9 @@
           <span v-if="activity.location">{{ activity.location }}</span>
         </div>
         <div class="font-semibold tracking-tight">
-          {{ formatTime(activity["start-time"]) }} -
+          {{ new Date(activity["start-time"]).toLocaleDateString("de-DE") }}
+          {{ formatTime(activity["start-time"]) }}
+          -
           {{ activityEndTime(activity.duration, activity["start-time"]) }}
         </div>
         <div class="text-xl font-semibold"></div>
@@ -39,7 +44,12 @@ import { useRoute } from "vue-router";
 import ApplicationNavbar from "@/components/utils/ApplicationNavbar.vue";
 import { getExerciseByID } from "@/api/getPolarActivities";
 import InteractiveMapComponent from "@/components/application/InteractiveMapComponent.vue";
-import { activityEndTime, determineName, formatTime } from "@/api/utils";
+import {
+  activityEndTime,
+  determineName,
+  formatDate,
+  formatTime,
+} from "@/api/utils";
 
 const route = useRoute();
 const id = ref("");

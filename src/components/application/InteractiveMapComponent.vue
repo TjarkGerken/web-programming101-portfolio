@@ -18,7 +18,7 @@ function updateMap() {
     const coordinates = LongLatListForMapUsage(props.activity.gpx);
     const lineString = new LineString(coordinates);
     const extent = lineString.getExtent();
-    viewRef.value.fit(extent, { minResolution: 0.0001 });
+    viewRef.value.fit(extent, { minResolution: 0.00001 });
   }
 }
 
