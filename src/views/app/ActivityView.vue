@@ -184,7 +184,7 @@ const activity = ref({});
 const isLoading = ref(true);
 
 function secondsToMinutes(timerSeconds) {
-  // function that transforms the seconds to a human readable ouput with the luxon package
+  // function that transforms the seconds to a human readable output with the luxon package
   const time = Duration.fromObject({ seconds: timerSeconds });
   return time.toFormat("mm:ss");
 }
