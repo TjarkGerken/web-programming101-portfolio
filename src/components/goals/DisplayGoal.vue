@@ -44,52 +44,32 @@ goal.end_date = formatDate(
 
 <template>
   <div
-    :class="`flex flex-row items-center justify-start gap-4 rounded-xl border-4 border-solid p-2 ${
-      goal.completed ? 'border-[#6F42C1]' : 'border-neutral-400'
+    :class="`flex flex-row items-center justify-start gap-4 w-full rounded-xl border  p-4 shadow-[0_8px_30px_rgb(0,0,0,0.1)] ${
+      goal.completed ? 'border-accent-yellow border-[4px]' : 'border-gray-300 border-opacity-30'
     }`"
   >
     <div v-if="goal.completed">
       <div class="">
-        <svg
-          width="40"
-          height="40"
-          viewBox="0 0 20 20"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M7.22507 10.6572L9.20201 12.6342L12.4969 8.02133M17.7687 9.99827C17.7687 11.0367 17.5642 12.065 17.1668 13.0244C16.7694 13.9838 16.1869 14.8556 15.4526 15.5899C14.7183 16.3242 13.8466 16.9067 12.8872 17.3041C11.9277 17.7015 10.8994 17.906 9.86099 17.906C8.82252 17.906 7.79423 17.7015 6.83482 17.3041C5.87541 16.9067 5.00366 16.3242 4.26936 15.5899C3.53506 14.8556 2.95258 13.9838 2.55517 13.0244C2.15777 12.065 1.95323 11.0367 1.95323 9.99827C1.95323 7.901 2.78637 5.88963 4.26936 4.40664C5.75235 2.92365 7.76372 2.09052 9.86099 2.09052C11.9583 2.09052 13.9696 2.92365 15.4526 4.40664C16.9356 5.88963 17.7687 7.901 17.7687 9.99827Z"
-            stroke="#6F42C1"
-            stroke-opacity="0.5"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="#7E56C8" class="w-9 h-9">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
+
       </div>
     </div>
     <div v-else>
-      <svg
-        width="40"
-        height="40"
-        viewBox="0 0 35 35"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M35 17.5C35 27.165 27.165 35 17.5 35C7.83502 35 0 27.165 0 17.5C0 7.83502 7.83502 0 17.5 0C27.165 0 35 7.83502 35 17.5ZM1.80182 17.5C1.80182 26.1699 8.83013 33.1982 17.5 33.1982C26.1699 33.1982 33.1982 26.1699 33.1982 17.5C33.1982 8.83013 26.1699 1.80182 17.5 1.80182C8.83013 1.80182 1.80182 8.83013 1.80182 17.5Z"
-          fill="#595959"
-        />
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#263238" class="w-8 h-8">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
       </svg>
+
     </div>
-    <div class="flex w-full flex-col">
-      <div class="flex flex-col justify-between md:flex-row">
+    <div class="flex w-full flex-col xl:justify-center p-[2.5px]">
+      <div class="flex flex-col justify-between xl:flex-row ">
         <div class="font-bold">{{ goal.goal_type }}</div>
-        <div class="text-sm md:text-lg">
+        <div class="text-sm xl:text-md xl:font-bold">
           {{ goal.start_date }} - {{ goal.end_date }}
         </div>
       </div>
-      <div>{{ achievedValue }} / {{ plannedValue }} {{ unit }}</div>
+      <div class="font-medium text-sm">{{ achievedValue }} / {{ plannedValue }} {{ unit }}</div>
     </div>
   </div>
 </template>
