@@ -89,14 +89,20 @@
         <div>
           <button
             type="submit"
-            class="flex w-full justify-center rounded-md bg-accent-yellow px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-accent-yellow-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-yellow"
+            class="flex w-full justify-center rounded-md bg-accent-yellow px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-accent-yellow-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-yellow disabled:bg-gray-400"
             @click.prevent="submitForm"
+            :disabled="disabled"
           >
             Sign in
           </button>
         </div>
         <div class="mt-10 w-full sm:mx-auto sm:max-w-sm">
-          <GoogleSignInButton text="Sign in with Google" />
+          <GoogleSignInButton
+            @google-sign-error="disabled = false"
+            @google-sign-start="disabled = true"
+            :disabled="disabled"
+            text="Sign in with Google"
+          />
         </div>
       </form>
     </div>
@@ -116,11 +122,12 @@ import { MailPasswordSignIn } from "@/api/auth";
 import { ref } from "vue";
 import GoogleSignInButton from "@/components/buttons/GoogleSignInButton.vue";
 
-let email = ref("");
-let password = ref("");
-let formErrors = ref({});
+const email = ref("");
+const password = ref("");
+const formErrors = ref({});
+const disabled = ref(false);
 
-const validateForm = () => {
+function validateForm() {
   let errors = {};
 
   if (!email.value) {
@@ -134,11 +141,16 @@ const validateForm = () => {
   formErrors.value = errors;
 
   return Object.keys(errors).length === 0;
-};
+}
 
-const submitForm = async () => {
+async function submitForm() {
+  disabled.value = true;
   if (validateForm()) {
-    await MailPasswordSignIn(email.value, password.value);
+    await MailPasswordSignIn(email.value, password.value).finally(() => {
+      disabled.value = false;
+    });
+  } else {
+    disabled.value = false;
   }
-};
+}
 </script>
