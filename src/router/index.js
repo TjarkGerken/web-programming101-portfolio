@@ -1,11 +1,15 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/landingpage/HomeView.vue";
-import SignIn from "@/views/auth/sign-in.vue";
+import SignIn from "@/views/auth/SignInView.vue";
 import NotFoundView from "@/views/utils/NotFoundView.vue";
 import AboutView from "@/views/landingpage/AboutView.vue";
 import store from "@/store";
 import RegisterView from "@/views/auth/RegisterView.vue";
 
+/**
+ * The routes of the application
+ * @type {[{path: string, component: {}, meta: {requiresAuth: boolean}, name: string},{path: string, component: {}, meta: {requiresAuth: boolean}, name: string},{path: string, component: (function(): Promise<{}>), meta: {requiresAuth: boolean}, name: string},{path: string, component: {}, meta: {requiresAuth: boolean, isAuth: boolean}, name: string},{path: string, component: {}, meta: {requiresAuth: boolean, isAuth: boolean}, name: string},null,null,null,null,null]}
+ */
 const routes = [
   {
     path: "/:pathMatch(.*)*",
@@ -69,12 +73,18 @@ const routes = [
     meta: { requiresAuth: false },
   },
 ];
-
+/**
+ *  The Router with Create Web History
+ * @type {Router}
+ */
 const router = createRouter({
   history: createWebHistory(),
   routes,
 });
 
+/**
+ * The Router Guard that checks if the user is logged in or not. Additionally redirects a logged in user to the dashboard if they try to access an authentication page.
+ */
 router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (!store.state.user.loggedIn) {

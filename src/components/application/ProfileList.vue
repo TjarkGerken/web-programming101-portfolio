@@ -4,9 +4,15 @@ import { ref, watch } from "vue";
 import VueTailwindDatepicker from "vue-tailwind-datepicker";
 import { updateUser } from "@/api/user";
 
-let props = defineProps({ user: Object });
+const props = defineProps({
+  user: {
+    type: Object,
+    default: () => ({}),
+  },
+});
 const is_editing = ref(false);
 
+// Initialize the form values
 const first_name = ref("");
 const last_name = ref("");
 const gender = ref("");
@@ -15,18 +21,24 @@ const weight = ref("");
 const height = ref("");
 
 const previous_values = {};
+// Formatter for the datepicker
 const formater = ref({
   date: "YYYY-MM-DD",
   month: "MMM",
 });
 
+/**
+ *  Function to toggle the edit mode of the profile.
+ */
 const toggleEdit = () => {
+  // Set the values to the current values for form autofill
   first_name.value = props.user["first-name"];
   last_name.value = props.user["last-name"];
   birthdate.value = props.user["birthdate"];
   weight.value = props.user["weight"];
   height.value = props.user["height"];
 
+  // Set the previous values to the current values for later comparison
   previous_values.value = {
     "first-name": first_name.value,
     "last-name": last_name.value,
@@ -37,9 +49,15 @@ const toggleEdit = () => {
   };
   is_editing.value = !is_editing.value;
 };
+
 // Expose the toggleEdit function to the template
 defineExpose({ toggleEdit });
 
+/**
+ *  Format the gender so the first letter is uppercase.
+ * @param x String of the Gender
+ * @returns {string} Formatted String
+ */
 const formatGender = (x) => {
   if (x) {
     let y = x.toLowerCase();
@@ -48,6 +66,10 @@ const formatGender = (x) => {
   }
 };
 
+/**
+ * Update the user profile with the new values. If the values are the same as before, the function will return to avoid unnecessary Firebase calls.
+ * @returns {Promise<void>}
+ */
 async function updateProfile() {
   const patchedData = {
     "first-name": first_name.value,
@@ -61,12 +83,13 @@ async function updateProfile() {
     toggleEdit();
     return;
   }
-
+  // Send the data to the Firebase
   await updateUser(patchedData);
   toggleEdit();
   window.location.reload();
 }
 
+// Watches the User in order to update the Genders formatting
 watch(
   () => props.user,
   (newValue) => {

@@ -7,8 +7,8 @@ import {
 } from "@/api/getPolarActivities";
 import ApplicationNavbar from "@/components/utils/ApplicationNavbar.vue";
 import ActivitiesCard from "@/components/application/ActivitiesCard.vue";
-import Goals from "@/components/goals/Goals.vue";
-import Stats from "@/components/application/Stats.vue";
+import Goals from "@/components/goals/GoalList.vue";
+import Stats from "@/components/application/StatsDisplay.vue";
 import store from "../../store";
 
 const exercises = ref({});
@@ -16,6 +16,7 @@ const isLoading = ref(true);
 const noActivities = ref(false);
 const lastWeekStats = ref({});
 
+// Check if there are new activities and update the list. Additionally, check if there are no activities and show a message.
 onMounted(() => {
   try {
     if (
@@ -38,6 +39,7 @@ onMounted(() => {
             }
           })
           .then(async () => {
+            // Get the stats from last week
             if (exercises.value && Object.keys(exercises.value).length > 0) {
               await aggregateLastWeekStats().then((res) => {
                 if (res) {

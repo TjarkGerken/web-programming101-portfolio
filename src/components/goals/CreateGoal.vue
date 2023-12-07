@@ -17,31 +17,69 @@ import VueTailwindDatepicker from "vue-tailwind-datepicker";
 import { createGoal } from "@/api/goals";
 import { useToast } from "vue-toast-notification";
 
+/**
+ *  Defines the emit Goal-Created. This is used in the parent component to refresh the goals after the creation.
+ * @type {EmitFn<string[]>}
+ */
 const emit = defineEmits(["goal-created"]);
 const props = defineProps({
-  goalArray: Object,
+  goalArray: {
+    type: Object,
+    default: () => ({}),
+  },
 });
 
 const isOpen = ref(false);
-const dateValue = ref([]);
-const value = ref(0);
+
+// Initialize the form errors and the disabled state
+const formErrors = ref({ date: "", goalType: "", goalValue: "" });
+const disabled = ref(false);
+
+// Formater for the datepicker
 const formater = ref({
   date: "DD.MM.YYYY ",
   month: "MMM",
 });
-const formErrors = ref({ date: "", goalType: "", goalValue: "" });
+
+// Initialize the form values
+const dateValue = ref([]);
+const value = ref(0);
+
+// Initialize the MultiSelect
+const query = ref("");
 const goal_types = [
   { id: 1, name: "Distance", unit: "Kilometers" },
   { id: 2, name: "Time", unit: "Minutes" },
   { id: 3, name: "Calories", unit: "Kilocalories" },
 ];
 const selected_goal = ref(goal_types[0]);
-const query = ref("");
-const disabled = ref(false);
 
+/**
+ *  Filters the goal types based on the query for the multiselect. Returns all goal types if the query is empty and filters the goal types based on the query otherwise.
+ *  By https://headlessui.com/vue/combobox
+ * @type {ComputedRef<[{unit: string, name: string, id: number},{unit: string, name: string, id: number},{unit: string, name: string, id: number}]|({unit: string, name: string, id: number}|{unit: string, name: string, id: number}|{unit: string, name: string, id: number})[]>}
+ */
+let filteredGoal = computed(() =>
+  query.value === ""
+    ? goal_types
+    : goal_types.filter((goal) =>
+        goal.name
+          .toLowerCase()
+          .replace(/\s+/g, "")
+          .includes(query.value.toLowerCase().replace(/\s+/g, "")),
+      ),
+);
+
+/**
+ * Function to close the modal.
+ */
 function closeModal() {
   isOpen.value = false;
 }
+
+/**
+ *  Function to open the modal. And disallows creation when the user already has 3 active goals
+ */
 function openModal() {
   if (props.goalArray.length >= 3) {
     useToast().error("You can only have 3 goals at a time.");
@@ -50,6 +88,14 @@ function openModal() {
   isOpen.value = true;
 }
 
+/**
+ * Function to validate the form
+ * Validates that:
+ * - The date is set
+ * - The goal type is set
+ * - The goal value is set and positive
+ * @returns {boolean} If the form is valid
+ */
 function validateForm() {
   formErrors.value = {};
 
@@ -68,16 +114,9 @@ function validateForm() {
   return Object.keys(formErrors.value).length === 0;
 }
 
-let filteredGoal = computed(() =>
-  query.value === ""
-    ? goal_types
-    : goal_types.filter((goal) =>
-        goal.name
-          .toLowerCase()
-          .replace(/\s+/g, "")
-          .includes(query.value.toLowerCase().replace(/\s+/g, "")),
-      ),
-);
+/**
+ * Function to create a new goal. Disables the button while the request is running.
+ */
 function submitGoal() {
   disabled.value = true;
   if (!validateForm()) {
@@ -94,6 +133,7 @@ function submitGoal() {
     .then(() => {
       disabled.value = false;
       closeModal();
+      // Emit goal-created to refresh the goals
       emit("goal-created");
     })
     .catch(() => {

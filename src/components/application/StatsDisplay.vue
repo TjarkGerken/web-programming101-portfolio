@@ -1,12 +1,18 @@
 <script setup>
-import { onMounted, onUnmounted, ref } from "vue";
+import { ref } from "vue";
 
 const props = defineProps({
-  stats: Object,
+  stats: {
+    type: Object,
+    default: () => ({}),
+  },
 });
 const stats = props.stats;
 const currentStat = ref(1);
 
+/**
+ *  Function to display the next stat.
+ */
 function incrementStat() {
   if (currentStat.value !== 4) {
     currentStat.value++;
@@ -14,6 +20,10 @@ function incrementStat() {
     currentStat.value = 1;
   }
 }
+
+/**
+ * Function to display the previous stat.
+ */
 function decrementStat() {
   if (currentStat.value !== 1) {
     currentStat.value--;
@@ -22,26 +32,19 @@ function decrementStat() {
   }
 }
 
+/**
+ * Function to check if the current stat should be displayed.
+ * @param x Stat to check
+ * @returns {boolean}  If the stat should be displayed
+ */
 function shouldRenderContent(x) {
   return currentStat.value === x;
 }
-
-function updateScreenWidth() {
-  screenWidth.value = window.innerWidth;
-}
-
-onMounted(() => {
-  window.addEventListener("resize", updateScreenWidth);
-});
-
-onUnmounted(() => {
-  window.removeEventListener("resize", updateScreenWidth);
-});
 </script>
 
 <template>
   <div class="flex flex-row items-center justify-around gap-1">
-    <div @click="decrementStat" class="md:hidden">
+    <div class="md:hidden" @click="decrementStat">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -269,7 +272,7 @@ onUnmounted(() => {
         </div>
       </div>
     </div>
-    <div @click="incrementStat" class="md:hidden">
+    <div class="md:hidden" @click="incrementStat">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

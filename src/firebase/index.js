@@ -1,6 +1,10 @@
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 
+/**
+ * Firebase Configuration from Environment Variables
+ * @type {{storageBucket: any, apiKey: any, messagingSenderId: any, appId: any, projectId: any, measurementId: any, authDomain: any}}
+ */
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_APIKEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTHDOMAIN,
@@ -15,6 +19,11 @@ const firebaseConfig = {
 export const firebase_app = firebase.initializeApp(firebaseConfig);
 
 const fire_store_db = firebase_app.firestore;
+/**
+ * Sets the Firebase Authentication Persistence to Local Storage so the user stays logged in
+ * @type {Promise<void>}
+ */
+/* eslint-disable no-unused-vars */
 const auth = firebase
   .auth()
   .setPersistence(firebase.auth.Auth.Persistence.LOCAL);

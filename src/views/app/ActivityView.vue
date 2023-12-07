@@ -1,3 +1,59 @@
+<script setup>
+import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
+import ApplicationNavbar from "@/components/utils/ApplicationNavbar.vue";
+import { deleteExerciseByID, getExerciseByID } from "@/api/getPolarActivities";
+import InteractiveMapComponent from "@/components/application/InteractiveMapComponent.vue";
+import {
+  activityEndTime,
+  determineName,
+  formatDurationMinutes,
+  formatTime,
+} from "@/api/utils";
+import { Duration } from "luxon";
+import router from "@/router";
+
+const route = useRoute();
+const id = ref("");
+const activity = ref({});
+const isLoading = ref(true);
+const deleteModalOpen = ref(false);
+
+/**
+ *  Converts seconds to minutes
+ * @param timerSeconds {number} - The seconds to convert
+ * @returns {string} - The converted time
+ */
+function secondsToMinutes(timerSeconds) {
+  const time = Duration.fromObject({ seconds: timerSeconds });
+  return time.toFormat("mm:ss");
+}
+
+/**
+ *  function that toggles the delete modal
+ */
+function toggleDeleteModal() {
+  deleteModalOpen.value = !deleteModalOpen.value;
+}
+
+/**
+ * function that deletes the exercise and redirects to the activities page
+ */
+function deleteExercise() {
+  deleteExerciseByID(id.value);
+  router.push("/activities");
+}
+
+// Get the exercise and display it
+onMounted(() => {
+  id.value = route.params.id;
+  getExerciseByID(id.value).then((res) => {
+    activity.value = res;
+    isLoading.value = false;
+  });
+});
+</script>
+
 <template>
   <ApplicationNavbar></ApplicationNavbar>
   <div class="h-screen overflow-auto">
@@ -25,7 +81,6 @@
                   )
                 }}
               </span>
-              <span class="hidden md:block">-</span>
               <span v-if="activity.location">{{ activity.location }}</span>
             </div>
             <div class="mt-1 text-lg font-semibold tracking-tight md:text-xl">
@@ -185,9 +240,9 @@
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
                 <tr
-                  class="hover:bg-gray-100"
                   v-for="(lap, index) in activity.fit['lapMesgs']"
                   :key="index"
+                  class="hover:bg-gray-100"
                 >
                   <td
                     class="whitespace-nowrap px-1 py-4 text-sm text-gray-500 sm:px-3 md:px-6"
@@ -231,8 +286,8 @@
     </div>
   </div>
   <div
-    class="absolute left-0 top-0 z-50 flex h-screen w-screen items-center justify-center bg-black bg-opacity-50"
     v-if="deleteModalOpen"
+    class="absolute left-0 top-0 z-50 flex h-screen w-screen items-center justify-center bg-black bg-opacity-50"
     @click="toggleDeleteModal()"
   ></div>
   <div
@@ -259,50 +314,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
-import ApplicationNavbar from "@/components/utils/ApplicationNavbar.vue";
-import { deleteExerciseByID, getExerciseByID } from "@/api/getPolarActivities";
-import InteractiveMapComponent from "@/components/application/InteractiveMapComponent.vue";
-import {
-  activityEndTime,
-  determineName,
-  formatDurationMinutes,
-  formatTime,
-} from "@/api/utils";
-import { Duration } from "luxon";
-import router from "@/router";
-
-const route = useRoute();
-const id = ref("");
-const activity = ref({});
-const isLoading = ref(true);
-
-function secondsToMinutes(timerSeconds) {
-  // function that transforms the seconds to a human-readable output with the luxon package
-  const time = Duration.fromObject({ seconds: timerSeconds });
-  return time.toFormat("mm:ss");
-}
-
-const deleteModalOpen = ref(false);
-function toggleDeleteModal() {
-  // function that toggles the delete modal
-  deleteModalOpen.value = !deleteModalOpen.value;
-}
-
-function deleteExercise() {
-  // function that deletes the exercise
-  deleteExerciseByID(id.value);
-  router.push("/activities");
-}
-
-onMounted(() => {
-  id.value = route.params.id;
-  getExerciseByID(id.value).then((res) => {
-    activity.value = res;
-    isLoading.value = false;
-  });
-});
-</script>

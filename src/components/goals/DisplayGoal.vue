@@ -7,27 +7,44 @@ import { Duration } from "luxon";
 import { deleteGoalById } from "@/api/goals";
 
 const props = defineProps({
-  goal: Object,
+  goal: {
+    type: Object,
+    default: () => ({}),
+  },
 });
 
 const goal = props.goal;
+
+// Initialize the values
 const achievedValue = ref();
 const unit = ref("");
 const plannedValue = ref(goal.goal_value);
 
+/**
+ * Emit the event to the parent component. Used by the parent component to refresh the goals.
+ * @type {EmitFn<string[]>}
+ */
 const emit = defineEmits(["goal-deleted"]);
 
 const deleteModalOpen = ref(false);
+
+/**
+ * Function to toggle the delete modal.
+ */
 function toggleDeleteModal() {
-  // function that toggles the delete modal
   deleteModalOpen.value = !deleteModalOpen.value;
 }
 
+/**
+ * Function to delete the goal.
+ * @param goal Goal to delete
+ */
 function deleteGoal(goal) {
   deleteGoalById(goal.id);
   emit("goal-deleted");
 }
 
+// Format the achieved value and the unit from the goal that is passed as a property.
 if (goal.goal_type === "Distance") {
   achievedValue.value = goal.total_distance;
   unit.value = "Kilometers";
@@ -41,7 +58,7 @@ if (goal.goal_type === "Distance") {
   achievedValue.value = goal.total_calories;
   unit.value = "Kilocalories";
 }
-
+// Format the dates
 goal.start_date = formatDate(
   new firebase.firestore.Timestamp(
     goal.start_date.seconds,
@@ -116,8 +133,8 @@ goal.end_date = formatDate(
     </div>
   </div>
   <div
-    class="absolute left-0 top-0 z-50 flex h-screen w-screen items-center justify-center bg-black bg-opacity-50"
     v-if="deleteModalOpen"
+    class="absolute left-0 top-0 z-50 flex h-screen w-screen items-center justify-center bg-black bg-opacity-50"
     @click="toggleDeleteModal()"
   ></div>
   <div

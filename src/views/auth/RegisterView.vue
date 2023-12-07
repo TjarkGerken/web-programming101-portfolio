@@ -1,3 +1,64 @@
+<script setup>
+import { MailPasswordRegister } from "@/api/auth";
+import { ref } from "vue";
+import GoogleSignInButton from "@/components/buttons/GoogleSignInButton.vue";
+
+// Form validation and fields
+let email = ref("");
+let password = ref("");
+let formErrors = ref({});
+
+let confirmPassword = ref();
+
+const disabled = ref(false);
+
+/**
+ * Validate the form and set the errors.
+ * Checks:
+ *  - Email is not empty
+ *  - Password is not empty
+ *  - Password is longer than 6 characters
+ *  - Password and Confirmation match
+ * @returns {boolean} Returns if the form is valid
+ */
+function validateForm() {
+  let errors = {};
+
+  if (!email.value) {
+    errors.email = "Email is required";
+  }
+
+  if (!password.value) {
+    errors.password = "Password is required";
+  } else if (password.value.length < 6) {
+    errors.password = "Password must be longer than 6 characters";
+  }
+
+  if (password.value !== confirmPassword.value) {
+    errors.confirmPassword = "Passwords do not match";
+  }
+
+  formErrors.value = errors;
+
+  return Object.keys(errors).length === 0;
+}
+
+/**
+ * Submit the form and register the user. Disable the form during the request.
+ * @returns {Promise<void>}
+ */
+async function submitForm() {
+  disabled.value = true;
+  if (validateForm()) {
+    await MailPasswordRegister(email.value, password.value).finally(() => {
+      disabled.value = false;
+    });
+  } else {
+    disabled.value = false;
+  }
+}
+</script>
+
 <template>
   <div class="flex h-full w-full flex-col md:flex-row">
     <div
@@ -103,8 +164,8 @@
           <button
             type="submit"
             class="flex w-full justify-center rounded-md bg-accent-yellow px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-accent-yellow-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-yellow disabled:bg-gray-400"
-            @click.prevent="submitForm"
             :disabled="disabled"
+            @click.prevent="submitForm"
           >
             Register
           </button>
@@ -112,11 +173,11 @@
       </form>
       <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <GoogleSignInButton
+          :disabled="disabled"
+          text="Register with Google"
           @google-sign-error="disabled = false"
           @google-sign-end="disabled = false"
           @google-sign-start="disabled = true"
-          :disabled="disabled"
-          text="Register with Google"
         />
       </div>
     </div>
@@ -131,47 +192,3 @@
     </div>
   </div>
 </template>
-<script setup>
-import { MailPasswordRegister } from "@/api/auth";
-import { ref } from "vue";
-import GoogleSignInButton from "@/components/buttons/GoogleSignInButton.vue";
-
-let email = ref("");
-let password = ref("");
-let formErrors = ref({});
-let confirmPassword = ref();
-const disabled = ref(false);
-
-function validateForm() {
-  let errors = {};
-
-  if (!email.value) {
-    errors.email = "Email is required";
-  }
-
-  if (!password.value) {
-    errors.password = "Password is required";
-  } else if (password.value.length < 6) {
-    errors.password = "Password must be longer than 6 characters";
-  }
-
-  if (password.value !== confirmPassword.value) {
-    errors.confirmPassword = "Passwords do not match";
-  }
-
-  formErrors.value = errors;
-
-  return Object.keys(errors).length === 0;
-}
-
-async function submitForm() {
-  disabled.value = true;
-  if (validateForm()) {
-    await MailPasswordRegister(email.value, password.value).finally(() => {
-      disabled.value = false;
-    });
-  } else {
-    disabled.value = false;
-  }
-}
-</script>

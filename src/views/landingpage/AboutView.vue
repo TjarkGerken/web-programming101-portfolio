@@ -1,3 +1,6 @@
+<script setup>
+import Navbar from "@/components/utils/LandingPageNavbar.vue";
+</script>
 <template>
   <Navbar class="z-30"> </Navbar>
   <div class="z-0 bg-white px-8 py-16">
@@ -142,7 +145,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import Navbar from "@/components/utils/Navbar.vue";
-</script>

@@ -90,18 +90,18 @@
           <button
             type="submit"
             class="flex w-full justify-center rounded-md bg-accent-yellow px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-accent-yellow-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-yellow disabled:bg-gray-400"
-            @click.prevent="submitForm"
             :disabled="disabled"
+            @click.prevent="submitForm"
           >
             Sign in
           </button>
         </div>
         <div class="mt-10 w-full sm:mx-auto sm:max-w-sm">
           <GoogleSignInButton
-            @google-sign-error="disabled = false"
-            @google-sign-start="disabled = true"
             :disabled="disabled"
             text="Sign in with Google"
+            @google-sign-error="disabled = false"
+            @google-sign-start="disabled = true"
           />
         </div>
       </form>
@@ -127,6 +127,13 @@ const password = ref("");
 const formErrors = ref({});
 const disabled = ref(false);
 
+/**
+ *  Validate the form
+ *  Validates that:
+ *  - the email is not empty
+ *  - the password is not empty
+ * @returns {boolean} If the form is valid
+ */
 function validateForm() {
   let errors = {};
 
@@ -143,6 +150,10 @@ function validateForm() {
   return Object.keys(errors).length === 0;
 }
 
+/**
+ * Submit the form and sign in the user. Disable the button during the request.
+ * @returns {Promise<void>}
+ */
 async function submitForm() {
   disabled.value = true;
   if (validateForm()) {
