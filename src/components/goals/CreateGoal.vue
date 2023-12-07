@@ -22,13 +22,22 @@ const formater = ref({
 });
 const emit = defineEmits(["goal-created"]);
 
+const props = defineProps({
+  goalArray: Object,
+});
+
 import VueTailwindDatepicker from "vue-tailwind-datepicker";
 import { createGoal } from "@/api/goals";
+import { useToast } from "vue-toast-notification";
 
 function closeModal() {
   isOpen.value = false;
 }
 function openModal() {
+  if (props.goalArray.length >= 3) {
+    useToast().error("You can only have 3 goals at a time.");
+    return;
+  }
   isOpen.value = true;
 }
 
