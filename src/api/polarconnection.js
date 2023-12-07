@@ -8,7 +8,7 @@ import {
 } from "@/api/api-config";
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
-import { getUser } from "@/api/user";
+import { deleteFirebaseUser, getUser } from "@/api/user";
 import store from "@/store";
 
 const toast = useToast();
@@ -97,18 +97,26 @@ export async function getPolarAuthToken(code) {
   await router.push("/profile");
 }
 
-export async function deleteUser(user_id) {
+export async function deleteUser() {
   // Define Authentication Header
   const headers = {
     Authorization: "Bearer " + store.state.user.polar_user.polar_access_token,
   };
 
+  console.log(store.state.user.polar_user);
+  let user_id = store.state.user.polar_user["member-id"];
   try {
     // Send DELETE request to Polar API
     await axios
       .delete(BASE_URL_CORS_PROXY + "v3/users/" + user_id, { headers })
       .then(() => {
-        // Inform User about the disconnect
+        // Delete User Data from Firebase
+        deleteFirebaseUser();
+        // Delete User date from Vuex for consistency
+        store.dispatch("setPolarUser", null);
+        // Reload Page to reflect Changes
+        window.location.reload();
+        // Inform User about the successful disconnect
         toast.success("You're account was successfully disconnected.");
       });
   } catch (error) {

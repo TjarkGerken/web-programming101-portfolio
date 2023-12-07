@@ -8,7 +8,7 @@ build an interactive Webapp in Vue.js and use Firebase as a BaaS Provider.
 <!-- TODO:  Update at the end -->
 
 
-## Project Setup
+## Project Setup for Development
 
 ```sh
 npm install
@@ -25,7 +25,7 @@ npm run dev
 ```sh
 npm run build
 ```
-# Docker
+# Run Prod Version locally via Docker
 ### Build Docker Image:
 ```sh
  docker build . -t webprogramming
@@ -40,3 +40,5 @@ docker pull tjarkger/web-programming101
 ```sh
 docker run -d -p 8080:80 tjarkger/web-programming101
 ```
+Open page on: http://localhost:8080/
+

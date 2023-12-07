@@ -15,19 +15,40 @@ const exercises = ref({});
 const isLoading = ref(true);
 const noActivities = ref(false);
 const lastWeekStats = ref({});
+
 onMounted(() => {
   try {
-    if (store.state.user.polar_user) {
+    if (
+      store.state.user.polar_user &&
+      store.state.user.polar_user.polar_access_token
+    ) {
       getPolarActivities().then(async () => {
         getLatestExercise()
           .then((res) => {
-            exercises.value = res;
+            if (res) {
+              exercises.value = res;
+              if (Object.keys(exercises.value).length === 0) {
+                noActivities.value = true;
+              } else {
+                isLoading.value = false;
+              }
+            } else {
+              noActivities.value = true;
+              isLoading.value = false;
+            }
           })
-          .then(
-            await aggregateLastWeekStats().then((res) => {
-              lastWeekStats.value = res;
-            }),
-          );
+          .then(async () => {
+            if (exercises.value && Object.keys(exercises.value).length > 0) {
+              await aggregateLastWeekStats().then((res) => {
+                if (res) {
+                  lastWeekStats.value = res;
+                } else {
+                  noActivities.value = true;
+                  isLoading.value = false;
+                }
+              });
+            }
+          });
       });
     } else {
       noActivities.value = true;
@@ -60,7 +81,7 @@ onMounted(() => {
     <div class="flex h-fit w-full flex-col justify-between gap-5">
       <div class="flex w-full flex-col justify-between gap-4 self-start">
         <ActivitiesCard
-          v-if="Object.keys(exercises).length > 0"
+          v-if="exercises && Object.keys(exercises).length > 0"
           :activity="exercises"
         />
         <div v-if="noActivities" class="text-center">
@@ -89,7 +110,7 @@ onMounted(() => {
           </p>
           <div class="flex flex-col lg:flex-row" v-if="!noActivities">
             <Stats
-              v-if="Object.keys(lastWeekStats).length > 0"
+              v-if="lastWeekStats && Object.keys(lastWeekStats).length > 0"
               :stats="lastWeekStats"
             />
 
@@ -113,5 +134,3 @@ onMounted(() => {
     </div>
   </div>
 </template>
-
-<style scoped></style>
