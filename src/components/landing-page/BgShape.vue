@@ -3,7 +3,7 @@
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 968 680"
     fill="none"
-    class="text-bg-fill w-3/6"
+    class="w-3/6 text-bg-fill"
   >
     <path
       fill-rule="evenodd"
