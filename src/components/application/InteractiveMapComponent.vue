@@ -10,7 +10,7 @@ const projection = ref("EPSG:4326");
 const zoom = ref(null);
 const rotation = ref(0);
 const strokeWidth = ref(3);
-const strokeColor = ref("black");
+const strokeColor = ref("#6F42C1");
 const center = ref([8.5344, 49.4738]);
 const viewRef = ref(null);
 function updateMap() {
