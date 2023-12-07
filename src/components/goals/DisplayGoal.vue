@@ -17,6 +17,12 @@ const plannedValue = ref(goal.goal_value);
 
 const emit = defineEmits(["goal-deleted"]);
 
+const deleteModalOpen = ref(false);
+function toggleDeleteModal() {
+  // function that toggles the delete modal
+  deleteModalOpen.value = !deleteModalOpen.value;
+}
+
 function deleteGoal(goal) {
   deleteGoalById(goal.id);
   emit("goal-deleted");
@@ -103,7 +109,35 @@ goal.end_date = formatDate(
         <div class="text-sm font-medium">
           {{ achievedValue }} / {{ plannedValue }} {{ unit }}
         </div>
-        <button class="text-sm text-gray-600" @click="deleteGoal(goal)">
+        <button class="text-sm text-gray-600" @click="toggleDeleteModal()">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="absolute left-0 top-0 z-50 flex h-screen w-screen items-center justify-center bg-black bg-opacity-50"
+    v-if="deleteModalOpen"
+    @click="toggleDeleteModal()"
+  ></div>
+  <div
+    v-if="deleteModalOpen"
+    class="absolute left-0 top-0 z-50 flex h-screen w-screen items-center justify-center px-5"
+  >
+    <div class="flex flex-col rounded-lg bg-white p-4 md:px-16 md:py-8">
+      <span class="text-center text-2xl font-semibold">Delete Goal</span>
+      <span class="text-center">Are you sure you want to delete this?</span>
+      <div class="mt-5 flex justify-around">
+        <button
+          class="rounded-lg bg-emerald-500 px-4 py-2 font-semibold text-white"
+          @click="toggleDeleteModal()"
+        >
+          Dismiss
+        </button>
+        <button
+          class="rounded-lg bg-red-800 px-4 py-2 text-white"
+          @click="deleteGoal(goal)"
+        >
           Delete
         </button>
       </div>

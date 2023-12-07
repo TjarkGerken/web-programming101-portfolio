@@ -85,7 +85,10 @@ export async function evaluateGoals() {
         if (goal.goal_type === "Distance") {
           completed = goal.goal_value <= aggregatedStats.total_distance;
         } else if (goal.goal_type === "Time") {
-          completed = goal.goal_value <= aggregatedStats.total_duration;
+          let durationParts = aggregatedStats.total_duration.split(":");
+          let totalMinutes =
+            parseInt(durationParts[0]) * 60 + parseInt(durationParts[1]);
+          completed = goal.goal_value <= totalMinutes;
         } else if (goal.goal_type === "Calories") {
           completed = goal.goal_value <= aggregatedStats.total_calories;
         }
