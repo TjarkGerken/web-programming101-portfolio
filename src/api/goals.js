@@ -36,15 +36,25 @@ export function createGoal(goal) {
 }
 
 export function getGoals() {
+  let todayDate = new Date();
+  let futureDate = new Date();
+  futureDate.setDate(futureDate.getDate() + 7);
+
   return firebase
     .firestore()
     .collection("user")
     .doc(store.state.user.data.uid)
     .collection("goals")
-    .where("end_date", "<=", firebase.firestore.Timestamp.fromDate(new Date()))
+    .where("end_date", ">=", firebase.firestore.Timestamp.fromDate(todayDate))
+    .where("end_date", "<=", firebase.firestore.Timestamp.fromDate(futureDate))
     .get()
     .then((res) => {
-      return res.docs.map((doc) => doc.data());
+      return res.docs.map((doc) => {
+        return {
+          id: doc.id,
+          data: doc.data(),
+        };
+      });
     });
 }
 
@@ -66,6 +76,8 @@ export async function evaluateGoals() {
   const goals = await getGoals();
   return await Promise.all(
     goals.map(async (goal) => {
+      const id = goal.id;
+      goal = goal.data;
       const goalData = await getGoalData(goal);
       if (goalData) {
         const aggregatedStats = aggregateStats(goalData);
@@ -78,6 +90,7 @@ export async function evaluateGoals() {
           completed = goal.goal_value <= aggregatedStats.total_calories;
         }
         return {
+          id,
           ...goal,
           ...aggregatedStats,
           completed,
@@ -91,6 +104,7 @@ export async function evaluateGoals() {
           avg_hf: 0,
         };
         return {
+          id,
           ...goal,
           ...aggregateStats,
           completed: false,
@@ -98,4 +112,14 @@ export async function evaluateGoals() {
       }
     }),
   );
+}
+
+export async function deleteGoalById(id) {
+  return firebase
+    .firestore()
+    .collection("user")
+    .doc(store.state.user.data.uid)
+    .collection("goals")
+    .doc(id)
+    .delete();
 }
