@@ -67,14 +67,14 @@ onMounted(() => {
   <div class="h-fit w-screen px-8 lg:ml-32 lg:h-screen lg:w-[calc(100%-128px)]">
     <h1 class="mt-12 text-center text-4xl font-semibold">Dashboard</h1>
     <p
-      class="my-3 mb-8 w-full text-center font-maven text-2xl font-medium"
       v-if="store.state.user.data.displayName"
+      class="my-3 mb-8 w-full text-center font-maven text-2xl font-medium"
     >
       Welcome back, {{ store.state.user.data.displayName }}!
     </p>
     <p
-      class="my-3 mb-8 w-full text-center font-maven text-lg font-medium"
       v-else
+      class="my-3 mb-8 w-full text-center font-maven text-lg font-medium"
     >
       Welcome back!
     </p>
@@ -97,18 +97,18 @@ onMounted(() => {
           <h2 class="mt-20 text-center text-3xl font-semibold lg:text-left">
             Weekly Progress
           </h2>
-          <p class="mb-20 text-center lg:text-left" v-if="!noActivities">
+          <p v-if="!noActivities" class="mb-20 text-center lg:text-left">
             Congratulations, You’ve burned {{ lastWeekStats.total_calories }}
             Calories this week. Keep it up!.
           </p>
           <p
-            class="mb-20 text-center lg:w-3/4 lg:text-left"
             v-if="noActivities"
+            class="mb-20 text-center lg:w-3/4 lg:text-left"
           >
             Here you will find your weekly progress as soon as you connected
             your Polar Account and uploaded your first Activity.
           </p>
-          <div class="flex flex-col lg:flex-row" v-if="!noActivities">
+          <div v-if="!noActivities" class="flex flex-col lg:flex-row">
             <Stats
               v-if="lastWeekStats && Object.keys(lastWeekStats).length > 0"
               :stats="lastWeekStats"
@@ -121,10 +121,10 @@ onMounted(() => {
           <h2 class="mt-20 text-center text-3xl font-semibold lg:text-left">
             Goals
           </h2>
-          <p class="mb-20 text-center lg:text-left" v-if="!noActivities">
+          <p v-if="!noActivities" class="mb-20 text-center lg:text-left">
             You’re making progress on your personal goals.
           </p>
-          <p class="mb-20 text-center lg:text-left" v-if="noActivities">
+          <p v-if="noActivities" class="mb-20 text-center lg:text-left">
             You can already add goals which will be evaluated when you upload
             your first Activity.
           </p>

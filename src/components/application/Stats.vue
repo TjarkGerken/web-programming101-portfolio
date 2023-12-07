@@ -6,7 +6,7 @@ const props = defineProps({
 });
 const stats = props.stats;
 const currentStat = ref(1);
-console.log(stats);
+
 function incrementStat() {
   if (currentStat.value !== 4) {
     currentStat.value++;
@@ -137,10 +137,10 @@ function decrementStat() {
       </svg>
       <div class="flex flex-col font-semibold lg:text-xl">
         <span>Heartrate</span>
-        <span class="text-xl lg:text-2xl" v-if="stats.avg_hf">
+        <span v-if="stats.avg_hf" class="text-xl lg:text-2xl">
           {{ stats.avg_hf }}</span
         >
-        <span class="text-xl lg:text-2xl" v-else>/</span>
+        <span v-else class="text-xl lg:text-2xl">/</span>
       </div>
     </div>
     <div @click="incrementStat">

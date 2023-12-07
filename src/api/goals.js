@@ -13,8 +13,6 @@ const example_goal = {
 */
 
 export function createGoal(goal) {
-  console.log(goal["start_date"]);
-  console.log(goal["end_date"]);
   const [day, month, year] = goal["start_date"].split(".");
   const formattedStartDate = `${year}-${month}-${day}`;
 
@@ -29,8 +27,6 @@ export function createGoal(goal) {
   goal["end_date"] = firebase.firestore.Timestamp.fromDate(
     new Date(formattedEndDate),
   );
-  console.log(goal["start_date"]);
-  console.log(goal["end_date"]);
   return firebase
     .firestore()
     .collection("user")
@@ -68,7 +64,6 @@ export function getGoalData(goal) {
 
 export async function evaluateGoals() {
   const goals = await getGoals();
-  console.log(goals);
   return await Promise.all(
     goals.map(async (goal) => {
       const goalData = await getGoalData(goal);
@@ -88,7 +83,6 @@ export async function evaluateGoals() {
           completed,
         };
       } else {
-        console.log("hi");
         const aggregateStats = {
           total_distance: 0,
           total_duration: "00:00:00",

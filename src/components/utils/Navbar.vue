@@ -40,8 +40,8 @@
       </PopoverGroup>
 
       <div
-        class="hidden lg:flex lg:flex-1 lg:justify-end 2xl:mr-48"
         v-if="!isAuthenticated"
+        class="hidden lg:flex lg:flex-1 lg:justify-end 2xl:mr-48"
       >
         <router-link
           to="/auth/login"
@@ -51,8 +51,8 @@
       </div>
 
       <div
-        class="hidden lg:flex lg:flex-1 lg:justify-end 2xl:mr-48"
         v-if="isAuthenticated"
+        class="hidden lg:flex lg:flex-1 lg:justify-end 2xl:mr-48"
       >
         <router-link
           to="/dashboard"
@@ -60,8 +60,8 @@
           >Dashboard </router-link
         >
         <button
-            @click="logout"
             class="text-xl font-semibold leading-6 text-gray-900 ml-12"
+            @click="logout"
         >
           Logout <span aria-hidden="true">&larr;</span>
         </button>
@@ -70,8 +70,8 @@
     <Dialog
       as="div"
       class="lg:hidden"
-      @close="mobileMenuOpen = false"
       :open="mobileMenuOpen"
+      @close="mobileMenuOpen = false"
     >
       <div class="fixed inset-0 z-30" />
       <DialogPanel
@@ -107,24 +107,24 @@
                 >About</router-link
               >
             </div>
-            <div class="py-6" v-if="!isAuthenticated">
+            <div v-if="!isAuthenticated" class="py-6">
               <router-link
                 to="/auth/login"
                 class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >Log in</router-link
               >
             </div>
-            <div class="py-6" v-if="isAuthenticated">
+            <div v-if="isAuthenticated" class="py-6">
               <router-link
                 to="/dashboard"
                 class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >Dashboard</router-link
               >
             </div>
-            <div class="py-6" v-if="isAuthenticated">
+            <div v-if="isAuthenticated" class="py-6">
               <button
-                @click="logout"
                 class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                @click="logout"
               >
                 Logout
               </button>

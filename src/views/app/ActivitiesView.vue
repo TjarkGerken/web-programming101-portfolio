@@ -56,7 +56,9 @@ onMounted(() => {
     <div v-if="!noActivities" class="flex flex-col items-center gap-4 xl:gap-6 pb-16">
       <ActivitiesCard
         v-for="(exercise, index) in exercises"
+        v-if="exercises.length > 0"
         :key="index"
+        class="w-11/12 lg:w-8/12"
         :activity="exercise"
       />
     </div>

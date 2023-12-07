@@ -67,7 +67,7 @@ function submitGoal() {
 <template>
   <button type="button" @click="openModal">Add Goal</button>
   <TransitionRoot appear :show="isOpen" as="template">
-    <Dialog as="div" @close="closeModal" class="relative z-20">
+    <Dialog as="div" class="relative z-20" @close="closeModal">
       <TransitionChild
         as="template"
         enter="duration-300 ease-out"
@@ -125,7 +125,7 @@ function submitGoal() {
                         >
                           <ComboboxInput
                             class="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
-                            :displayValue="(goal) => goal.name"
+                            :display-value="(goal) => goal.name"
                             @change="query = $event.target.value"
                           />
                           <ComboboxButton
@@ -139,8 +139,8 @@ function submitGoal() {
                         </div>
                         <TransitionRoot
                           leave="transition ease-in duration-100"
-                          leaveFrom="opacity-100"
-                          leaveTo="opacity-0"
+                          leave-from="opacity-100"
+                          leave-to="opacity-0"
                           @after-leave="query = ''"
                         >
                           <ComboboxOptions
@@ -155,10 +155,10 @@ function submitGoal() {
 
                             <ComboboxOption
                               v-for="goal in filteredGoal"
-                              as="template"
                               :key="goal.id"
-                              :value="goal"
                               v-slot="{ selected, active }"
+                              as="template"
+                              :value="goal"
                             >
                               <li
                                 class="relative cursor-default select-none py-2 pl-10 pr-4"
@@ -199,8 +199,8 @@ function submitGoal() {
                   <div>
                     <label for="value">{{ selected_goal.unit }}</label>
                     <input
-                      v-model="value"
                       id="value"
+                      v-model="value"
                       type="number"
                       min="0"
                       pattern="\d+"
