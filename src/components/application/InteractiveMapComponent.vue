@@ -6,6 +6,8 @@ import { LineString } from "ol/geom";
 const props = defineProps({
   activity: Object,
 });
+
+// Set the default values for the map.
 const projection = ref("EPSG:4326");
 const zoom = ref(null);
 const rotation = ref(0);
@@ -13,6 +15,10 @@ const strokeWidth = ref(3);
 const strokeColor = ref("#6F42C1");
 const center = ref([8.5344, 49.4738]);
 const viewRef = ref(null);
+
+/**
+ * Update the view of the map to fit the gpx file.
+ */
 function updateMap() {
   if (props.activity.gpx) {
     const coordinates = LongLatListForMapUsage(props.activity.gpx);
@@ -23,6 +29,7 @@ function updateMap() {
 }
 
 onMounted(() => {
+  // Wait for the next Tick to update the map. So its fully initialized.
   nextTick(() => {
     updateMap();
   });

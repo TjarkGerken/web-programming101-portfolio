@@ -19,5 +19,3 @@
   </svg>
   <span class="sr-only">Loading...</span>
 </template>
-
-<style scoped></style>

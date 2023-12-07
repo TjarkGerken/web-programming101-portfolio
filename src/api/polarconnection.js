@@ -13,6 +13,28 @@ import store from "@/store";
 
 const toast = useToast();
 
+/**
+ * Fetches the User Data from the Polar API
+ * @param polar_member_id The Polar Member ID
+ * @param polar_access_token The Polar Access Token
+ * @returns {Promise<axios.AxiosResponse<any>>} Polar User Data
+ */
+async function getUserData(polar_member_id, polar_access_token) {
+  // Define User Data URL and Headers
+  const url = BASE_URL_CORS_PROXY + "v3/users/" + polar_member_id;
+  const headers = {
+    Authorization: "Bearer " + polar_access_token,
+  };
+  // Send GET request to Polar API and return response
+  return axios.get(url, { headers });
+}
+
+/**
+ * Stores the User Data in Firebase
+ * @param polar_member_id The Polar Member ID
+ * @param polar_access_token  The Polar Access Token
+ * @returns {Promise<void>}
+ */
 async function storeUserData(polar_member_id, polar_access_token) {
   // Fetch User Data from Polar API
   let user_data = await getUserData(polar_member_id, polar_access_token);
@@ -25,16 +47,13 @@ async function storeUserData(polar_member_id, polar_access_token) {
     .doc(store.state.user.data.uid)
     .set(user_data.data, { merge: true });
 }
-async function getUserData(polar_member_id, polar_access_token) {
-  // Define User Data URL and Headers
-  const url = BASE_URL_CORS_PROXY + "v3/users/" + polar_member_id;
-  const headers = {
-    Authorization: "Bearer " + polar_access_token,
-  };
-  // Send GET request to Polar API
-  return axios.get(url, { headers });
-}
 
+/**
+ * Registers a User at the Polar API for this Application so the data can be fetched.
+ * @param user_id The Polar Member ID
+ * @param access_token The Polar Access Token
+ * @returns {Promise<void>}
+ */
 async function registerUser(user_id, access_token) {
   // Create Register Data as XML
   const register_data =
@@ -59,6 +78,11 @@ async function registerUser(user_id, access_token) {
   }
 }
 
+/**
+ *  Connects the Polar User Account with the Peak Pulse Acount
+ * @param code The code that was provided by the redirect from the  Polar OAuth2.0 Interface
+ * @returns {Promise<void>} Redirects the User to the profile page.
+ */
 export async function getPolarAuthToken(code) {
   // Define Authentication Header and Accept Header
   const headers = {
@@ -97,6 +121,10 @@ export async function getPolarAuthToken(code) {
   await router.push("/profile");
 }
 
+/**
+ *  Deletes a user and all their data in firestore.
+ * @returns {Promise<void>}
+ */
 export async function deleteUser() {
   // Define Authentication Header
   const headers = {

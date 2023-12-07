@@ -5,6 +5,10 @@ import CreateGoal from "@/components/goals/CreateGoal.vue";
 import DisplayGoal from "@/components/goals/DisplayGoal.vue";
 const goals = ref([]);
 
+/**
+ * Function to get the goals from the database and evaluate them.
+ *  Additionally, trims them to the first 3 active goals. For display purposes.
+ */
 function getGoals() {
   evaluateGoals().then((res) => {
     goals.value = res;

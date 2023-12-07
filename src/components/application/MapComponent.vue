@@ -13,6 +13,10 @@ const strokeWidth = ref(3);
 const strokeColor = ref("black");
 const center = ref([8.5344, 49.4738]);
 const viewRef = ref(null);
+
+/**
+ * Update the view of the map to fit the gpx file.
+ */
 function updateMap() {
   if (props.activity.gpx) {
     const coordinates = LongLatListForMapUsage(props.activity.gpx);
@@ -23,6 +27,7 @@ function updateMap() {
 }
 
 onMounted(() => {
+  // Wait for the next Tick to update the map. So its fully initialized.
   nextTick(() => {
     updateMap();
   });
@@ -35,7 +40,7 @@ onMounted(() => {
     :load-tiles-while-interacting="true"
     :interactions="[]"
     :controls="[]"
-    style="height: 100%; width: 100%; border-radius: 4px; overflow: hidden;"
+    style="height: 100%; width: 100%; border-radius: 4px; overflow: hidden"
   >
     <ol-view
       ref="viewRef"

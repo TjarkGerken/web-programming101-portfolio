@@ -1,6 +1,13 @@
 <script setup>
 import { googleSignIn } from "@/api/auth";
 const props = defineProps({ text: String, disabled: Boolean });
+
+/**
+ * Emit different events for the google sign in button.
+ * This allows the parent component to set the appropriate state of the "disabled" variable. While the request is signed the variable is set to true to avoid further requests.
+ * @type {EmitFn<(string)[]>}
+ */
+
 const emit = defineEmits([
   "google-sign-start",
   "google-sign-end",
@@ -16,7 +23,6 @@ function signIn() {
       })
       .catch(() => {
         emit("google-sign-error");
-        console.warn();
       });
   }
 }

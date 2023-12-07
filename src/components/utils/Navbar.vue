@@ -1,3 +1,14 @@
+<script setup>
+import { ref } from "vue";
+import { Dialog, DialogPanel, PopoverGroup } from "@headlessui/vue";
+import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/outline";
+import store from "@/store";
+import { logout } from "@/api/auth";
+
+const mobileMenuOpen = ref(false);
+const isAuthenticated = store.state.user.loggedIn;
+</script>
+
 <template>
   <header class="bg-transparent shadow-[rgba(17,_17,_26,_0.1)_0px_0px_8px]">
     <nav
@@ -26,7 +37,9 @@
         </button>
       </div>
 
-      <PopoverGroup class="hidden lg:flex lg:flex-1 lg:justify-center lg:gap-x-12">
+      <PopoverGroup
+        class="hidden lg:flex lg:flex-1 lg:justify-center lg:gap-x-12"
+      >
         <router-link
           to="/"
           class="text-xl font-semibold leading-6 text-gray-900"
@@ -52,16 +65,16 @@
 
       <div
         v-if="isAuthenticated"
-        class="hidden lg:flex lg:flex-1 lg:justify-end 2xl:mr-40    "
+        class="hidden lg:flex lg:flex-1 lg:justify-end 2xl:mr-40"
       >
         <router-link
           to="/dashboard"
           class="text-xl font-semibold leading-6 text-gray-900"
-          >Dashboard </router-link
-        >
+          >Dashboard
+        </router-link>
         <button
-            class="text-xl font-semibold leading-6 text-gray-900 ml-12"
-            @click="logout"
+          class="ml-12 text-xl font-semibold leading-6 text-gray-900"
+          @click="logout"
         >
           Logout <span aria-hidden="true">&larr;</span>
         </button>
@@ -135,14 +148,3 @@
     </Dialog>
   </header>
 </template>
-
-<script setup>
-import { ref } from "vue";
-import { Dialog, DialogPanel, PopoverGroup } from "@headlessui/vue";
-import { Bars3Icon, XMarkIcon } from "@heroicons/vue/24/outline";
-import store from "@/store";
-import { logout } from "@/api/auth";
-
-const mobileMenuOpen = ref(false);
-const isAuthenticated = store.state.user.loggedIn;
-</script>

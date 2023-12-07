@@ -11,23 +11,37 @@ const props = defineProps({
 });
 
 const goal = props.goal;
+
+// Initialize the values
 const achievedValue = ref();
 const unit = ref("");
 const plannedValue = ref(goal.goal_value);
 
+/**
+ * Emit the event to the parent component. Used by the parent component to refresh the goals.
+ * @type {EmitFn<string[]>}
+ */
 const emit = defineEmits(["goal-deleted"]);
 
 const deleteModalOpen = ref(false);
+
+/**
+ * Function to toggle the delete modal.
+ */
 function toggleDeleteModal() {
-  // function that toggles the delete modal
   deleteModalOpen.value = !deleteModalOpen.value;
 }
 
+/**
+ * Function to delete the goal.
+ * @param goal Goal to delete
+ */
 function deleteGoal(goal) {
   deleteGoalById(goal.id);
   emit("goal-deleted");
 }
 
+// Format the achieved value and the unit from the goal that is passed as a property.
 if (goal.goal_type === "Distance") {
   achievedValue.value = goal.total_distance;
   unit.value = "Kilometers";
@@ -41,7 +55,7 @@ if (goal.goal_type === "Distance") {
   achievedValue.value = goal.total_calories;
   unit.value = "Kilocalories";
 }
-
+// Format the dates
 goal.start_date = formatDate(
   new firebase.firestore.Timestamp(
     goal.start_date.seconds,

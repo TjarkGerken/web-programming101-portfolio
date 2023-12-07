@@ -4,14 +4,6 @@ import Navbar from "@/components/utils/Navbar.vue";
 
 <template>
   <Navbar></Navbar>
-  <!--
-    This example requires updating your template:
-
-    ```
-    <html class="h-full">
-    <body class="h-full">
-    ```
-  -->
   <main
     class="flex h-full place-items-center items-center justify-center bg-white px-6 py-24 sm:py-32 lg:px-8"
   >
@@ -35,5 +27,3 @@ import Navbar from "@/components/utils/Navbar.vue";
     </div>
   </main>
 </template>
-
-<style scoped></style>

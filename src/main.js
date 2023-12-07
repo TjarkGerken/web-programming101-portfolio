@@ -13,10 +13,14 @@ import "vue3-openlayers/styles.css";
 
 const app = createApp({
   render: () => h(App),
-}).use(router);
+});
+
+// Inject the appropriate modules
+app.use(router);
 app.use(store);
 app.use(VueTailwindDatepicker);
 app.use(OpenLayersMap);
-
 app.use(ToastPlugin);
+
+// Mount the app
 app.mount("#app");

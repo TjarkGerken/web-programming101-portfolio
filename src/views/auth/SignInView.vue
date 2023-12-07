@@ -127,6 +127,13 @@ const password = ref("");
 const formErrors = ref({});
 const disabled = ref(false);
 
+/**
+ *  Validate the form
+ *  Validates that:
+ *  - the email is not empty
+ *  - the password is not empty
+ * @returns {boolean} If the form is valid
+ */
 function validateForm() {
   let errors = {};
 
@@ -143,6 +150,10 @@ function validateForm() {
   return Object.keys(errors).length === 0;
 }
 
+/**
+ * Submit the form and sign in the user. Disable the button during the request.
+ * @returns {Promise<void>}
+ */
 async function submitForm() {
   disabled.value = true;
   if (validateForm()) {

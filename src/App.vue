@@ -4,5 +4,6 @@
   </div>
 </template>
 <script>
+// Import Firebase for initialization in the whole app.
 import firebase from "@/firebase";
 </script>

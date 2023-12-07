@@ -1,3 +1,7 @@
+<script setup>
+import Navbar from "@/components/utils/Navbar.vue";
+import BgShape from "@/components/landing-page/BgShape.vue";
+</script>
 <template>
   <Navbar class="z-30"></Navbar>
   <div class="relative z-0 bg-white">
@@ -182,7 +186,3 @@
     </div>
   </div>
 </template>
-<script setup>
-import Navbar from "@/components/utils/Navbar.vue";
-import BgShape from "@/components/landing-page/BgShape.vue";
-</script>

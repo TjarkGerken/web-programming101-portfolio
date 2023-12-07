@@ -1,11 +1,19 @@
 import { createStore } from "vuex";
 import VuexPersist from "vuex-persist";
 
+/**
+ *  Vuex Plugin to persist the user data in local storage
+ * @type {VuexPersistence<unknown>}
+ */
 const vuexLocalStorage = new VuexPersist({
   key: "vuex",
   storage: window.localStorage,
 });
 
+/**
+ * The Vuex store which stores user data.
+ * @type {Store<{user: {data: null, loggedIn: boolean, token: null, polar_user: null}}>}
+ */
 const store = createStore({
   state: {
     user: {
@@ -35,11 +43,12 @@ const store = createStore({
     },
   },
   actions: {
+    // Track Login Status
     logIn(context, response) {
       context.commit("SET_LOGGED_IN", true);
       context.commit("SET_USER", response.user);
     },
-
+    // Clear all user data
     logOut(context) {
       context.commit("SET_LOGGED_IN", false);
       context.commit("SET_TOKEN", null);
@@ -47,6 +56,7 @@ const store = createStore({
       context.commit("SET_POLAR_USER_ID", null);
       context.commit("SET_POLAR_USER", null);
     },
+    // Set the Polar User ID
     setPolarUser(context, polar_user) {
       context.commit("SET_POLAR_USER", polar_user);
     },

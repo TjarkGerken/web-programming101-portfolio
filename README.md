@@ -7,6 +7,11 @@ build an interactive Webapp in Vue.js and use Firebase as a BaaS Provider.
 
 <!-- TODO:  Update at the end -->
 
+Implementierung der CRUD Funktionen:
+- **C**reate: Erstellen von neuen Goals und Aktivitäten
+- **R**ead: Anzeigen von Goals und Aktivitäten und Profile
+- **U**pdate: Bearbeiten vom Profil
+- **D**elete: Löschen von Goals und Aktivitäten
 
 ## Project Setup for Development
 
