@@ -4,12 +4,12 @@
     <BgShape class="invisible absolute end-0 2xl:visible"></BgShape>
 
     <div
-      class="lg: relative z-20 flex flex-col-reverse items-center justify-center px-8 lg:flex-row lg:px-8"
+      class="xl: relative z-20 flex flex-col-reverse items-center justify-center px-8 xl:flex-row xl:px-8"
     >
       <div
-        class="flex max-w-4xl flex-col py-16 text-center sm:py-48 lg:mr-10 lg:py-56 lg:text-left"
+        class="flex max-w-4xl flex-col py-16 text-center sm:py-48 xl:mr-10 xl:py-56 xl:text-left"
       >
-        <div class="lg:flex lg:flex-col lg:items-start">
+        <div class="xl:flex xl:flex-col xl:items-start">
           <h1
             class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl"
           >
@@ -38,29 +38,29 @@
       <img
         src="/src/assets/Fitness%20stats-amico.png"
         alt=""
-        class="h-[500] w-[500px] pt-16 lg:ml-10 lg:p-0"
+        class="h-[500] w-[500px] pt-16 xl:ml-10 xl:p-0"
       />
     </div>
 
-    <div class="px-6 lg:flex lg:flex-col-reverse lg:items-center lg:pb-48">
+    <div class="px-6 xl:flex xl:flex-col-reverse xl:items-center xl:pb-48">
       <img
         src="/src/assets/Smartwatch-amico.png"
         alt=""
-        class="h-[500] w-[500px] -scale-x-100 transform lg:pt-24"
+        class=" mb-8 h-[500] w-[500px] -scale-x-100 transform xl:pt-24 xl:mb-0"
       />
 
-      <div class="my-16 lg:flex lg:max-w-screen-2xl lg:text-center">
+      <div class="mb-16 xl:flex xl:max-w-screen-2xl xl:text-center">
         <div
-          class="mx-3 py-3 lg:flex lg:flex-1 lg:flex-col lg:items-center lg:rounded-xl lg:border-2 lg:border-gray-300 lg:border-opacity-30 lg:shadow-[0_8px_30px_rgb(0,0,0,0.05)]"
+          class="mx-3 py-3 xl:flex xl:flex-1 xl:flex-col xl:items-center xl:rounded-xl xl:border-2 xl:border-gray-300 xl:border-opacity-30 xl:shadow-[0_8px_30px_rgb(0,0,0,0.05)]"
         >
-          <div class="flex items-center text-accent-yellow lg:pt-4">
+          <div class="flex items-center text-accent-yellow xl:pt-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="h-10 w-10 lg:h-12 lg:w-12"
+              class="h-10 w-10 xl:h-12 xl:w-12"
             >
               <path
                 class="shadow-[0_8px_30px_rgb(0,0,0,0.05)]"
@@ -71,13 +71,13 @@
             </svg>
 
             <h1
-              class="ml-1 text-lg font-bold text-gray-900 drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)] lg:text-3xl"
+              class="ml-1 text-lg font-bold text-gray-900 drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)] xl:text-3xl xl:ml-2"
             >
               Workout Tracking
             </h1>
           </div>
           <p
-            class="leading-2 ml-2 mt-1 text-gray-600 drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)] lg:m-0 lg:mt-2 lg:pb-4 lg:pl-4 lg:pr-4 lg:text-lg lg:leading-8"
+            class="leading-2 ml-2 mt-1 text-gray-600 drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)] xl:m-0 xl:mt-2 xl:pb-4 xl:pl-4 xl:pr-4 xl:text-lg xl:leading-8"
           >
             Comprehensive and intuitive, our platform tracks essential workout
             statistics including distance, heart rate, speed, and calories
@@ -88,10 +88,10 @@
         <hr class="mx-3 my-4" />
 
         <div
-          class="mx-3 py-3 lg:flex lg:flex-1 lg:flex-col lg:items-center lg:rounded-xl lg:border-2 lg:border-gray-300 lg:border-opacity-30 lg:shadow-[0_8px_30px_rgb(0,0,0,0.05)]"
+          class="mx-3 py-3 xl:flex xl:flex-1 xl:flex-col xl:items-center xl:rounded-xl xl:border-2 xl:border-gray-300 xl:border-opacity-30 xl:shadow-[0_8px_30px_rgb(0,0,0,0.05)]"
         >
           <div
-            class="flex flex-row-reverse items-center text-accent-yellow lg:flex-row lg:pt-4"
+            class="flex flex-row-reverse items-center text-accent-yellow xl:flex-row xl:pt-4"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -99,7 +99,7 @@
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="h-10 w-10 lg:h-12 lg:w-12"
+              class="h-10 w-10 xl:h-12 xl:w-12"
             >
               <path
                 class="shadow-[0_8px_30px_rgb(0,0,0,0.05)]"
@@ -110,13 +110,13 @@
             </svg>
 
             <h1
-              class="mr-1 text-lg font-bold text-gray-900 drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)] lg:ml-1 lg:mr-0 lg:text-3xl"
+              class="mr-1 text-lg font-bold text-gray-900 drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)] xl:ml-2 xl:mr-0 xl:text-3xl "
             >
               Statistical Progress
             </h1>
           </div>
           <p
-            class="leading-2 mr-2 mt-1 text-end text-gray-600 drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)] lg:m-0 lg:mt-2 lg:pb-4 lg:pl-4 lg:pr-4 lg:text-center lg:text-lg lg:leading-8"
+            class="leading-2 mr-2 mt-1 text-end text-gray-600 drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)] xl:m-0 xl:mt-2 xl:pb-4 xl:pl-4 xl:pr-4 xl:text-center xl:text-lg xl:leading-8"
           >
             Review your aggregated weekly stats to gain a detailed overview of
             your progress and performance trends.
@@ -126,16 +126,16 @@
         <hr class="mx-3 my-4" />
 
         <div
-          class="mx-3 py-3 lg:flex lg:flex-1 lg:flex-col lg:items-center lg:rounded-xl lg:border-2 lg:border-gray-300 lg:border-opacity-30 lg:shadow-[0_8px_30px_rgb(0,0,0,0.05)]"
+          class="mx-3 py-3 xl:flex xl:flex-1 xl:flex-col xl:items-center xl:rounded-xl xl:border-2 xl:border-gray-300 xl:border-opacity-30 xl:shadow-[0_8px_30px_rgb(0,0,0,0.05)]"
         >
-          <div class="flex items-center text-accent-yellow lg:pt-4">
+          <div class="flex items-center text-accent-yellow xl:pt-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="h-10 w-9 lg:h-12 lg:w-11"
+              class="h-10 w-9 xl:h-12 xl:w-11"
             >
               <path
                 class="shadow-[0_8px_30px_rgb(0,0,0,0.05)]"
@@ -145,13 +145,13 @@
               />
             </svg>
             <h1
-              class="ml-1 text-lg font-bold text-gray-900 drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)] lg:text-3xl"
+              class="ml-1 text-lg font-bold text-gray-900 drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)] xl:text-3xl xl:ml-2"
             >
               Weekly Goals
             </h1>
           </div>
           <p
-            class="leading-2 ml-2 mt-1 text-gray-600 drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)] lg:m-0 lg:mt-2 lg:pb-4 lg:pl-4 lg:pr-4 lg:text-lg lg:leading-8"
+            class="leading-2 ml-2 mt-1 text-gray-600 drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)] xl:m-0 xl:mt-2 xl:pb-4 xl:pl-4 xl:pr-4 xl:text-lg xl:leading-8"
           >
             Set, achieve, and exceed your weekly goals with customizable
             targets, empowering you to stay motivated and elevate your fitness
@@ -165,18 +165,19 @@
   <div class="bg-[#263238]">
     <div class="mx-auto max-w-2xl py-6 text-white">
       <div class="text-center">
-        <h3 class="mb-3 text-2xl font-bold lg:pb-4 lg:pt-8 lg:text-3xl">
+        <h3 class="mb-3 text-2xl font-bold xl:pb-4 xl:pt-8 xl:text-3xl">
           Stay fit. All day, every day.
         </h3>
       </div>
       <div
-        class="lg:text-md mt-2 flex flex-col items-center text-sm text-gray-300 lg:pb-4"
+        class="xl:text-md mt-2 flex flex-col items-center text-sm text-gray-300 xl:pb-4"
       >
-        <p class="order-2 mt-4 md:order-1 md:mt-0">&copy; Polar Peak, 2023.</p>
+        <p class="order-2 mt-4 md:order-1 md:mt-0">&copy; Peak Pulse, 2023.</p>
         <div class="order-1 md:order-2">
-          <span class="px-2">About us</span>
-          <span class="border-l px-2">Contact us</span>
-          <span class="border-l px-2">Privacy Policy</span>
+          <router-link
+              to="/about" class="px-2">About us
+          </router-link>
+          <a class="border-l px-2" href="mailto:email@example.com">Contact us</a>
         </div>
       </div>
     </div>

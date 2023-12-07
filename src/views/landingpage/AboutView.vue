@@ -13,7 +13,7 @@
         <h1
           class="text-2xl font-bold drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)] xl:text-left xl:text-3xl"
         >
-          Welcome to PeakPulse
+          Welcome to Peak Pulse
         </h1>
         <p
           class="pb-8 pt-2 text-justify leading-8 drop-shadow-[0_8px_30px_rgb(0,0,0,0.05)]"
@@ -131,11 +131,12 @@
       <div
         class="lg:text-md mt-2 flex flex-col items-center text-sm text-gray-300 lg:pb-4"
       >
-        <p class="order-2 mt-4 md:order-1 md:mt-0">&copy; Polar Peak, 2023.</p>
+        <p class="order-2 mt-4 md:order-1 md:mt-0">&copy; Peak Pulse, 2023.</p>
         <div class="order-1 md:order-2">
-          <span class="px-2">About us</span>
-          <span class="border-l px-2">Contact us</span>
-          <span class="border-l px-2">Privacy Policy</span>
+          <router-link
+              to="/about" class="px-2">About us
+          </router-link>
+          <a class="border-l px-2" href="mailto:email@example.com">Contact us</a>
         </div>
       </div>
     </div>
