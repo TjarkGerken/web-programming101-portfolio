@@ -13,6 +13,15 @@ import {
   ComboboxButton,
 } from "@headlessui/vue";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/vue/20/solid";
+import VueTailwindDatepicker from "vue-tailwind-datepicker";
+import { createGoal } from "@/api/goals";
+import { useToast } from "vue-toast-notification";
+
+const emit = defineEmits(["goal-created"]);
+const props = defineProps({
+  goalArray: Object,
+});
+
 const isOpen = ref(false);
 const dateValue = ref([]);
 const value = ref(0);
@@ -20,15 +29,15 @@ const formater = ref({
   date: "DD.MM.YYYY ",
   month: "MMM",
 });
-const emit = defineEmits(["goal-created"]);
-
-const props = defineProps({
-  goalArray: Object,
-});
-
-import VueTailwindDatepicker from "vue-tailwind-datepicker";
-import { createGoal } from "@/api/goals";
-import { useToast } from "vue-toast-notification";
+const formErrors = ref({ date: "", goalType: "", goalValue: "" });
+const goal_types = [
+  { id: 1, name: "Distance", unit: "Kilometers" },
+  { id: 2, name: "Time", unit: "Minutes" },
+  { id: 3, name: "Calories", unit: "Kilocalories" },
+];
+const selected_goal = ref(goal_types[0]);
+const query = ref("");
+const disabled = ref(false);
 
 function closeModal() {
   isOpen.value = false;
@@ -41,14 +50,23 @@ function openModal() {
   isOpen.value = true;
 }
 
-const goal_types = [
-  { id: 1, name: "Distance", unit: "Kilometers" },
-  { id: 2, name: "Time", unit: "Minutes" },
-  { id: 3, name: "Calories", unit: "Kilocalories" },
-];
+function validateForm() {
+  formErrors.value = {};
 
-const selected_goal = ref(goal_types[0]);
-const query = ref("");
+  if (!dateValue.value || dateValue.value.length !== 2) {
+    formErrors.value.date = "Start and end date are required";
+  }
+
+  if (!selected_goal.value) {
+    formErrors.value.goalType = "Goal type is required";
+  }
+
+  if (!value.value || value.value <= 0) {
+    formErrors.value.goalValue = "Goal value is required and must be positive";
+  }
+
+  return Object.keys(formErrors.value).length === 0;
+}
 
 let filteredGoal = computed(() =>
   query.value === ""
@@ -61,15 +79,26 @@ let filteredGoal = computed(() =>
       ),
 );
 function submitGoal() {
+  disabled.value = true;
+  if (!validateForm()) {
+    disabled.value = false;
+    return;
+  }
+
   createGoal({
     start_date: dateValue.value[0].trim(),
     end_date: dateValue.value[1].trim(),
     goal_type: selected_goal.value.name,
     goal_value: value.value,
-  }).then(() => {
-    closeModal();
-    emit("goal-created");
-  });
+  })
+    .then(() => {
+      disabled.value = false;
+      closeModal();
+      emit("goal-created");
+    })
+    .catch(() => {
+      disabled.value = false;
+    });
 }
 </script>
 
@@ -123,6 +152,7 @@ function submitGoal() {
                       :shortcuts="false"
                       separator=" to "
                     />
+                    <p class="text-sm text-red-600">{{ formErrors.date }}</p>
                   </div>
 
                   <div>
@@ -153,7 +183,7 @@ function submitGoal() {
                           @after-leave="query = ''"
                         >
                           <ComboboxOptions
-                            class="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
+                            class="absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
                           >
                             <div
                               v-if="filteredGoal.length === 0 && query !== ''"
@@ -172,7 +202,7 @@ function submitGoal() {
                               <li
                                 class="relative cursor-default select-none py-2 pl-10 pr-4"
                                 :class="{
-                                  'bg-teal-600 text-white': active,
+                                  'bg-accent-yellow text-white': active,
                                   'text-gray-900': !active,
                                 }"
                               >
@@ -190,7 +220,7 @@ function submitGoal() {
                                   class="absolute inset-y-0 left-0 flex items-center pl-3"
                                   :class="{
                                     'text-white': active,
-                                    'text-teal-600': !active,
+                                    'text-accent-yellow': !active,
                                   }"
                                 >
                                   <CheckIcon
@@ -204,6 +234,9 @@ function submitGoal() {
                         </TransitionRoot>
                       </div>
                     </Combobox>
+                    <p class="text-sm text-red-600">
+                      {{ formErrors.goalType }}
+                    </p>
                   </div>
                   <div>
                     <label for="value">{{ selected_goal.unit }}</label>
@@ -213,23 +246,28 @@ function submitGoal() {
                       type="number"
                       min="0"
                       pattern="\d+"
-                      class="focus:ring-0relative w-full cursor-default overflow-hidden rounded-lg border-none bg-white py-2 pl-3 pr-10 text-left text-sm leading-5 text-gray-900 shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm"
+                      class="-z-20 w-full cursor-default overflow-hidden rounded-lg border-none bg-white py-2 pl-3 pr-10 text-left text-sm leading-5 text-gray-900 drop-shadow focus:outline-none focus:ring-0 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-accent-yellow-light sm:text-sm"
                     />
+                    <p class="text-sm text-red-600">
+                      {{ formErrors.goalValue }}
+                    </p>
                   </div>
                 </form>
               </div>
 
               <div class="mt-4 flex w-full justify-around">
                 <button
+                  :disabled="disabled"
                   type="button"
-                  class="inline-flex w-1/3 justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
+                  class="inline-flex w-1/3 justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 disabled:bg-gray-400"
                   @click="closeModal"
                 >
                   Dismiss
                 </button>
                 <button
+                  :disabled="disabled"
                   type="button"
-                  class="inline-flex w-1/3 justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
+                  class="inline-flex w-1/3 justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 disabled:bg-gray-400"
                   @click="submitGoal"
                 >
                   Create

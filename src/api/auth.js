@@ -7,7 +7,7 @@ const toast = useToast();
 
 export function googleSignIn() {
   let provider = new firebase.auth.GoogleAuthProvider();
-  firebase
+  return firebase
     .auth()
     .signInWithPopup(provider)
     .then(async (result) => {
@@ -26,7 +26,7 @@ export function googleSignIn() {
 }
 
 export function MailPasswordSignIn(email, password) {
-  firebase
+  return firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then(async (result) => {
@@ -39,14 +39,13 @@ export function MailPasswordSignIn(email, password) {
         await router.push("/profile");
       }
     })
-    .catch((error) => {
+    .catch(() => {
       toast.error("Something we wrong. Please try again.");
-      console.log(error);
     });
 }
 
 export function MailPasswordRegister(email, password) {
-  firebase
+  return firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then(async (result) => {
@@ -60,9 +59,8 @@ export function MailPasswordRegister(email, password) {
         await router.push("/profile");
       }
     })
-    .catch((error) => {
+    .catch(() => {
       toast.error("Something we wrong. Please try again.");
-      console.log(error);
     });
 }
 

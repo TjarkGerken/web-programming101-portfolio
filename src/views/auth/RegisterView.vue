@@ -59,6 +59,7 @@
               required=""
               class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accent-yellow sm:text-sm sm:leading-6"
             />
+            <p class="text-red-500">{{ formErrors.email }}</p>
           </div>
         </div>
 
@@ -80,8 +81,8 @@
               class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accent-yellow sm:text-sm sm:leading-6"
             />
           </div>
+          <p class="text-red-500">{{ formErrors.password }}</p>
         </div>
-
         <div class="mt-2">
           <label
             for="confirm-password"
@@ -96,20 +97,27 @@
             required=""
             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accent-yellow sm:text-sm sm:leading-6"
           />
+          <p class="text-red-500">{{ formErrors.confirmPassword }}</p>
         </div>
-        <p class="text-red-500">{{ formErrors.confirmPassword }}</p>
         <div>
           <button
             type="submit"
-            class="flex w-full justify-center rounded-md bg-accent-yellow px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-accent-yellow-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-yellow"
+            class="flex w-full justify-center rounded-md bg-accent-yellow px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-accent-yellow-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-yellow disabled:bg-gray-400"
             @click.prevent="submitForm"
+            :disabled="disabled"
           >
             Register
           </button>
         </div>
       </form>
       <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <GoogleSignInButton text="Register with Google" />
+        <GoogleSignInButton
+          @google-sign-error="disabled = false"
+          @google-sign-end="disabled = false"
+          @google-sign-start="disabled = true"
+          :disabled="disabled"
+          text="Register with Google"
+        />
       </div>
     </div>
     <div
@@ -132,8 +140,9 @@ let email = ref("");
 let password = ref("");
 let formErrors = ref({});
 let confirmPassword = ref();
+const disabled = ref(false);
 
-const validateForm = () => {
+function validateForm() {
   let errors = {};
 
   if (!email.value) {
@@ -142,8 +151,7 @@ const validateForm = () => {
 
   if (!password.value) {
     errors.password = "Password is required";
-  }
-  if (password.value.length < 6) {
+  } else if (password.value.length < 6) {
     errors.password = "Password must be longer than 6 characters";
   }
 
@@ -154,11 +162,16 @@ const validateForm = () => {
   formErrors.value = errors;
 
   return Object.keys(errors).length === 0;
-};
+}
 
-const submitForm = async () => {
+async function submitForm() {
+  disabled.value = true;
   if (validateForm()) {
-    await MailPasswordRegister(email.value, password.value);
+    await MailPasswordRegister(email.value, password.value).finally(() => {
+      disabled.value = false;
+    });
+  } else {
+    disabled.value = false;
   }
-};
+}
 </script>
