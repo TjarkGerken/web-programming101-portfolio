@@ -218,3 +218,12 @@ export function getExerciseByID(id) {
       return res.data();
     });
 }
+
+export function deleteExerciseByID(id) {
+  const userDocRef = firebase
+    .firestore()
+    .collection("user")
+    .doc(store.state.user.data.uid);
+  const exerciseDocRef = userDocRef.collection("exercises");
+  return exerciseDocRef.doc("POLAR_" + id).delete();
+}
