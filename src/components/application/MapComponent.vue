@@ -35,7 +35,7 @@ onMounted(() => {
     :load-tiles-while-interacting="true"
     :interactions="[]"
     :controls="[]"
-    style="height: 100%; width: 100%"
+    style="height: 100%; width: 100%; border-radius: 4px; overflow: hidden;"
   >
     <ol-view
       ref="viewRef"
@@ -50,6 +50,7 @@ onMounted(() => {
     <ol-tile-layer>
       <ol-source-osm />
     </ol-tile-layer>
+
     <ol-vector-layer>
       <ol-source-vector>
         <ol-feature>
