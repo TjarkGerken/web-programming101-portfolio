@@ -23,7 +23,10 @@ import { useToast } from "vue-toast-notification";
  */
 const emit = defineEmits(["goal-created"]);
 const props = defineProps({
-  goalArray: Object,
+  goalArray: {
+    type: Object,
+    default: () => ({}),
+  },
 });
 
 const isOpen = ref(false);

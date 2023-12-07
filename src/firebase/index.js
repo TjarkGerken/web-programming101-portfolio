@@ -23,6 +23,7 @@ const fire_store_db = firebase_app.firestore;
  * Sets the Firebase Authentication Persistence to Local Storage so the user stays logged in
  * @type {Promise<void>}
  */
+/* eslint-disable no-unused-vars */
 const auth = firebase
   .auth()
   .setPersistence(firebase.auth.Auth.Persistence.LOCAL);

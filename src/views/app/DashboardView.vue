@@ -7,8 +7,8 @@ import {
 } from "@/api/getPolarActivities";
 import ApplicationNavbar from "@/components/utils/ApplicationNavbar.vue";
 import ActivitiesCard from "@/components/application/ActivitiesCard.vue";
-import Goals from "@/components/goals/Goals.vue";
-import Stats from "@/components/application/Stats.vue";
+import Goals from "@/components/goals/GoalList.vue";
+import Stats from "@/components/application/StatsDisplay.vue";
 import store from "../../store";
 
 const exercises = ref({});

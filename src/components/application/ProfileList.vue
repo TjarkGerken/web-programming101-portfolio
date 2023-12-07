@@ -4,7 +4,12 @@ import { ref, watch } from "vue";
 import VueTailwindDatepicker from "vue-tailwind-datepicker";
 import { updateUser } from "@/api/user";
 
-let props = defineProps({ user: Object });
+const props = defineProps({
+  user: {
+    type: Object,
+    default: () => ({}),
+  },
+});
 const is_editing = ref(false);
 
 // Initialize the form values

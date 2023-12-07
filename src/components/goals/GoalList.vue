@@ -26,16 +26,16 @@ onMounted(() => {
 <template>
   <div class="flex w-full flex-col items-center gap-4">
     <DisplayGoal
-      @goal-deleted="getGoals"
       v-for="goal in goals"
       :key="goal.id"
       :goal="goal"
+      @goal-deleted="getGoals"
     />
     <div class="flex w-full justify-center xl:justify-end">
       <button
         class="mb-16 mt-4 w-full rounded-md bg-accent-yellow px-3.5 py-2.5 text-xl font-semibold text-white shadow-sm transition-colors duration-300 ease-in-out hover:bg-accent-yellow-light"
       >
-        <CreateGoal @goal-created="getGoals" :goalArray="goals" />
+        <CreateGoal :goal-array="goals" @goal-created="getGoals" />
       </button>
     </div>
   </div>

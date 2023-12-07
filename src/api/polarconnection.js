@@ -101,14 +101,18 @@ export async function getPolarAuthToken(code) {
     try {
       // Register User at Polar API
       await registerUser(user_id, response.data.access_token);
-    } catch (error) {}
+    } catch (error) {
+      // Inform User about the error
+      toast.error("Something went wrong. Please try again.");
+      console.error(error);
+    }
 
     // Store User Data in Firebase
     await storeUserData(user_id, response.data.access_token);
     toast.success("You're account was successfully connected.");
   } catch (error) {
     // Inform User about the error
-    toast.error("Something we wrong. Please try again.");
+    toast.error("Something went wrong. Please try again.");
     console.error(error);
   }
   // Fetch the User Data from Firebase
@@ -149,6 +153,6 @@ export async function deleteUser() {
       });
   } catch (error) {
     // Inform User about the error
-    toast.error("Something we wrong. Please try again.");
+    toast.error("Something went wrong. Please try again.");
   }
 }

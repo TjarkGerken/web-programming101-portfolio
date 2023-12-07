@@ -164,8 +164,8 @@ async function submitForm() {
           <button
             type="submit"
             class="flex w-full justify-center rounded-md bg-accent-yellow px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-accent-yellow-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-yellow disabled:bg-gray-400"
-            @click.prevent="submitForm"
             :disabled="disabled"
+            @click.prevent="submitForm"
           >
             Register
           </button>
@@ -173,11 +173,11 @@ async function submitForm() {
       </form>
       <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <GoogleSignInButton
+          :disabled="disabled"
+          text="Register with Google"
           @google-sign-error="disabled = false"
           @google-sign-end="disabled = false"
           @google-sign-start="disabled = true"
-          :disabled="disabled"
-          text="Register with Google"
         />
       </div>
     </div>

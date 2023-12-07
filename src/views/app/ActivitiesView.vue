@@ -3,7 +3,7 @@ import ApplicationNavbar from "@/components/utils/ApplicationNavbar.vue";
 import ActivitiesCard from "@/components/application/ActivitiesCard.vue";
 import { onMounted, ref } from "vue";
 import { getExercises, getPolarActivities } from "@/api/getPolarActivities";
-import Spinner from "@/components/utils/Spinner.vue";
+import Spinner from "@/components/utils/SpinnerComponent.vue";
 import store from "@/store";
 
 const exercises = ref([]);
@@ -59,12 +59,11 @@ onMounted(() => {
       to get started or upload a new Activity if you are already connected!
     </div>
     <div
-      v-if="!noActivities"
+      v-if="exercises.length > 0 && !noActivities"
       class="flex flex-col items-center gap-4 pb-16 xl:w-2/3 xl:gap-6"
     >
       <ActivitiesCard
         v-for="(exercise, index) in exercises"
-        v-if="exercises.length > 0"
         :key="index"
         class="flex w-11/12 justify-center lg:w-full"
         :activity="exercise"

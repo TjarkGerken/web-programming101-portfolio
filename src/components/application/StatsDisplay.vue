@@ -2,7 +2,10 @@
 import { ref } from "vue";
 
 const props = defineProps({
-  stats: Object,
+  stats: {
+    type: Object,
+    default: () => ({}),
+  },
 });
 const stats = props.stats;
 const currentStat = ref(1);
@@ -41,7 +44,7 @@ function shouldRenderContent(x) {
 
 <template>
   <div class="flex flex-row items-center justify-around gap-1">
-    <div @click="decrementStat" class="md:hidden">
+    <div class="md:hidden" @click="decrementStat">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -269,7 +272,7 @@ function shouldRenderContent(x) {
         </div>
       </div>
     </div>
-    <div @click="incrementStat" class="md:hidden">
+    <div class="md:hidden" @click="incrementStat">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

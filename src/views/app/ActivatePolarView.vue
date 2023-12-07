@@ -2,6 +2,7 @@
 import { onMounted } from "vue";
 import { getPolarAuthToken } from "@/api/polarconnection";
 import { useRoute } from "vue-router";
+import Spinner from "@/components/utils/SpinnerComponent.vue";
 
 const route = useRoute();
 
@@ -15,4 +16,8 @@ onMounted(() => {
 });
 </script>
 
-<template></template>
+<template>
+  <div class="flex h-screen w-screen items-center justify-center">
+    <Spinner />
+  </div>
+</template>

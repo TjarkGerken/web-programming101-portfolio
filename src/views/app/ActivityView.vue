@@ -240,9 +240,9 @@ onMounted(() => {
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
                 <tr
-                  class="hover:bg-gray-100"
                   v-for="(lap, index) in activity.fit['lapMesgs']"
                   :key="index"
+                  class="hover:bg-gray-100"
                 >
                   <td
                     class="whitespace-nowrap px-1 py-4 text-sm text-gray-500 sm:px-3 md:px-6"
@@ -286,8 +286,8 @@ onMounted(() => {
     </div>
   </div>
   <div
-    class="absolute left-0 top-0 z-50 flex h-screen w-screen items-center justify-center bg-black bg-opacity-50"
     v-if="deleteModalOpen"
+    class="absolute left-0 top-0 z-50 flex h-screen w-screen items-center justify-center bg-black bg-opacity-50"
     @click="toggleDeleteModal()"
   ></div>
   <div

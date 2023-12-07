@@ -4,7 +4,10 @@ import { LongLatListForMapUsage } from "@/api/gpxConversion";
 import { LineString } from "ol/geom";
 
 const props = defineProps({
-  activity: Object,
+  activity: {
+    type: Object,
+    default: () => ({}),
+  },
 });
 
 // Set the default values for the map.

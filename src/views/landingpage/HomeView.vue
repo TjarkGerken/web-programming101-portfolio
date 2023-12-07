@@ -1,5 +1,5 @@
 <script setup>
-import Navbar from "@/components/utils/Navbar.vue";
+import Navbar from "@/components/utils/LandingPageNavbar.vue";
 import BgShape from "@/components/landing-page/BgShape.vue";
 </script>
 <template>

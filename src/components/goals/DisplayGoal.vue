@@ -7,7 +7,10 @@ import { Duration } from "luxon";
 import { deleteGoalById } from "@/api/goals";
 
 const props = defineProps({
-  goal: Object,
+  goal: {
+    type: Object,
+    default: () => ({}),
+  },
 });
 
 const goal = props.goal;
@@ -130,8 +133,8 @@ goal.end_date = formatDate(
     </div>
   </div>
   <div
-    class="absolute left-0 top-0 z-50 flex h-screen w-screen items-center justify-center bg-black bg-opacity-50"
     v-if="deleteModalOpen"
+    class="absolute left-0 top-0 z-50 flex h-screen w-screen items-center justify-center bg-black bg-opacity-50"
     @click="toggleDeleteModal()"
   ></div>
   <div
