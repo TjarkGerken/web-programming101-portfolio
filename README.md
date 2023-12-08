@@ -6,7 +6,12 @@ build an interactive Webapp in Vue.js and use Firebase as a BaaS Provider.
 ## Contributors
 - Friedemann Baumgärtel
 - Lukas Stamm
-- [Tjark Gerken](mailto:tjark.gerken@icloud.com)
+- [Tjark Gerken](mailto:tjarkgerken@icloud.com)
+
+## Tech-Stack
+- [Vue.js](https://vuejs.org/)
+- [Firebase](https://firebase.google.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
 ## Project Description 🇬🇧 
 Peak Pulse is an activity tracker and activity viewer for the manufacturer Polar. It enables the user to
