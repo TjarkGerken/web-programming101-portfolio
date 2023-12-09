@@ -48,6 +48,6 @@ onMounted(async () => {
   </div>
   <PolarConnect
     class="px-4 pb-16 xl:ml-32 xl:px-8"
-    :polar_status="polar_status"
+    :polarStatus="polar_status"
   />
 </template>
