@@ -134,12 +134,12 @@ goal.end_date = formatDate(
   </div>
   <div
     v-if="deleteModalOpen"
-    class="absolute left-0 top-0 z-50 flex h-screen w-screen items-center justify-center bg-black bg-opacity-50"
+    class="fixed left-0 top-0   z-50 flex h-screen w-screen items-center justify-center bg-black bg-opacity-50"
     @click="toggleDeleteModal()"
   ></div>
   <div
     v-if="deleteModalOpen"
-    class="absolute left-0 top-0 z-50 flex h-screen w-screen items-center justify-center px-5"
+    class="fixed left-0 top-0  z-50 flex h-screen w-screen items-center justify-center px-5"
   >
     <div class="flex flex-col rounded-lg bg-white p-4 md:px-16 md:py-8">
       <span class="text-center text-2xl font-semibold">Delete Goal</span>
